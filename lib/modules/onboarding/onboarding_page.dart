@@ -1,7 +1,7 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class OnboardingPage extends StatefulWidget {
-  static const route = 'onboarding';
+  static const route = 'OnboardingPage';
   const OnboardingPage({super.key});
 
   @override
@@ -25,37 +25,31 @@ class _OnboardingPageState extends State<OnboardingPage> {
         child: Column(
           children: [
             Expanded(
-              child: PageView(
+              child: PageView.builder(
                 controller: _pageController,
+                itemCount: onboardingData.length,
                 onPageChanged: (int page) {
                   setState(() {
                     _currentPage = page;
                   });
                 },
-                children: const [
-                  OnboardingSlide(
-                    image: Icons.shopping_cart_outlined,
-                    title: 'Selamat Datang di Beliinini_app',
-                    description: 'Temukan produk dan penawaran luar biasa.',
-                  ),
-                  OnboardingSlide(
-                    image: Icons.credit_card_outlined,
-                    title: 'Pembayaran Aman',
-                    description:
-                        'Berbelanja dengan percaya diri menggunakan gateway pembayaran aman kami.',
-                  ),
-                  OnboardingSlide(
-                    image: Icons.delivery_dining_outlined,
-                    title: 'Pengiriman Cepat',
-                    description:
-                        'Dapatkan pesanan Anda diantar ke depan pintu Anda dengan cepat.',
-                  ),
-                ],
+                itemBuilder: (context, index) {
+                  return OnboardingSlide(
+                    image: onboardingData[index].image,
+                    title: onboardingData[index].title,
+                    description: onboardingData[index].description,
+                  );
+                },
               ),
             ),
-            OnboardingSkip(
-              currentPage: _currentPage,
-              pageController: _pageController,
+            SmoothPageIndicator(
+              controller: _pageController,
+              count: onboardingData.length,
+              effect: const ExpandingDotsEffect(
+                dotHeight: 8,
+                dotWidth: 15,
+                activeDotColor: Colors.black
+              ),
             ),
           ],
         ),

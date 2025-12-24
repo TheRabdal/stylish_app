@@ -1,8 +1,7 @@
-import 'package:stylish_app/modules/onboarding/onboarding_page.dart';
 import 'package:stylish_app/packages/packages.dart';
 
 class SplashPage extends StatefulWidget {
-  static const route = '/';
+  static const route = 'SplashPage';
   const SplashPage({super.key});
 
   @override

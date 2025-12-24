@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  static String? get route => null;
+  static const route = '/login';
 
   const LoginPage({super.key});
 

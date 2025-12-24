@@ -16,7 +16,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),
+      initialRoute: SplashPage.route,
+      routes: {
+        SplashPage.route: (context) => const SplashPage(),
+        OnboardingPage.route: (context) => const OnboardingPage(),
+        LoginPage.route: (context) => const LoginPage(),
+      },
     );
   }
 }
