@@ -42,13 +42,42 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 },
               ),
             ),
-            SmoothPageIndicator(
-              controller: _pageController,
-              count: onboardingData.length,
-              effect: ExpandingDotsEffect(
-                dotHeight: 10,
-                dotWidth: 15,
-                activeDotColor: Colors.black
+            SizedBox(
+              height: 80,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: SmoothPageIndicator(
+                      controller: _pageController,
+                      count: onboardingData.length,
+                      effect: const ExpandingDotsEffect(
+                          dotHeight: 10,
+                          dotWidth: 15,
+                          activeDotColor: Colors.black),
+                    ),
+                  ),
+                  if (currentPage == onboardingData.length - 1)
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 16, bottom: 16),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, LoginPage.route);
+                          },
+                          child: const Text(
+                            'Get Started',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
           ],
