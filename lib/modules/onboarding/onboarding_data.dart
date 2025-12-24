@@ -1,3 +1,5 @@
+import 'package:stylish_app/packages/packages.dart';
+
 class OnboardingData {
   final String image;
   final String title;
@@ -13,19 +15,17 @@ class OnboardingData {
 List<OnboardingData> onboardingData = [
   OnboardingData(
     image: 'assets/onboarding1.png',
-    title: 'Selamat Datang di Stylish App',
-    description: 'Temukan produk dan penawaran luar biasa.',
+    title: 'Choose Products',
+    description: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
   ),
   OnboardingData(
     image: 'assets/onboarding2.png',
-    title: 'Pembayaran Aman',
-    description:
-        'Berbelanja dengan percaya diri menggunakan gateway pembayaran aman kami.',
+    title: 'Make Payment',
+    description: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
   ),
   OnboardingData(
     image: 'assets/onboarding3.png',
-    title: 'Pengiriman Cepat',
-    description:
-        'Dapatkan pesanan Anda diantar ke depan pintu Anda dengan cepat.',
+    title: 'Get Your Order',
+    description: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
   ),
 ];
