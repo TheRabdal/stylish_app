@@ -1,5 +1,3 @@
-import 'package:stylish_app/packages/packages.dart';
-
 class OnboardingData {
   final String image;
   final String title;

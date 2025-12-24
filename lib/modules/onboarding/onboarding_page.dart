@@ -10,7 +10,7 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _pageController = PageController(initialPage: 0);
-  int _currentPage = 0;
+  int currentPage = 0;
 
   @override
   void dispose() {
@@ -30,7 +30,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 itemCount: onboardingData.length,
                 onPageChanged: (int page) {
                   setState(() {
-                    _currentPage = page;
+                    currentPage = page;
                   });
                 },
                 itemBuilder: (context, index) {
