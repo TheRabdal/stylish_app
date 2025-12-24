@@ -21,6 +21,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
@@ -64,7 +65,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         padding: const EdgeInsets.only(right: 16, bottom: 16),
                         child: TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, LoginPage.route);
+                            Navigator.pushNamed(
+                              context, 
+                              LoginPage.route);
                           },
                           child: const Text(
                             'Get Started',

@@ -20,8 +20,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         SplashPage.route: (context) => const SplashPage(),
         OnboardingPage.route: (context) => const OnboardingPage(),
-        LoginPage.route: (context) => const LoginPage(),
-      },
+        LoginPage.route: (context) => const LoginPage()
+        },
     );
   }
 }
