@@ -17,12 +17,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: SplashPage.route,
-      routes: {
-        SplashPage.route: (context) => const SplashPage(),
-        OnboardingPage.route: (context) => const OnboardingPage(),
-        LoginPage.route: (context) => const LoginPage(),
-        ResetPasswordPage.route: (context) => const ResetPasswordPage(),
-      },
+      routes: appRoutes,
     );
   }
 }
