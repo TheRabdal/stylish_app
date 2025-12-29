@@ -5,5 +5,7 @@ final Map<String, WidgetBuilder> appRoutes = {
   SplashPage.route: (context) => const SplashPage(),
   OnboardingPage.route: (context) => const OnboardingPage(),
   LoginPage.route: (context) => const LoginPage(),
+  SignUpPage.route: (context) => const SignUpPage(),
   ResetPasswordPage.route: (context) => const ResetPasswordPage(),
+  GetStartedPage.route: (context) => const GetStartedPage(),
 };

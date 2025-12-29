@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
       password: _passwordController.text,
     );
     debugPrint("Login with: ${payload.email}, ${payload.password}");
+    Navigator.pushNamed(context, GetStartedPage.route);
   }
 
   @override

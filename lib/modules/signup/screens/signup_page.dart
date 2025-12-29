@@ -3,6 +3,8 @@ import 'package:stylish_app/packages/packages.dart';
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
+  static const String route = 'SignUpPage';
+
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
