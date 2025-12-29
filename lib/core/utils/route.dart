@@ -8,4 +8,5 @@ final Map<String, WidgetBuilder> appRoutes = {
   SignUpPage.route: (context) => const SignUpPage(),
   ResetPasswordPage.route: (context) => const ResetPasswordPage(),
   GetStartedPage.route: (context) => const GetStartedPage(),
+  HomePage.route: (context) => const HomePage(),
 };
