@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 10),
               const ForgotPassword(),
               const SizedBox(height: 50),
-              LoginButton(onPressed: _onLogin),
+              Button(text: 'Login', onPressed: _onLogin),
               const SocialLogin(),
               const SizedBox(height: 40),
               const SignUpText(),
