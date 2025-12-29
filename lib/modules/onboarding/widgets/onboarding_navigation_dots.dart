@@ -17,7 +17,7 @@ class OnboardingNavigationDots extends StatelessWidget {
       count: totalPages,
       effect: const ExpandingDotsEffect(
         dotHeight: 8,
-        dotWidth: 8,
+        dotWidth: 12,
         activeDotColor: Colors.black,
         dotColor: Colors.grey,
         expansionFactor: 3,
