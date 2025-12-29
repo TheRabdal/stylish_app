@@ -1,7 +1,9 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+  final VoidCallback? onPressed;
+
+  const LoginButton({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,7 @@ class LoginButton extends StatelessWidget {
       width: double.infinity,
       height: 55,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFF83758),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),

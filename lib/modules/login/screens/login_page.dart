@@ -10,6 +10,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _onLogin() {
+    final payload = LoginPayload(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+    debugPrint("Login with: ${payload.email}, ${payload.password}");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,25 +36,28 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
-            children: const [
-              LoginHeader(),
+            children: [
+              const LoginHeader(),
               CustomTextField(
-                hint: "Username or Email", 
-                icon: Icons.person),
-              SizedBox(height: 30),
+                hint: "Username or Email",
+                icon: Icons.person,
+                controller: _emailController,
+              ),
+              const SizedBox(height: 30),
               CustomTextField(
                 hint: "Password",
                 icon: Icons.lock,
                 isPassword: true,
+                controller: _passwordController,
               ),
-              SizedBox(height: 10),
-              ForgotPassword(),
-              SizedBox(height: 50),
-              LoginButton(),
-              SocialLogin(),
-              SizedBox(height: 40),
-              SignUpText(),
-              SizedBox(height: 20),
+              const SizedBox(height: 10),
+              const ForgotPassword(),
+              const SizedBox(height: 50),
+              LoginButton(onPressed: _onLogin),
+              const SocialLogin(),
+              const SizedBox(height: 40),
+              const SignUpText(),
+              const SizedBox(height: 20),
             ],
           ),
         ),
