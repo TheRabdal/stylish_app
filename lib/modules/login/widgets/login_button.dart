@@ -11,7 +11,7 @@ class LoginButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFFF83758), // Pink color
+          backgroundColor: const Color(0xFFF83758),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           elevation: 0,
         ),

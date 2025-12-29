@@ -1,6 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import '../widgets/widgets.dart';
-import '../models/models.dart';
 
 class OnboardingPage extends StatefulWidget {
   static const route = 'OnboardingPage';

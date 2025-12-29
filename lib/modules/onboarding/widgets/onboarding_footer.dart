@@ -1,7 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'onboarding_navigation_dots.dart';
-import 'onboarding_next_button.dart';
-import 'onboarding_prev_button.dart';
 
 class OnboardingFooter extends StatelessWidget {
   final int currentPage;

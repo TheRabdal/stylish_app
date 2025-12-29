@@ -1,6 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'onboarding_page_counter.dart';
-import 'onboarding_skip_button.dart';
 
 class OnboardingHeader extends StatelessWidget {
   final int currentPage;

@@ -36,9 +36,7 @@ class CustomTextField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: Color(0xFFF83758), // Pink border on focus
-          ),
+          borderSide: const BorderSide(color: Color(0xFFF83758)),
         ),
       ),
     );

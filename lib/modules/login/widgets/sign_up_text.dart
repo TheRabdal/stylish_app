@@ -14,14 +14,17 @@ class SignUpText extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            // Navigate to Sign Up
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SignUpPage()),
+            );
           },
           child: const Text(
             "Sign Up",
             style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Color(0xFFF83758), // Pink
+              color: Color(0xFFF83758),
               fontSize: 14,
+              fontWeight: FontWeight.w600,
               decoration: TextDecoration.underline,
             ),
           ),
