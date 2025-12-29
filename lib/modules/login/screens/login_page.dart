@@ -12,6 +12,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool suffix = false;
 
   @override
   void dispose() {
@@ -48,8 +49,19 @@ class _LoginPageState extends State<LoginPage> {
                 hint: "Password",
                 icon: Icons.lock,
                 isPassword: true,
+                passwordHash: suffix,
                 controller: _passwordController,
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      suffix = !suffix;
+                    });
+                  },
+                  child: Icon(suffix ? Icons.visibility : Icons.visibility_off),
+                ),
               ),
+              const SizedBox(height: 30),
+              CustomTextField(hint: "reset"),
               const SizedBox(height: 10),
               const ForgotPassword(),
               const SizedBox(height: 50),

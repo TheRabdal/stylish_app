@@ -2,28 +2,30 @@ import 'package:stylish_app/packages/packages.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hint;
-  final IconData icon;
+  final IconData? icon;
   final bool isPassword;
   final TextEditingController? controller;
+  final Widget? suffixIcon;
+  final bool passwordHash;
 
   const CustomTextField({
     super.key,
     required this.hint,
-    required this.icon,
+    this.icon,
     this.isPassword = false,
     this.controller,
+    this.suffixIcon,
+    this.passwordHash = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      obscureText: isPassword,
+      obscureText: passwordHash,
       decoration: InputDecoration(
-        prefixIcon: Icon(icon, color: Colors.grey[600]),
-        suffixIcon: isPassword
-            ? Icon(Icons.visibility_outlined, color: Colors.grey[600])
-            : null,
+        prefixIcon: icon == null ? null : Icon(icon, color: Colors.grey[600]),
+        suffixIcon: isPassword ? suffixIcon : null,
         hintText: hint,
         hintStyle: TextStyle(color: Colors.grey[500]),
         filled: true,

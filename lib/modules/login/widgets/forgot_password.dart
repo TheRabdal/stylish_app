@@ -9,7 +9,8 @@ class ForgotPassword extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          Navigator.pushNamed(context, ResetPasswordPage.route);
+          Navigator.pushNamed(
+            context, ResetPasswordPage.route);
         },
         child: const Text(
           "Forgot Password?",

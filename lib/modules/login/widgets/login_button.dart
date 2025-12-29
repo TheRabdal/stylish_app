@@ -14,7 +14,8 @@ class LoginButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Color(0xFFF83758),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4)),
           elevation: 0,
         ),
         child: const Text(
