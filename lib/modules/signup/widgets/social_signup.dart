@@ -1,0 +1,48 @@
+import 'package:stylish_app/packages/packages.dart';
+
+class SocialSignup extends StatelessWidget {
+  const SocialSignup({super.key});
+
+  Future<void> _launchUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          "- OR Continue with -",
+          style: GoogleFonts.montserrat(
+            color: Colors.black54,
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SocialButton(
+              onTap: () => _launchUrl('https://google.com'),
+              icon: Image.asset('assets/Google.png'),
+            ),
+            const SizedBox(width: 15),
+            SocialButton(
+              onTap: () => _launchUrl('https://apple.com'),
+              icon: Image.asset('assets/Apple.png'),
+            ),
+            const SizedBox(width: 15),
+            SocialButton(
+              onTap: () => _launchUrl('https://facebook.com'),
+              icon: Image.asset('assets/Facebook.png'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}

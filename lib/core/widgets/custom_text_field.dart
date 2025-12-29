@@ -23,11 +23,12 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       obscureText: passwordHash,
+      style: GoogleFonts.montserrat(color: Colors.black),
       decoration: InputDecoration(
         prefixIcon: icon == null ? null : Icon(icon, color: Colors.grey[600]),
         suffixIcon: isPassword ? suffixIcon : null,
         hintText: hint,
-        hintStyle: TextStyle(color: Colors.grey[500]),
+        hintStyle: GoogleFonts.montserrat(color: Colors.grey[500]),
         filled: true,
         fillColor: Colors.grey[100],
         contentPadding: const EdgeInsets.symmetric(vertical: 20),

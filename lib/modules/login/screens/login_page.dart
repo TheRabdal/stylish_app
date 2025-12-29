@@ -60,8 +60,6 @@ class _LoginPageState extends State<LoginPage> {
                   child: Icon(suffix ? Icons.visibility : Icons.visibility_off),
                 ),
               ),
-              const SizedBox(height: 30),
-              CustomTextField(hint: "reset"),
               const SizedBox(height: 10),
               const ForgotPassword(),
               const SizedBox(height: 50),
