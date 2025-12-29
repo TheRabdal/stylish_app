@@ -1,4 +1,6 @@
 import 'package:stylish_app/packages/packages.dart';
+import '../widgets/widgets.dart';
+import '../models/models.dart';
 
 class OnboardingPage extends StatefulWidget {
   static const route = 'OnboardingPage';
@@ -9,13 +11,39 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-  final PageController _pageController = PageController(initialPage: 0);
-  int currentPage = 0;
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
 
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  void _onPageChanged(int page) {
+    setState(() => _currentPage = page);
+  }
+
+  void _onSkip() {
+    Navigator.pushNamed(context, LoginPage.route);
+  }
+
+  void _onNext() {
+    if (_currentPage == OnboardingModel.items.length - 1) {
+      _onSkip();
+    } else {
+      _pageController.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
+  void _onPrev() {
+    _pageController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
@@ -25,63 +53,32 @@ class _OnboardingPageState extends State<OnboardingPage> {
       body: SafeArea(
         child: Column(
           children: [
+            OnboardingHeader(
+              currentPage: _currentPage,
+              totalPages: OnboardingModel.items.length,
+              onSkip: _onSkip,
+            ),
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
-                itemCount: onboardingData.length,
-                onPageChanged: (int page) {
-                  setState(() {
-                    currentPage = page;
-                  });
-                },
+                itemCount: OnboardingModel.items.length,
+                onPageChanged: _onPageChanged,
                 itemBuilder: (context, index) {
+                  final item = OnboardingModel.items[index];
                   return OnboardingSlide(
-                    image: onboardingData[index].image,
-                    title: onboardingData[index].title,
-                    description: onboardingData[index].description,
+                    image: item.image,
+                    title: item.title,
+                    description: item.description,
                   );
                 },
               ),
             ),
-            SizedBox(
-              height: 80,
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: SmoothPageIndicator(
-                      controller: _pageController,
-                      count: onboardingData.length,
-                      effect: const ExpandingDotsEffect(
-                          dotHeight: 10,
-                          dotWidth: 15,
-                          activeDotColor: Colors.black),
-                    ),
-                  ),
-                  if (currentPage == onboardingData.length - 1)
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 16, bottom: 16),
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context, 
-                              LoginPage.route);
-                          },
-                          child: const Text(
-                            'Get Started',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
+            OnboardingFooter(
+              currentPage: _currentPage,
+              totalPages: OnboardingModel.items.length,
+              onNext: _onNext,
+              onPrev: _onPrev,
+              controller: _pageController,
             ),
           ],
         ),

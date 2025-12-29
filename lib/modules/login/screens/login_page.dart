@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
               LoginButton(),
               SocialLogin(),
               Spacer(),
-              SignupText(),
+              SignUpText(),
               SizedBox(height: 20),
             ],
           ),

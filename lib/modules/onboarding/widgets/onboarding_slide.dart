@@ -17,27 +17,35 @@ class OnboardingSlide extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(
-          image,
-          width: 250,
-          height: 250,
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Image.asset(
+            image,
+            width: 300,
+            height: 300,
+            fit: BoxFit.contain,
+          ),
         ),
-        const SizedBox(height: 40),
+        const SizedBox(height: 15),
         Text(
           title,
           style: const TextStyle(
             fontSize: 24,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w900,
+            color: Colors.black,
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Text(
             description,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: 14,
+              color: Color(0xFFA8A8A9),
+              height: 1.5,
+              fontWeight: FontWeight.w400,
             ),
           ),
         ),
