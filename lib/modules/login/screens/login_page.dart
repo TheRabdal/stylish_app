@@ -20,7 +20,9 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: const [
               LoginHeader(),
-              CustomTextField(hint: "Username or Email", icon: Icons.person),
+              CustomTextField(
+                hint: "Username or Email", 
+                icon: Icons.person),
               SizedBox(height: 30),
               CustomTextField(
                 hint: "Password",
