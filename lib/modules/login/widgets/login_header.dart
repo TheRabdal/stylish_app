@@ -12,8 +12,10 @@ class LoginHeader extends StatelessWidget {
         child: Text(
           "Welcome\nBack!",
           style: TextStyle(
-            fontSize: 34,
+            fontSize: 36,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
+            height: 1.2,
           ),
         ),
       ),

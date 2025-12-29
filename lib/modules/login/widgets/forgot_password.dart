@@ -9,7 +9,14 @@ class ForgotPassword extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {},
-        child: const Text("Forgot Password?"),
+        child: const Text(
+          "Forgot Password?",
+          style: TextStyle(
+            color: Color(0xFFF83758), // Pink color
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
       ),
     );
   }
