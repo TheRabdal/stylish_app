@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import '../widgets/widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
