@@ -4,31 +4,12 @@ class CategorySection extends StatelessWidget {
   const CategorySection({super.key});
 
   final List<Map<String, String>> categories = const [
-    {
-      'name': 'Beauty',
-      'image':
-          'https://plus.unsplash.com/premium_photo-1664202526559-e21e9c0fb46a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'name': 'Fashion',
-      'image':
-          'https://plus.unsplash.com/premium_photo-1673356301535-ca8834dbba61?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'name': 'Kids',
-      'image':
-          'https://plus.unsplash.com/premium_photo-1661772661721-b16346cd5b0f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'name': 'Mens',
-      'image':
-          'https://plus.unsplash.com/premium_photo-1673356302135-2a2ec96fb325?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      'name': 'Womens',
-      'image':
-          'https://plus.unsplash.com/premium_photo-1675129538356-9df2c2c0197d?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
+    {'name': 'Beauty', 'image': 'assets/Beauty.png'},
+    {'name': 'Fashion', 'image': 'assets/Fashion.png'},
+    {'name': 'Kids', 'image': 'assets/Kids.png'},
+    {'name': 'Mens', 'image': 'assets/Mens.png'},
+    {'name': 'Womens', 'image': 'assets/Womens.png'},
+    {'name': 'Gifts', 'image': 'assets/Gifts.png'},
   ];
 
   @override
@@ -71,7 +52,7 @@ class CategorySection extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage(categories[index]['image']!),
+                    backgroundImage: AssetImage(categories[index]['image']!),
                   ),
                   const SizedBox(height: 8),
                   Text(
