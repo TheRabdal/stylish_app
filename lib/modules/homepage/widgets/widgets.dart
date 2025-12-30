@@ -5,6 +5,7 @@ export 'promo_banner.dart';
 export 'deal_of_day.dart';
 export 'product_card.dart';
 export 'special_offers.dart';
+export 'flat_heels_banner.dart';
 export 'trending_products.dart';
 export 'new_arrivals.dart';
 export 'sponsored_banner.dart';

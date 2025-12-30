@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/core/widgets/dots_indicator.dart';
 
 class OnboardingNavigationDots extends StatelessWidget {
   final PageController controller;

@@ -16,6 +16,7 @@ class HomeContent extends StatelessWidget {
           DealOfDay(),
           SizedBox(height: 16),
           SpecialOffers(),
+          FlatHeelsBanner(),
           SizedBox(height: 16),
           TrendingProducts(),
           SizedBox(height: 16),
