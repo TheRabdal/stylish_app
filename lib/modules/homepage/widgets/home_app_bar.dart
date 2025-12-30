@@ -20,23 +20,12 @@ class HomeAppBar extends StatelessWidget {
           ),
           Row(
             children: [
-              // Placeholder for Logo
-              Container(
+              // Logo
+              Image.asset(
+                'assets/logo.png',
                 width: 30,
                 height: 30,
-                decoration: const BoxDecoration(
-                  color: Colors.blue,
-                  shape: BoxShape.circle,
-                ),
-                child: const Center(
-                  child: Text(
-                    "S",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                fit: BoxFit.contain,
               ),
               const SizedBox(width: 8),
               Text(
