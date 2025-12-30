@@ -1,3 +1,4 @@
+import 'package:stylish_app/modules/wishlist/widgets/wishlist_product_card.dart';
 import 'package:stylish_app/packages/packages.dart';
 
 class WishlistGrid extends StatelessWidget {

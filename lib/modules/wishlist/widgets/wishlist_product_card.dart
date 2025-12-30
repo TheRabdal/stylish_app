@@ -25,7 +25,11 @@ class WishlistProductCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.asset(product['image'], fit: BoxFit.cover),
+            child: SizedBox(
+              height: (product['height'] as num?)?.toDouble() ?? 200.0,
+              width: double.infinity,
+              child: Image.asset(product['image'], fit: BoxFit.cover),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
