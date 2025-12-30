@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/core/widgets/widgets.dart';
 
 class DealOfDay extends StatefulWidget {
   const DealOfDay({super.key});

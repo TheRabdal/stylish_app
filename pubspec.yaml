@@ -91,6 +91,11 @@ flutter:
     - assets/flatandheels3.png
     - assets/philips.png
     - assets/titan.png
+    - assets/watch.png
+    - assets/whiteshoes.png
+    - assets/womenshandback.png
+    - assets/sandalcoklat.png
+    - assets/lipstik.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

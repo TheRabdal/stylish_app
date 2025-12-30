@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/core/widgets/widgets.dart';
 
 class TrendingProducts extends StatefulWidget {
   const TrendingProducts({super.key});
@@ -115,7 +114,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: const [
                   ProductCard(
-                    image: 'assets/womenprintedkurta.png',
+                    image: 'assets/watch.png',
                     name: "IWC Schaffhausen",
                     description: "2021 Pilot's Watch \"SIHH 2019\" 44mm",
                     price: "₹650",
@@ -126,7 +125,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/womenprintedkurta.png',
+                    image: 'assets/whiteshoes.png',
                     name: "Labbin White Sneakers",
                     description: "For Men and Female",
                     price: "₹650",
@@ -137,7 +136,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/womenprintedkurta.png',
+                    image: 'assets/womenshandback.png',
                     name: "Mammon Women's Handbag",
                     description: "(Set of 3, Beige)",
                     price: "₹750",
@@ -148,7 +147,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/womenprintedkurta.png',
+                    image: 'assets/sandalcoklat.png',
                     name: "Do Bhai Women Wedges Sandal",
                     description: "(Butterfly)",
                     price: "₹750",
@@ -159,7 +158,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/womenprintedkurta.png',
+                    image: 'assets/lipstik.png',
                     name: "Lakme Enrich Matte Lipstick",
                     description: "Shade RM1(4.7gm)",
                     price: "₹950",
