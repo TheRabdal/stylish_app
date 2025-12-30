@@ -1,4 +1,5 @@
 import 'package:stylish_app/packages/packages.dart';
+import 'package:stylish_app/core/widgets/dots_indicator.dart';
 
 class OnboardingNavigationDots extends StatelessWidget {
   final PageController controller;
@@ -12,17 +13,6 @@ class OnboardingNavigationDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SmoothPageIndicator(
-      controller: controller,
-      count: totalPages,
-      effect: const ExpandingDotsEffect(
-        dotHeight: 8,
-        dotWidth: 12,
-        activeDotColor: Colors.black,
-        dotColor: Colors.grey,
-        expansionFactor: 3,
-        spacing: 8,
-      ),
-    );
+    return DotsIndicator(controller: controller, count: totalPages);
   }
 }
