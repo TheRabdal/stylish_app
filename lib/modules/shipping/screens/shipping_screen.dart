@@ -1,4 +1,4 @@
-import 'package:stylish_app/packages/packages.dart'; // Models are not exported by packages.dart
+import 'package:stylish_app/packages/packages.dart';
 
 class ShippingScreen extends StatefulWidget {
   const ShippingScreen({super.key});
@@ -100,7 +100,10 @@ class _ShippingScreenState extends State<ShippingScreen> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  // Final payment logic would go here
+                  showDialog(
+                    context: context,
+                    builder: (context) => const PaymentSuccessDialog(),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFF95B5B), // Custom pink/red
