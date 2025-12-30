@@ -37,6 +37,7 @@ dependencies:
   smooth_page_indicator: ^2.0.1
   url_launcher: ^6.3.2
   google_fonts: ^6.1.0
+  flutter_staggered_grid_view: ^0.7.0
 
 dev_dependencies:
   flutter_test:
@@ -98,6 +99,18 @@ flutter:
     - assets/womenshandback.png
     - assets/lipstik.png
     - assets/upto50off.png
+    - assets/blackwinter.png
+    - assets/mansstarry.png
+    - assets/blackdress.png
+    - assets/pinkembroid.png
+    - assets/denimdress.png
+    - assets/flaredress.png
+    - assets/jordanstay.png
+    - assets/realme7.png
+    - assets/ps4.png
+    - assets/sepatufantopel.png
+    - assets/nikon.png
+    - assets/blackjacket.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
