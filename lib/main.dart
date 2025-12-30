@@ -1,6 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/modules/product_detail/screens/product_detail_screen.dart';
-
 void main() {
   runApp(const MyApp());
 }

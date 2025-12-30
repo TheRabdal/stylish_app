@@ -47,7 +47,7 @@ class ProductInfo extends StatelessWidget {
             }),
             const SizedBox(width: 8),
             Text(
-              "${formatNumber(product.reviewCount)}",
+              formatNumber(product.reviewCount),
               style: const TextStyle(color: Colors.grey, fontSize: 12),
             ),
           ],

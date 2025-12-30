@@ -33,7 +33,9 @@ class _NavigationPageState extends State<NavigationPage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: _selectedIndex == 2 ? const CartPage() : _pages[_selectedIndex],
+        child: _selectedIndex == 2
+            ? const ProductDetailScreen()
+            : _pages[_selectedIndex],
       ),
       floatingActionButton: Transform.translate(
         offset: const Offset(0, 30),
