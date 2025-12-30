@@ -168,7 +168,7 @@ class _DealOfDayState extends State<DealOfDay> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/womenprintedkurta.png',
+                    image: 'assets/philips.png',
                     name: "Philips BHH880/10",
                     description:
                         "Hair Straightening Brush With Keratin Infused Bristles (Black).",
@@ -180,7 +180,7 @@ class _DealOfDayState extends State<DealOfDay> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/womenprintedkurta.png',
+                    image: 'assets/titan.png',
                     name: "TITAN Men Watch- 1806N",
                     description:
                         "This Titan watch in Black color is I wanted to buy for a long time",
