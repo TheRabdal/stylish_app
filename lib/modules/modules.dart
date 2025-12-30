@@ -12,3 +12,4 @@ export 'settings/settings.dart';
 export 'navigation/navigation.dart';
 export 'checkout/checkout.dart';
 export 'placeorder/placeorder.dart';
+export 'shipping/shipping.dart';

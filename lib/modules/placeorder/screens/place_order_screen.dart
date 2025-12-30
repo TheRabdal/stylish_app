@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../shipping/screens/shipping_screen.dart';
 import '../models/place_order_model.dart';
 import '../widgets/bag_item_card.dart';
 import '../widgets/coupon_section.dart';
@@ -118,7 +119,10 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
           ),
           ElevatedButton(
             onPressed: () {
-              // Proceed to payment logic
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ShippingScreen()),
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFFF95B5B), // Custom pinkish red
