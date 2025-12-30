@@ -50,9 +50,7 @@ class HomeAppBar extends StatelessWidget {
             ],
           ),
           const CircleAvatar(
-            backgroundImage: NetworkImage(
-              'https://i.pravatar.cc/150?img=5',
-            ), // Placeholder Avatar
+            backgroundImage: AssetImage('assets/profile_logo.png'),
             radius: 20,
           ),
         ],

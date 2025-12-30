@@ -9,7 +9,7 @@ class PromoBanner extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
       child: Container(
         width: double.infinity,
-        height: 180,
+        height: 200,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           image: const DecorationImage(
