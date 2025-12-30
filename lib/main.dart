@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //const ProductDetailScreen(), 
+      //home: ProductDetailScreen(), 
       initialRoute: SplashPage.route,
       routes: appRoutes,
     );
