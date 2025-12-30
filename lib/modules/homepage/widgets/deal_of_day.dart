@@ -1,4 +1,5 @@
 import 'package:stylish_app/packages/packages.dart';
+import 'package:stylish_app/core/widgets/widgets.dart';
 
 class DealOfDay extends StatefulWidget {
   const DealOfDay({super.key});
@@ -28,9 +29,22 @@ class _DealOfDayState extends State<DealOfDay> {
     });
   }
 
+  final ScrollController _scrollController = ScrollController();
+
+  void _scrollRight() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        _scrollController.offset + 200,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
   @override
   void dispose() {
     _timer.cancel();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -45,6 +59,7 @@ class _DealOfDayState extends State<DealOfDay> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // ... (keep existing header code)
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Container(
@@ -119,35 +134,72 @@ class _DealOfDayState extends State<DealOfDay> {
           ),
         ),
         const SizedBox(height: 16),
-        SizedBox(
-          height: 250,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            children: const [
-              ProductCard(
-                image: 'assets/womenprintedkurta.png',
-                name: "Women Printed Kurta",
-                description: "Neque porro quisquam est qui dolorem ipsum...",
-                price: "₹1500",
-                oldPrice: "₹2499",
-                discount: "40%Off",
-                rating: 4,
-                reviewCount: 56090,
+        Stack(
+          children: [
+            SizedBox(
+              height: 250,
+              child: ListView(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                children: const [
+                  ProductCard(
+                    image: 'assets/womenprintedkurta.png',
+                    name: "Women Printed Kurta",
+                    description:
+                        "Neque porro quisquam est qui dolorem ipsum quia",
+                    price: "₹1500",
+                    oldPrice: "₹2499",
+                    discount: "40%Off",
+                    rating: 4,
+                    reviewCount: 56890,
+                  ),
+                  SizedBox(width: 16),
+                  ProductCard(
+                    image: 'assets/hrx.png',
+                    name: "HRX by Hrithik Roshan",
+                    description:
+                        "Neque porro quisquam est qui dolorem ipsum quia",
+                    price: "₹2499",
+                    oldPrice: "₹4999",
+                    discount: "50%Off",
+                    rating: 4,
+                    reviewCount: 344567,
+                  ),
+                  SizedBox(width: 16),
+                  ProductCard(
+                    image: 'assets/womenprintedkurta.png',
+                    name: "Philips BHH880/10",
+                    description:
+                        "Hair Straightening Brush With Keratin Infused Bristles (Black).",
+                    price: "₹999",
+                    oldPrice: "₹1999",
+                    discount: "50%Off",
+                    rating: 4,
+                    reviewCount: 646776,
+                  ),
+                  SizedBox(width: 16),
+                  ProductCard(
+                    image: 'assets/womenprintedkurta.png',
+                    name: "TITAN Men Watch- 1806N",
+                    description:
+                        "This Titan watch in Black color is I wanted to buy for a long time",
+                    price: "₹1500",
+                    oldPrice: "₹3500",
+                    discount: "60%Off",
+                    rating: 5,
+                    reviewCount: 15007,
+                  ),
+                ],
               ),
-              SizedBox(width: 16),
-              ProductCard(
-                image: 'assets/hrx.png',
-                name: "HRX by Hrithik Roshan",
-                description: "Neque porro quisquam est qui dolorem ipsum...",
-                price: "₹2499",
-                oldPrice: "₹4999",
-                discount: "50%Off",
-                rating: 4,
-                reviewCount: 344567,
-              ),
-            ],
-          ),
+            ),
+            Positioned(
+              right: 8,
+              top: 0,
+              bottom: 0,
+              child: Center(child: ArrowButton(onTap: _scrollRight)),
+            ),
+          ],
         ),
       ],
     );

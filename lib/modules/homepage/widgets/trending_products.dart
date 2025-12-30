@@ -1,7 +1,31 @@
 import 'package:stylish_app/packages/packages.dart';
+import 'package:stylish_app/core/widgets/widgets.dart';
 
-class TrendingProducts extends StatelessWidget {
+class TrendingProducts extends StatefulWidget {
   const TrendingProducts({super.key});
+
+  @override
+  State<TrendingProducts> createState() => _TrendingProductsState();
+}
+
+class _TrendingProductsState extends State<TrendingProducts> {
+  final ScrollController _scrollController = ScrollController();
+
+  void _scrollRight() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        _scrollController.offset + 200,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,37 +105,79 @@ class TrendingProducts extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        SizedBox(
-          height: 250,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            children: const [
-              ProductCard(
-                image:
-                    'https://images.unsplash.com/photo-1524532787116-e70228437bbe?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                name: "IWC Schaffhausen",
-                description: "2021 Pilot's Watch \"SIHH 2019\" 44mm",
-                price: "₹650",
-                oldPrice: "₹1599",
-                discount: "60%Off",
-                rating: 5,
-                reviewCount: 650,
+        Stack(
+          children: [
+            SizedBox(
+              height: 250,
+              child: ListView(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                children: const [
+                  ProductCard(
+                    image: 'assets/womenprintedkurta.png',
+                    name: "IWC Schaffhausen",
+                    description: "2021 Pilot's Watch \"SIHH 2019\" 44mm",
+                    price: "₹650",
+                    oldPrice: "₹1599",
+                    discount: "60% off",
+                    rating: 5,
+                    reviewCount: 650,
+                  ),
+                  SizedBox(width: 16),
+                  ProductCard(
+                    image: 'assets/womenprintedkurta.png',
+                    name: "Labbin White Sneakers",
+                    description: "For Men and Female",
+                    price: "₹650",
+                    oldPrice: "₹1250",
+                    discount: "70% off",
+                    rating: 4,
+                    reviewCount: 650,
+                  ),
+                  SizedBox(width: 16),
+                  ProductCard(
+                    image: 'assets/womenprintedkurta.png',
+                    name: "Mammon Women's Handbag",
+                    description: "(Set of 3, Beige)",
+                    price: "₹750",
+                    oldPrice: "₹1999",
+                    discount: "60% off",
+                    rating: 4,
+                    reviewCount: 750,
+                  ),
+                  SizedBox(width: 16),
+                  ProductCard(
+                    image: 'assets/womenprintedkurta.png',
+                    name: "Do Bhai Women Wedges Sandal",
+                    description: "(Butterfly)",
+                    price: "₹750",
+                    oldPrice: "₹1499",
+                    discount: "50% off",
+                    rating: 4,
+                    reviewCount: 750,
+                  ),
+                  SizedBox(width: 16),
+                  ProductCard(
+                    image: 'assets/womenprintedkurta.png',
+                    name: "Lakme Enrich Matte Lipstick",
+                    description: "Shade RM1(4.7gm)",
+                    price: "₹950",
+                    oldPrice: "₹1990",
+                    discount: "60% off",
+                    rating: 4,
+                    reviewCount: 950,
+                  ),
+                ],
               ),
-              SizedBox(width: 16),
-              ProductCard(
-                image:
-                    'https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                name: "Labbin White Sneakers",
-                description: "For Men and Female",
-                price: "₹650",
-                oldPrice: "₹1250",
-                discount: "70%Off",
-                rating: 4,
-                reviewCount: 650,
-              ),
-            ],
-          ),
+            ),
+            Positioned(
+              right: 8,
+              top: 0,
+              bottom: 0,
+              child: Center(child: ArrowButton(onTap: _scrollRight)),
+            ),
+          ],
         ),
       ],
     );
