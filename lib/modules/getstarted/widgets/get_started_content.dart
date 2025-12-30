@@ -11,7 +11,7 @@ class GetStartedContent extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.5,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/reactangle.png'),
+            image: AssetImage('assets/shapetransparant.png'),
             fit: BoxFit.fill,
           ),
         ),
