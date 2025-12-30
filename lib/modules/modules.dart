@@ -10,3 +10,4 @@ export 'cart/cart.dart';
 export 'search/search.dart';
 export 'settings/settings.dart';
 export 'navigation/navigation.dart';
+export 'checkout/checkout.dart';

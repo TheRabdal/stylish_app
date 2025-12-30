@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //home: ProductDetailScreen(), 
       initialRoute: SplashPage.route,
       routes: appRoutes,
     );

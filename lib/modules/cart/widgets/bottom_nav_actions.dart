@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../checkout/screens/checkout_screen.dart';
 
 class BottomNavActions extends StatelessWidget {
   const BottomNavActions({super.key});
@@ -9,7 +10,12 @@ class BottomNavActions extends StatelessWidget {
       children: [
         Expanded(
           child: ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CheckoutScreen()),
+              );
+            },
             icon: const Icon(Icons.shopping_cart_outlined, color: Colors.white),
             label: const Text(
               "Go to cart",
