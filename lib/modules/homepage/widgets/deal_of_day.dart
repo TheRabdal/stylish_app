@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/modules/homepage/widgets/product_card.dart';
 
 class DealOfDay extends StatelessWidget {
   const DealOfDay({super.key});

@@ -33,7 +33,7 @@ class SponsoredBanner extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.black.withValues(alpha: 0.2),
               ),
               alignment: Alignment.centerRight,
               padding: const EdgeInsets.all(16),

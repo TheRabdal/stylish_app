@@ -27,7 +27,7 @@ class PromoBanner extends StatelessWidget {
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [
-                const Color(0xFFFD6E87).withOpacity(0.9), // Pink overlay
+                const Color(0xFFFD6E87).withValues(alpha: 0.9), // Pink overlay
                 Colors.transparent,
               ],
             ),

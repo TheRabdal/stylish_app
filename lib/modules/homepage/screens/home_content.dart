@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/modules/homepage/widgets/widgets.dart';
 
 class HomeContent extends StatelessWidget {
   const HomeContent({super.key});

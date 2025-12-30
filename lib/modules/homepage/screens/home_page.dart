@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/modules/homepage/screens/home_content.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
