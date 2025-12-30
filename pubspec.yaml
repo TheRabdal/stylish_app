@@ -74,7 +74,7 @@ flutter:
     - assets/Apple.png
     - assets/Facebook.png
     - assets/getstarted.png
-    - assets/reactangle.png
+    - assets/shapetransparant.png
     - assets/profile_logo.png
     - assets/Beauty.png
     - assets/Fashion.png
@@ -84,6 +84,8 @@ flutter:
     - assets/Gifts.png
     - assets/pinkpeople.png
     - assets/specialoffer.png
+    - assets/womenprintedkurta.png
+    - assets/hrx.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

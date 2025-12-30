@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:stylish_app/packages/packages.dart';
 
 class DealOfDay extends StatefulWidget {
@@ -127,8 +126,7 @@ class _DealOfDayState extends State<DealOfDay> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: const [
               ProductCard(
-                image:
-                    'https://plus.unsplash.com/premium_photo-1664202526559-e21e9c0fb46a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                image: 'assets/womenprintedkurta.png',
                 name: "Women Printed Kurta",
                 description: "Neque porro quisquam est qui dolorem ipsum...",
                 price: "₹1500",
@@ -139,8 +137,7 @@ class _DealOfDayState extends State<DealOfDay> {
               ),
               SizedBox(width: 16),
               ProductCard(
-                image:
-                    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                image: 'assets/hrx.png',
                 name: "HRX by Hrithik Roshan",
                 description: "Neque porro quisquam est qui dolorem ipsum...",
                 price: "₹2499",
