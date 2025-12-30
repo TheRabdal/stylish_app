@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/core/widgets/dots_indicator.dart';
 
 class PromoBanner extends StatefulWidget {
   const PromoBanner({super.key});
@@ -53,14 +52,16 @@ class _PromoBannerState extends State<PromoBanner> {
             ),
           ),
           const SizedBox(height: 12),
-          DotsIndicator(
+          SmoothPageIndicator(
             controller: _pageController,
             count: banners.length,
-            activeDotColor: const Color(0xFFFD6E87),
-            dotColor: Colors.grey.shade300,
-            dotHeight: 8,
-            dotWidth: 8,
-            spacing: 6,
+            effect: WormEffect(
+              dotHeight: 8,
+              dotWidth: 8,
+              activeDotColor: const Color(0xFFFD6E87),
+              dotColor: Colors.grey.shade300,
+              spacing: 6,
+            ),
           ),
         ],
       ),
