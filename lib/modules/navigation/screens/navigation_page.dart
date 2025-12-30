@@ -30,6 +30,7 @@ class _NavigationPageState extends State<NavigationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(
         child: _selectedIndex == 2 ? const CartPage() : _pages[_selectedIndex],
