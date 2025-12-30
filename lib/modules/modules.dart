@@ -9,5 +9,4 @@ export 'wishlist/wishlist.dart';
 export 'cart/cart.dart';
 export 'search/search.dart';
 export 'settings/settings.dart';
-
 export 'navigation/navigation.dart';

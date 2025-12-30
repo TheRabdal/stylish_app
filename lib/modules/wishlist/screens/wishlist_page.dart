@@ -224,9 +224,7 @@ class _WishlistPageState extends State<WishlistPage> {
         borderRadius: BorderRadius.circular(6),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(
-              0.1,
-            ), // Changed withValues to withOpacity
+            color: Colors.grey.withValues(alpha: 0.1),
             blurRadius: 4,
             spreadRadius: 0,
             offset: const Offset(0, 2),
@@ -259,9 +257,7 @@ class _WishlistPageState extends State<WishlistPage> {
         // No shadow in some cards in the image, or very subtle.
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(
-              0.05,
-            ), // Changed withValues to withOpacity
+            color: Colors.grey.withValues(alpha: 0.05),
             blurRadius: 5,
             spreadRadius: 1,
             offset: const Offset(0, 2),
