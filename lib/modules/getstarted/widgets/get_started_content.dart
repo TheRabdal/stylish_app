@@ -44,7 +44,7 @@ class GetStartedContent extends StatelessWidget {
                 Button(
                   text: "Get Started",
                   onPressed: () {
-                    Navigator.pushNamed(context, HomePage.route);
+                    Navigator.pushNamed(context, NavigationPage.route);
                   },
                 ),
                 const SizedBox(height: 30),

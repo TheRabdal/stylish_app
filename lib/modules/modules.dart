@@ -5,3 +5,9 @@ export 'signup/signup.dart';
 export 'resetpassword/resetpassword.dart';
 export 'getstarted/getstarted.dart';
 export 'homepage/homepage.dart';
+export 'wishlist/wishlist.dart';
+export 'cart/cart.dart';
+export 'search/search.dart';
+export 'settings/settings.dart';
+
+export 'navigation/navigation.dart';

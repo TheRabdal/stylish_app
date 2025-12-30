@@ -9,4 +9,5 @@ final Map<String, WidgetBuilder> appRoutes = {
   ResetPasswordPage.route: (context) => const ResetPasswordPage(),
   GetStartedPage.route: (context) => const GetStartedPage(),
   HomePage.route: (context) => const HomePage(),
+  NavigationPage.route: (context) => const NavigationPage(),
 };
