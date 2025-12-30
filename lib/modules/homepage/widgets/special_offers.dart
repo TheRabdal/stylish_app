@@ -22,11 +22,7 @@ class SpecialOffers extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.asset(
-              'assets/getstarted.png',
-              height: 60,
-              width: 60,
-            ), // Placeholder asset
+            Image.asset('assets/specialoffer.png', height: 60, width: 60),
             const SizedBox(width: 16),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -15,13 +15,13 @@ class _NavigationPageState extends State<NavigationPage> {
   final List<Widget> _pages = [
     const HomeContent(),
     const WishlistPage(),
-    const SizedBox(), // Placeholder for Cart (handled by FAB)
+    const SizedBox(),
     const SearchPage(),
     const SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
-    if (index == 2) return; // Cart is handled by FAB
+    if (index == 2) return;
     setState(() {
       _selectedIndex = index;
     });
@@ -41,7 +41,7 @@ class _NavigationPageState extends State<NavigationPage> {
           isSelected: _selectedIndex == 2,
           onPressed: () {
             setState(() {
-              _selectedIndex = 2; // Index for Cart
+              _selectedIndex = 2;
             });
           },
         ),

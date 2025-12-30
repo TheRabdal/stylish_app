@@ -1,7 +1,46 @@
+import 'dart:async';
 import 'package:stylish_app/packages/packages.dart';
 
-class DealOfDay extends StatelessWidget {
+class DealOfDay extends StatefulWidget {
   const DealOfDay({super.key});
+
+  @override
+  State<DealOfDay> createState() => _DealOfDayState();
+}
+
+class _DealOfDayState extends State<DealOfDay> {
+  late Timer _timer;
+  Duration _timeRemaining = Duration.zero;
+
+  @override
+  void initState() {
+    super.initState();
+    _updateTimeRemaining();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      _updateTimeRemaining();
+    });
+  }
+
+  void _updateTimeRemaining() {
+    final now = DateTime.now();
+    final midnight = DateTime(now.year, now.month, now.day + 1);
+    setState(() {
+      _timeRemaining = midnight.difference(now);
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  String _formatDuration(Duration duration) {
+    final hours = duration.inHours;
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = duration.inSeconds.remainder(60);
+    return '${hours}h ${minutes}m ${seconds}s remaining';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +78,7 @@ class DealOfDay extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          "22h 55m 20s remaining",
+                          _formatDuration(_timeRemaining),
                           style: GoogleFonts.montserrat(
                             color: Colors.white,
                             fontSize: 12,

@@ -13,10 +13,7 @@ class PromoBanner extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           image: const DecorationImage(
-            // Using a placeholder image that resembles the design's banner
-            image: NetworkImage(
-              'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            ),
+            image: AssetImage('assets/pinkpeople.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -28,7 +25,7 @@ class PromoBanner extends StatelessWidget {
               end: Alignment.centerRight,
               colors: [
                 const Color(0xFFFD6E87).withValues(alpha: 0.9), // Pink overlay
-                Colors.transparent,
+                const Color.fromARGB(0, 255, 255, 255),
               ],
             ),
           ),
