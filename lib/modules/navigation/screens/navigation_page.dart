@@ -34,13 +34,16 @@ class _NavigationPageState extends State<NavigationPage> {
       body: SafeArea(
         child: _selectedIndex == 2 ? const CartPage() : _pages[_selectedIndex],
       ),
-      floatingActionButton: CartButton(
-        isSelected: _selectedIndex == 2,
-        onPressed: () {
-          setState(() {
-            _selectedIndex = 2; // Index for Cart
-          });
-        },
+      floatingActionButton: Transform.translate(
+        offset: const Offset(0, 30),
+        child: CartButton(
+          isSelected: _selectedIndex == 2,
+          onPressed: () {
+            setState(() {
+              _selectedIndex = 2; // Index for Cart
+            });
+          },
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNav(
