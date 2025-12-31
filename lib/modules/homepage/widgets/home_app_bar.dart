@@ -30,7 +30,7 @@ class HomeAppBar extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 "Stylish",
-                style: GoogleFonts.libreCaslonText(
+                style: GoogleFonts.montserrat(
                   color: const Color(0xFF4392F9),
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

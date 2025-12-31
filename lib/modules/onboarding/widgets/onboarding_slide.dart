@@ -29,7 +29,7 @@ class OnboardingSlide extends StatelessWidget {
         const SizedBox(height: 15),
         Text(
           title,
-          style: const TextStyle(
+          style: GoogleFonts.montserrat(
             fontSize: 24,
             fontWeight: FontWeight.w900,
             color: Colors.black,
@@ -41,9 +41,9 @@ class OnboardingSlide extends StatelessWidget {
           child: Text(
             description,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: GoogleFonts.montserrat(
               fontSize: 14,
-              color: Color(0xFFA8A8A9),
+              color: const Color(0xFFA8A8A9),
               height: 1.5,
               fontWeight: FontWeight.w400,
             ),
