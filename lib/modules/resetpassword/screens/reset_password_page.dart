@@ -52,7 +52,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               const SizedBox(height: 15),
               const ResetPasswordInstruction(),
               const SizedBox(height: 40),
-              Button(text: "Submit", onPressed: _onSubmit),
+              Button(
+                text: "Submit",
+                onPressed: _onSubmit,
+                fontWeight: FontWeight.w600,
+              ),
               const SizedBox(height: 20),
             ],
           ),

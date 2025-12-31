@@ -88,7 +88,11 @@ class _SignUpPageState extends State<SignUpPage> {
               const SizedBox(height: 20),
               const AgreementText(),
               const SizedBox(height: 40),
-              Button(text: 'Create Account', onPressed: _onSignUp),
+              Button(
+                text: 'Create Account',
+                onPressed: _onSignUp,
+                fontWeight: FontWeight.w600,
+              ),
               const SizedBox(height: 40),
               const SocialSignup(),
               const SizedBox(height: 25),

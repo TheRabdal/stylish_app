@@ -10,7 +10,11 @@ class LoginText extends StatelessWidget {
       children: [
         Text(
           "I Already Have an Account ",
-          style: GoogleFonts.montserrat(color: Colors.grey, fontSize: 14),
+          style: GoogleFonts.montserrat(
+            color: Colors.grey,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+          ),
         ),
         GestureDetector(
           onTap: () {
