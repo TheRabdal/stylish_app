@@ -45,7 +45,7 @@ class OnboardingSlide extends StatelessWidget {
               fontSize: 14,
               color: const Color(0xFFA8A8A9),
               height: 1.5,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

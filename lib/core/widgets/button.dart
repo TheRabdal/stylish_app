@@ -5,6 +5,7 @@ class Button extends StatelessWidget {
   final String text;
   final double? width;
   final double? height;
+  final FontWeight? fontWeight;
 
   const Button({
     super.key,
@@ -12,6 +13,7 @@ class Button extends StatelessWidget {
     required this.text,
     this.width,
     this.height,
+    this.fontWeight,
   });
 
   @override

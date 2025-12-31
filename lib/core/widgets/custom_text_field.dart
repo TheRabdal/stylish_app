@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final Widget? suffixIcon;
   final bool passwordHash;
+  final FontWeight? fontWeight;
 
   const CustomTextField({
     super.key,
@@ -16,6 +17,7 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.suffixIcon,
     this.passwordHash = false,
+    this.fontWeight,
   });
 
   @override
@@ -23,7 +25,10 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       obscureText: passwordHash,
-      style: GoogleFonts.montserrat(color: Colors.black),
+      style: GoogleFonts.montserrat(
+        color: Colors.black,
+        fontWeight: fontWeight,
+      ),
       decoration: InputDecoration(
         prefixIcon: icon == null ? null : Icon(icon, color: Colors.grey[600]),
         suffixIcon: isPassword ? suffixIcon : null,

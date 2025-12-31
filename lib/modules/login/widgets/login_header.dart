@@ -5,13 +5,13 @@ class LoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.only(top: 60, bottom: 40),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
           "Welcome\nBack!",
-          style: TextStyle(
+          style: GoogleFonts.montserrat(
             fontSize: 36,
             fontWeight: FontWeight.bold,
             color: Colors.black,

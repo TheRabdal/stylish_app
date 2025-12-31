@@ -44,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                 hint: "Username or Email",
                 icon: Icons.person,
                 controller: _emailController,
+                fontWeight: FontWeight.w500,
               ),
               const SizedBox(height: 30),
               CustomTextField(
@@ -52,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                 isPassword: true,
                 passwordHash: suffix,
                 controller: _passwordController,
+                fontWeight: FontWeight.w500,
                 suffixIcon: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -64,7 +66,11 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 10),
               const ForgotPassword(),
               const SizedBox(height: 50),
-              Button(text: 'Login', onPressed: _onLogin),
+              Button(
+                text: 'Login',
+                onPressed: _onLogin,
+                fontWeight: FontWeight.w600,
+              ),
               const SocialLogin(),
               const SizedBox(height: 40),
               const SignUpText(),
