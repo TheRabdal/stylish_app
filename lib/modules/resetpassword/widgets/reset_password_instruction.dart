@@ -15,7 +15,7 @@ class ResetPasswordInstruction extends StatelessWidget {
         children: [
           TextSpan(
             text:
-                "We will send you a message to set or reset your new password",
+                "We will send you a message to set or reset \nyour new password",
             style: GoogleFonts.montserrat(
               color: const Color(0xFF676767),
               fontSize: 12,

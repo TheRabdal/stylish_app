@@ -8,14 +8,20 @@ class AgreementText extends StatelessWidget {
     return RichText(
       textAlign: TextAlign.left,
       text: TextSpan(
-        style: GoogleFonts.montserrat(color: Colors.grey, fontSize: 12),
+        style: GoogleFonts.montserrat(
+          color: 
+          Colors.grey, 
+          fontSize: 12
+          ),
         children: [
           const TextSpan(text: "By clicking the "),
           TextSpan(
             text: "Register",
-            style: GoogleFonts.montserrat(color: const Color(0xFFF83758)),
+            style: GoogleFonts.montserrat(
+              color: const Color(0xFFF83758)),
           ),
-          const TextSpan(text: " button, you agree to the public offer"),
+          const TextSpan(
+            text: " button, you agree \nto the public offer"),
         ],
       ),
     );
