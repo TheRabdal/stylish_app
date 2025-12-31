@@ -56,8 +56,8 @@ class _PromoBannerState extends State<PromoBanner> {
             controller: _pageController,
             count: banners.length,
             effect: WormEffect(
-              dotHeight: 8,
-              dotWidth: 8,
+              dotHeight: 9,
+              dotWidth: 9,
               activeDotColor: const Color(0xFFFD6E87),
               dotColor: Colors.grey.shade300,
               spacing: 6,
