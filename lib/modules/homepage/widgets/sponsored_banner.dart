@@ -21,7 +21,7 @@ class SponsoredBanner extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
-              'assets/upto50off.png',
+              'assets/images/upto50off.png',
               width: double.infinity,
               fit: BoxFit.contain,
             ),

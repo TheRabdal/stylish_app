@@ -22,7 +22,7 @@ class NewArrivals extends StatelessWidget {
                     topRight: Radius.circular(8),
                   ),
                   child: Image.asset(
-                    'assets/hotsummersale.png',
+                    'assets/images/hotsummersale.png',
                     width: double.infinity,
                     fit: BoxFit.contain,
                   ),

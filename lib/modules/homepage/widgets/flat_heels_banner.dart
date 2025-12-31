@@ -26,7 +26,7 @@ class FlatHeelsBanner extends StatelessWidget {
                   bottomLeft: Radius.circular(12),
                 ),
                 child: Image.asset(
-                  'assets/flatandheels3.png',
+                  'assets/images/flatandheels3.png',
                   width: 10,
                   fit: BoxFit.cover,
                 ),
@@ -36,7 +36,7 @@ class FlatHeelsBanner extends StatelessWidget {
             Positioned(
               left: 10,
               child: Image.asset(
-                'assets/flatandheels2.png',
+                'assets/images/flatandheels2.png',
                 width: 100,
                 fit: BoxFit.contain,
               ),
@@ -47,7 +47,7 @@ class FlatHeelsBanner extends StatelessWidget {
               top: 20,
               bottom: 20,
               child: Image.asset(
-                'assets/flatandheels.png',
+                'assets/images/flatandheels.png',
                 width: 160,
                 fit: BoxFit.contain,
               ),

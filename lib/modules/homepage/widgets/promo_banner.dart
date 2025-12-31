@@ -13,17 +13,17 @@ class _PromoBannerState extends State<PromoBanner> {
   // List of banner data (you can add more banners here)
   final List<Map<String, String>> banners = const [
     {
-      'image': 'assets/pinkpeople.png',
+      'image': 'assets/images/pinkpeople.png',
       'title': '50-40% OFF',
       'subtitle': 'Now In (product)\nAll colours',
     },
     {
-      'image': 'assets/pinkpeople.png',
+      'image': 'assets/images/pinkpeople.png',
       'title': '50-40% OFF',
       'subtitle': 'Now In (product)\nAll colours',
     },
     {
-      'image': 'assets/pinkpeople.png',
+      'image': 'assets/images/pinkpeople.png',
       'title': '50-40% OFF',
       'subtitle': 'Now In (product)\nAll colours',
     },

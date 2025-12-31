@@ -143,7 +143,7 @@ class _DealOfDayState extends State<DealOfDay> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: const [
                   ProductCard(
-                    image: 'assets/womenprintedkurta.png',
+                    image: 'assets/images/womenprintedkurta.png',
                     name: "Women Printed Kurta",
                     description:
                         "Neque porro quisquam est qui dolorem ipsum quia",
@@ -155,7 +155,7 @@ class _DealOfDayState extends State<DealOfDay> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/hrx.png',
+                    image: 'assets/images/hrx.png',
                     name: "HRX by Hrithik Roshan",
                     description:
                         "Neque porro quisquam est qui dolorem ipsum quia",
@@ -167,7 +167,7 @@ class _DealOfDayState extends State<DealOfDay> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/philips.png',
+                    image: 'assets/images/philips.png',
                     name: "Philips BHH880/10",
                     description:
                         "Hair Straightening Brush With Keratin Infused Bristles (Black).",
@@ -179,7 +179,7 @@ class _DealOfDayState extends State<DealOfDay> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/titan.png',
+                    image: 'assets/images/titan.png',
                     name: "TITAN Men Watch- 1806N",
                     description:
                         "This Titan watch in Black color is I wanted to buy for a long time",

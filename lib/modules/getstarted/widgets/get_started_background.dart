@@ -8,7 +8,7 @@ class GetStartedBackground extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/getstarted.png'),
+          image: AssetImage('assets/images/getstarted.png'),
           fit: BoxFit.cover,
         ),
       ),

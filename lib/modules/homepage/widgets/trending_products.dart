@@ -114,7 +114,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: const [
                   ProductCard(
-                    image: 'assets/watch.png',
+                    image: 'assets/images/watch.png',
                     name: "IWC Schaffhausen",
                     description: "2021 Pilot's Watch \"SIHH 2019\" 44mm",
                     price: "₹650",
@@ -125,7 +125,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/whiteshoes.png',
+                    image: 'assets/images/whiteshoes.png',
                     name: "Labbin White Sneakers",
                     description: "For Men and Female",
                     price: "₹650",
@@ -136,7 +136,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/womenshandback.png',
+                    image: 'assets/images/womenshandback.png',
                     name: "Mammon Women's Handbag",
                     description: "(Set of 3, Beige)",
                     price: "₹750",
@@ -147,7 +147,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/sandalcoklat.png',
+                    image: 'assets/images/sandalcoklat.png',
                     name: "Do Bhai Women Wedges Sandal",
                     description: "(Butterfly)",
                     price: "₹750",
@@ -158,7 +158,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                   ),
                   SizedBox(width: 16),
                   ProductCard(
-                    image: 'assets/lipstik.png',
+                    image: 'assets/images/lipstik.png',
                     name: "Lakme Enrich Matte Lipstick",
                     description: "Shade RM1(4.7gm)",
                     price: "₹950",

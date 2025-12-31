@@ -4,12 +4,12 @@ class CategorySection extends StatelessWidget {
   const CategorySection({super.key});
 
   final List<Map<String, String>> categories = const [
-    {'name': 'Beauty', 'image': 'assets/Beauty.png'},
-    {'name': 'Fashion', 'image': 'assets/Fashion.png'},
-    {'name': 'Kids', 'image': 'assets/Kids.png'},
-    {'name': 'Mens', 'image': 'assets/Mens.png'},
-    {'name': 'Womens', 'image': 'assets/Womens.png'},
-    {'name': 'Gifts', 'image': 'assets/Gifts.png'},
+    {'name': 'Beauty', 'image': 'assets/images/Beauty.png'},
+    {'name': 'Fashion', 'image': 'assets/images/Fashion.png'},
+    {'name': 'Kids', 'image': 'assets/images/Kids.png'},
+    {'name': 'Mens', 'image': 'assets/images/Mens.png'},
+    {'name': 'Womens', 'image': 'assets/images/Womens.png'},
+    {'name': 'Gifts', 'image': 'assets/images/Gifts.png'},
   ];
 
   @override

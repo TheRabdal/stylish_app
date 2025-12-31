@@ -22,7 +22,7 @@ class HomeAppBar extends StatelessWidget {
             children: [
               // Logo
               Image.asset(
-                'assets/logo.png',
+                'assets/images/logo.png',
                 width: 30,
                 height: 30,
                 fit: BoxFit.contain,
@@ -39,7 +39,7 @@ class HomeAppBar extends StatelessWidget {
             ],
           ),
           const CircleAvatar(
-            backgroundImage: AssetImage('assets/profile_logo.png'),
+            backgroundImage: AssetImage('assets/images/profile_logo.png'),
             radius: 20,
           ),
         ],

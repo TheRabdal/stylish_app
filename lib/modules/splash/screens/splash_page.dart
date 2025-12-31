@@ -21,7 +21,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(child: Image.asset('assets/logostylish.png')),
+      body: Center(child: Image.asset('assets/images/logostylish.png')),
     );
   }
 }

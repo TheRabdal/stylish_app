@@ -29,17 +29,17 @@ class SocialLogin extends StatelessWidget {
           children: [
             SocialButton(
               onTap: () => _launchUrl('https://google.com'),
-              icon: Image.asset('assets/Google.png'),
+              icon: Image.asset('assets/images/Google.png'),
             ),
             const SizedBox(width: 15),
             SocialButton(
               onTap: () => _launchUrl('https://apple.com'),
-              icon: Image.asset('assets/Apple.png'),
+              icon: Image.asset('assets/images/Apple.png'),
             ),
             const SizedBox(width: 15),
             SocialButton(
               onTap: () => _launchUrl('https://facebook.com'),
-              icon: Image.asset('assets/Facebook.png'),
+              icon: Image.asset('assets/images/Facebook.png'),
             ),
           ],
         ),
