@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:stylish_app/packages/packages.dart';
 import '../models/product_detail_model.dart';
 // Note: We might want to reuse the ProductCard from homepage if it matches,
 // but to ensure strict adherence to this specific design and isolation, I'll create a local one or use a consistent design.
@@ -73,7 +73,7 @@ class SimilarProducts extends StatelessWidget {
             return Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(right: 12.0),
-                child: _buildProductCard(product),
+                child: _buildProductCard(context, product),
               ),
             );
           }).toList(),
@@ -82,66 +82,89 @@ class SimilarProducts extends StatelessWidget {
     );
   }
 
-  Widget _buildProductCard(SimilarProduct product) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-            product.image,
-            height: 150,
-            width: double.infinity,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Container(
-                height: 150,
-                color: Colors.grey[200],
-                child: const Icon(Icons.broken_image, color: Colors.grey),
-              );
-            },
+  Widget _buildProductCard(BuildContext context, SimilarProduct product) {
+    return GestureDetector(
+      onTap: () {
+        // Map SimilarProduct to Product
+        final convertedProduct = Product(
+          image: product.image,
+          name: product.title,
+          description: product.subtitle,
+          price: "₹${product.price.toStringAsFixed(0)}",
+          oldPrice: "", // Not available in SimilarProduct
+          discount: "", // Not available in SimilarProduct
+          rating: product.rating
+              .round(), // Assuming int in Product, double in SimilarProduct
+          reviewCount: product.reviewCount,
+        );
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailPage(product: convertedProduct),
           ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          product.title,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        Text(
-          product.subtitle,
-          style: const TextStyle(color: Colors.grey, fontSize: 12),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        const SizedBox(height: 4),
-        Text(
-          "₹${product.price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}",
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: [
-            ...List.generate(5, (index) {
-              if (index < product.rating.floor()) {
-                return const Icon(Icons.star, color: Colors.amber, size: 12);
-              } else {
-                return const Icon(
-                  Icons.star_border,
-                  color: Colors.grey,
-                  size: 12,
+        );
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              product.image,
+              height: 150,
+              width: double.infinity,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  height: 150,
+                  color: Colors.grey[200],
+                  child: const Icon(Icons.broken_image, color: Colors.grey),
                 );
-              }
-            }),
-            const SizedBox(width: 4),
-            Text(
-              "${product.reviewCount}",
-              style: const TextStyle(color: Colors.grey, fontSize: 10),
+              },
             ),
-          ],
-        ),
-      ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            product.title,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(
+            product.subtitle,
+            style: const TextStyle(color: Colors.grey, fontSize: 12),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            "₹${product.price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},')}",
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+          ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              ...List.generate(5, (index) {
+                if (index < product.rating.floor()) {
+                  return const Icon(Icons.star, color: Colors.amber, size: 12);
+                } else {
+                  return const Icon(
+                    Icons.star_border,
+                    color: Colors.grey,
+                    size: 12,
+                  );
+                }
+              }),
+              const SizedBox(width: 4),
+              Text(
+                "${product.reviewCount}",
+                style: const TextStyle(color: Colors.grey, fontSize: 10),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

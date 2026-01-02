@@ -16,7 +16,7 @@ class HomeAppBar extends StatelessWidget {
               color: Colors.grey.shade200,
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.menu, color: Colors.black),
+            child: const Icon(Icons.menu_outlined, color: Colors.black),
           ),
           Row(
             children: [

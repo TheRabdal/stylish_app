@@ -8,7 +8,7 @@ class FlatHeelsBanner extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
-        width: 343,
+        width: double.infinity,
         height: 172,
         decoration: const BoxDecoration(color: Color(0xFFF5F5F5)),
         child: Stack(
