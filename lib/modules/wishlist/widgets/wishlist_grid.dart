@@ -1,7 +1,7 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class WishlistGrid extends StatelessWidget {
-  final List<Map<String, dynamic>> products;
+  final List<Product> products;
 
   const WishlistGrid({super.key, required this.products});
 

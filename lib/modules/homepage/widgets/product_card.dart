@@ -1,26 +1,9 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class ProductCard extends StatelessWidget {
-  final String image;
-  final String name;
-  final String description;
-  final String price;
-  final String oldPrice;
-  final String discount;
-  final int rating;
-  final int reviewCount;
+  final Product product;
 
-  const ProductCard({
-    super.key,
-    required this.image,
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.oldPrice,
-    required this.discount,
-    required this.rating,
-    required this.reviewCount,
-  });
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +25,15 @@ class ProductCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-            child: image.startsWith('assets')
+            child: product.image.startsWith('assets')
                 ? Image.asset(
-                    image,
+                    product.image,
                     height: 120,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   )
                 : Image.network(
-                    image,
+                    product.image,
                     height: 120,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -62,7 +45,7 @@ class ProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  name,
+                  product.name,
                   style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
@@ -71,7 +54,7 @@ class ProductCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  description,
+                  product.description,
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
                     color: Colors.grey,
@@ -80,14 +63,14 @@ class ProductCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  price,
+                  product.price,
                   style: GoogleFonts.montserrat(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  oldPrice,
+                  product.oldPrice,
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
                     color: Colors.grey,
@@ -96,7 +79,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  discount,
+                  product.discount,
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
                     color: const Color(0xFFFE735C),
@@ -110,14 +93,14 @@ class ProductCard extends StatelessWidget {
                       (index) => Icon(
                         Icons.star,
                         size: 12,
-                        color: index < rating
+                        color: index < product.rating
                             ? Colors.amber
                             : Colors.grey.shade300,
                       ),
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      "($reviewCount)",
+                      "(${product.reviewCount})",
                       style: GoogleFonts.montserrat(
                         fontSize: 10,
                         color: Colors.grey,

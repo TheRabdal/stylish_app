@@ -1,7 +1,7 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class WishlistProductCard extends StatelessWidget {
-  final Map<String, dynamic> product;
+  final Product product;
 
   const WishlistProductCard({super.key, required this.product});
 
@@ -26,9 +26,9 @@ class WishlistProductCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: SizedBox(
-              height: (product['height'] as num?)?.toDouble() ?? 200.0,
+              height: product.height ?? 200.0,
               width: double.infinity,
-              child: Image.asset(product['image'], fit: BoxFit.cover),
+              child: Image.asset(product.image, fit: BoxFit.cover),
             ),
           ),
           Padding(
@@ -37,7 +37,7 @@ class WishlistProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product['name'],
+                  product.name,
                   style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -48,7 +48,7 @@ class WishlistProductCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  product['description'],
+                  product.description,
                   style: GoogleFonts.montserrat(
                     fontSize: 10,
                     color: Colors.black54,
@@ -58,7 +58,7 @@ class WishlistProductCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  product['price'],
+                  product.price,
                   style: GoogleFonts.montserrat(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -68,7 +68,7 @@ class WishlistProductCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      product['oldPrice'],
+                      product.oldPrice,
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
                         color: Colors.grey,
@@ -78,7 +78,7 @@ class WishlistProductCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      product['discount'],
+                      product.discount,
                       style: GoogleFonts.montserrat(
                         fontSize: 12,
                         color: const Color(0xFFFE735C),
@@ -95,14 +95,14 @@ class WishlistProductCard extends StatelessWidget {
                       (index) => Icon(
                         Icons.star,
                         size: 14,
-                        color: index < product['rating']
+                        color: index < product.rating
                             ? const Color(0xFFEDB310)
                             : Colors.grey.shade300,
                       ),
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      "(${product['reviewCount']})",
+                      "(${product.reviewCount})",
                       style: GoogleFonts.montserrat(
                         fontSize: 10,
                         color: const Color(0xFFA4A9B3),

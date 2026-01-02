@@ -141,57 +141,61 @@ class _DealOfDayState extends State<DealOfDay> {
                 controller: _scrollController,
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                children: const [
-                  ProductCard(
-                    image: 'assets/images/womenprintedkurta.png',
-                    name: "Women Printed Kurta",
-                    description:
-                        "Neque porro quisquam est qui dolorem ipsum quia",
-                    price: "₹1500",
-                    oldPrice: "₹2499",
-                    discount: "40%Off",
-                    rating: 4,
-                    reviewCount: 56890,
-                  ),
-                  SizedBox(width: 16),
-                  ProductCard(
-                    image: 'assets/images/hrx.png',
-                    name: "HRX by Hrithik Roshan",
-                    description:
-                        "Neque porro quisquam est qui dolorem ipsum quia",
-                    price: "₹2499",
-                    oldPrice: "₹4999",
-                    discount: "50%Off",
-                    rating: 4,
-                    reviewCount: 344567,
-                  ),
-                  SizedBox(width: 16),
-                  ProductCard(
-                    image: 'assets/images/philips.png',
-                    name: "Philips BHH880/10",
-                    description:
-                        "Hair Straightening Brush With Keratin Infused Bristles (Black).",
-                    price: "₹999",
-                    oldPrice: "₹1999",
-                    discount: "50%Off",
-                    rating: 4,
-                    reviewCount: 646776,
-                  ),
-                  SizedBox(width: 16),
-                  ProductCard(
-                    image: 'assets/images/titan.png',
-                    name: "TITAN Men Watch- 1806N",
-                    description:
-                        "This Titan watch in Black color is I wanted to buy for a long time",
-                    price: "₹1500",
-                    oldPrice: "₹3500",
-                    discount: "60%Off",
-                    rating: 5,
-                    reviewCount: 15007,
-                  ),
-                ],
+                children:
+                    [
+                      const Product(
+                        image: 'assets/images/womenprintedkurta.png',
+                        name: "Women Printed Kurta",
+                        description:
+                            "Neque porro quisquam est qui dolorem ipsum quia",
+                        price: "₹1500",
+                        oldPrice: "₹2499",
+                        discount: "40%Off",
+                        rating: 4,
+                        reviewCount: 56890,
+                      ),
+                      const Product(
+                        image: 'assets/images/hrx.png',
+                        name: "HRX by Hrithik Roshan",
+                        description:
+                            "Neque porro quisquam est qui dolorem ipsum quia",
+                        price: "₹2499",
+                        oldPrice: "₹4999",
+                        discount: "50%Off",
+                        rating: 4,
+                        reviewCount: 344567,
+                      ),
+                      const Product(
+                        image: 'assets/images/philips.png',
+                        name: "Philips BHH880/10",
+                        description:
+                            "Hair Straightening Brush With Keratin Infused Bristles (Black).",
+                        price: "₹999",
+                        oldPrice: "₹1999",
+                        discount: "50%Off",
+                        rating: 4,
+                        reviewCount: 646776,
+                      ),
+                      const Product(
+                        image: 'assets/images/titan.png',
+                        name: "TITAN Men Watch- 1806N",
+                        description:
+                            "This Titan watch in Black color is I wanted to buy for a long time",
+                        price: "₹1500",
+                        oldPrice: "₹3500",
+                        discount: "60%Off",
+                        rating: 5,
+                        reviewCount: 15007,
+                      ),
+                    ].map((product) {
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: ProductCard(product: product),
+                      );
+                    }).toList(),
               ),
             ),
+
             Positioned(
               right: 8,
               top: 0,

@@ -9,3 +9,4 @@ export 'flat_heels_banner.dart';
 export 'trending_products.dart';
 export 'new_arrivals.dart';
 export 'sponsored_banner.dart';
+export 'home_content.dart';
