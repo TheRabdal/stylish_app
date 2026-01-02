@@ -59,7 +59,7 @@ class ProductCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
                   name,
@@ -79,7 +79,6 @@ class ProductCard extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 4),
                 Text(
                   price,
                   style: GoogleFonts.montserrat(
@@ -87,25 +86,21 @@ class ProductCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Row(
-                  children: [
-                    Text(
-                      oldPrice,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 10,
-                        color: Colors.grey,
-                        decoration: TextDecoration.lineThrough,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      discount,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 10,
-                        color: const Color(0xFFFE735C),
-                      ),
-                    ),
-                  ],
+                Text(
+                  oldPrice,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10,
+                    color: Colors.grey,
+                    decoration: TextDecoration.lineThrough,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  discount,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10,
+                    color: const Color(0xFFFE735C),
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Row(

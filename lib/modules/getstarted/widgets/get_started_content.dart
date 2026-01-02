@@ -8,7 +8,8 @@ class GetStartedContent extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        width: 394,
+        
+        width: MediaQuery.of(context).size.width,
         height: 362,
         decoration: const BoxDecoration(
           image: DecorationImage(

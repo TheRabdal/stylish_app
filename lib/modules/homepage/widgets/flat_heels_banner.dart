@@ -8,28 +8,20 @@ class FlatHeelsBanner extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
-        height: 180,
-        decoration: BoxDecoration(
-          color: const Color(0xFFF5F5F5), // Light gray background
-          borderRadius: BorderRadius.circular(12),
-        ),
+        width: 343,
+        height: 172,
+        decoration: const BoxDecoration(color: Color(0xFFF5F5F5)),
         child: Stack(
           children: [
-            // Vertical orange bar on the left (flatandheels3.png)
             Positioned(
               left: 5,
               top: 0,
               bottom: 0,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomLeft: Radius.circular(12),
-                ),
-                child: Image.asset(
-                  'assets/images/flatandheels3.png',
-                  width: 10,
-                  fit: BoxFit.cover,
-                ),
+              child: Image.asset(
+                'assets/images/flatandheels3.png',
+                width: 11,
+                height: 171,
+                fit: BoxFit.cover,
               ),
             ),
             // Yellow dots pattern effect (flatandheels2.png)
