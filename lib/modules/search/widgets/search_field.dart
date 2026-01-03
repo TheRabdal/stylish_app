@@ -74,42 +74,32 @@ class _SearchFieldState extends State<SearchField> {
           ),
         ],
       ),
-      child: TextField(
+      child: CustomTextField(
         autofocus: widget.autofocus,
         controller: widget.controller,
-        style: GoogleFonts.montserrat(color: Colors.black),
-        decoration: InputDecoration(
-          hintText: _isListening ? "Listening..." : "Search for items...",
-          hintStyle: GoogleFonts.montserrat(
-            color: _isListening ? const Color(0xFFF83758) : Colors.grey,
-          ),
-          prefixIcon: const Icon(Icons.search, color: Colors.grey),
-          suffixIcon: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (widget.controller.text.isNotEmpty)
-                IconButton(
-                  icon: const Icon(Icons.clear, color: Colors.grey),
-                  onPressed: () {
-                    widget.controller.clear();
-                    FocusScope.of(context).unfocus();
-                    widget.onChanged?.call(); // Trigger update on clear
-                  },
-                ),
+        hint: _isListening ? "Listening..." : "Search for items...",
+        icon: Icons.search,
+        onChanged: (value) => widget.onChanged?.call(),
+        suffixIcon: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (widget.controller.text.isNotEmpty)
               IconButton(
-                icon: Icon(
-                  _isListening ? Icons.mic : Icons.mic_none,
-                  color: _isListening ? const Color(0xFFF83758) : Colors.grey,
-                ),
-                onPressed: _isListening ? _stopListening : _startListening,
+                icon: const Icon(Icons.clear, color: Colors.grey),
+                onPressed: () {
+                  widget.controller.clear();
+                  FocusScope.of(context).unfocus();
+                  widget.onChanged?.call(); // Trigger update on clear
+                },
               ),
-            ],
-          ),
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 14,
-          ),
+            IconButton(
+              icon: Icon(
+                _isListening ? Icons.mic : Icons.mic_none,
+                color: _isListening ? const Color(0xFFF83758) : Colors.grey,
+              ),
+              onPressed: _isListening ? _stopListening : _startListening,
+            ),
+          ],
         ),
       ),
     );

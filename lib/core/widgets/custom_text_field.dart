@@ -9,6 +9,9 @@ class CustomTextField extends StatelessWidget {
   final bool passwordHash;
   final FontWeight? fontWeight;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final void Function(String)? onSubmitted;
+  final bool autofocus;
 
   const CustomTextField({
     super.key,
@@ -20,6 +23,9 @@ class CustomTextField extends StatelessWidget {
     this.passwordHash = false,
     this.fontWeight,
     this.validator,
+    this.onChanged,
+    this.onSubmitted,
+    this.autofocus = false,
   });
 
   @override
@@ -28,13 +34,16 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       obscureText: passwordHash,
       validator: validator,
+      onChanged: onChanged,
+      onFieldSubmitted: onSubmitted,
+      autofocus: autofocus,
       style: GoogleFonts.montserrat(
         color: Colors.black,
         fontWeight: fontWeight,
       ),
       decoration: InputDecoration(
         prefixIcon: icon == null ? null : Icon(icon, color: Colors.grey[600]),
-        suffixIcon: isPassword ? suffixIcon : null,
+        suffixIcon: suffixIcon,
         hintText: hint,
         hintStyle: GoogleFonts.montserrat(color: Colors.grey[500]),
         filled: true,
