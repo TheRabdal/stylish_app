@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool passwordHash;
   final FontWeight? fontWeight;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     super.key,
@@ -18,13 +19,15 @@ class CustomTextField extends StatelessWidget {
     this.suffixIcon,
     this.passwordHash = false,
     this.fontWeight,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
       obscureText: passwordHash,
+      validator: validator,
       style: GoogleFonts.montserrat(
         color: Colors.black,
         fontWeight: fontWeight,
@@ -48,6 +51,10 @@ class CustomTextField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(color: Color(0xFFF83758)),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.red),
         ),
       ),
     );

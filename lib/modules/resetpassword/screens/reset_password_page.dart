@@ -11,6 +11,7 @@ class ResetPasswordPage extends StatefulWidget {
 
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
   final TextEditingController _emailController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -19,8 +20,10 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   }
 
   void _onSubmit() {
-    // Implement password reset logic
-    debugPrint("Reset password for: ${_emailController.text}");
+    if (_formKey.currentState!.validate()) {
+      // Implement password reset logic
+      debugPrint("Reset password for: ${_emailController.text}");
+    }
   }
 
   @override
@@ -38,27 +41,39 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 20),
-              const ResetPasswordHeader(),
-              const SizedBox(height: 40),
-              CustomTextField(
-                hint: "Enter your email address",
-                icon: Icons.email_sharp,
-                controller: _emailController,
-              ),
-              const SizedBox(height: 15),
-              const ResetPasswordInstruction(),
-              const SizedBox(height: 40),
-              Button(
-                text: "Submit",
-                onPressed: _onSubmit,
-                fontWeight: FontWeight.w600,
-              ),
-              const SizedBox(height: 20),
-            ],
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20),
+                const ResetPasswordHeader(),
+                const SizedBox(height: 40),
+                CustomTextField(
+                  hint: "Enter your email address",
+                  icon: Icons.email_sharp,
+                  controller: _emailController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Email cannot be empty';
+                    }
+                    if (!value.contains('@')) {
+                      return 'Enter a valid email';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 15),
+                const ResetPasswordInstruction(),
+                const SizedBox(height: 40),
+                Button(
+                  text: "Submit",
+                  onPressed: _onSubmit,
+                  fontWeight: FontWeight.w600,
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
