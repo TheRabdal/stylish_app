@@ -1,5 +1,7 @@
 import 'package:stylish_app/packages/packages.dart';
 
+import 'package:speech_to_text/speech_to_text.dart';
+
 class SearchPage extends StatefulWidget {
   final bool autofocus;
   const SearchPage({super.key, this.autofocus = false});
@@ -10,6 +12,9 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController _searchController = TextEditingController();
+  final SpeechToText _speechToText = SpeechToText();
+  bool _speechEnabled = false;
+  bool _isListening = false;
 
   // Data from centralized product data
   final List<Product> _allProducts = allProducts;
@@ -21,6 +26,36 @@ class _SearchPageState extends State<SearchPage> {
     super.initState();
     _filteredProducts = _allProducts;
     _searchController.addListener(_onSearchChanged);
+    _initSpeech();
+  }
+
+  void _initSpeech() async {
+    _speechEnabled = await _speechToText.initialize();
+    setState(() {});
+  }
+
+  void _startListening() async {
+    if (!_speechEnabled) return;
+
+    await _speechToText.listen(
+      onResult: (result) {
+        setState(() {
+          _searchController.text = result.recognizedWords;
+          // Trigger search update manually since controller text set programmatically might not trigger listener in some cases,
+          // but usually it does. If not, call _onSearchChanged() here.
+        });
+      },
+    );
+    setState(() {
+      _isListening = true;
+    });
+  }
+
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {
+      _isListening = false;
+    });
   }
 
   @override
@@ -83,18 +118,37 @@ class _SearchPageState extends State<SearchPage> {
                 controller: _searchController,
                 style: GoogleFonts.montserrat(color: Colors.black),
                 decoration: InputDecoration(
-                  hintText: "Search for items...",
-                  hintStyle: GoogleFonts.montserrat(color: Colors.grey),
+                  hintText: _isListening
+                      ? "Listening..."
+                      : "Search for items...",
+                  hintStyle: GoogleFonts.montserrat(
+                    color: _isListening ? const Color(0xFFF83758) : Colors.grey,
+                  ),
                   prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                  suffixIcon: _searchController.text.isNotEmpty
-                      ? IconButton(
+                  suffixIcon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (_searchController.text.isNotEmpty)
+                        IconButton(
                           icon: const Icon(Icons.clear, color: Colors.grey),
                           onPressed: () {
                             _searchController.clear();
                             FocusScope.of(context).unfocus();
                           },
-                        )
-                      : null,
+                        ),
+                      IconButton(
+                        icon: Icon(
+                          _isListening ? Icons.mic : Icons.mic_none,
+                          color: _isListening
+                              ? const Color(0xFFF83758)
+                              : Colors.grey,
+                        ),
+                        onPressed: _isListening
+                            ? _stopListening
+                            : _startListening,
+                      ),
+                    ],
+                  ),
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.symmetric(
                     horizontal: 16,
