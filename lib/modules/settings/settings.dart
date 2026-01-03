@@ -1,1 +1,1 @@
-export 'screens/settings_page.dart';
+export 'screens/screens.dart';

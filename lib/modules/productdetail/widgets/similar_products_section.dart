@@ -1,6 +1,5 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/modules/cart/models/product_detail_model.dart';
-import 'package:stylish_app/modules/cart/widgets/similar_products.dart'; // Temporarily import for reuse or we should copy logic?
+// Temporarily import for reuse or we should copy logic?
 // Actually, let's reimplement it cleanly or reuse logic but essentially this section displays similar items.
 // Given strict instructions to separate, I will reimplement a clean version or reuse the existing one if I can move it.
 // The user asked to move it. So I will implement the UI here basically copying the logic but adapting to the new structure if needed.

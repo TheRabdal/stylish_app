@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:stylish_app/modules/homepage/models/models.dart';
-import 'package:stylish_app/modules/cart/screens/cart_page.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 class ProductDetailInfo extends StatelessWidget {
   final Product product;
@@ -15,11 +12,15 @@ class ProductDetailInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Size Selector (Moved to Top as per design)
-          const SizeSelector(),
+          SizeSelector(
+            sizes: [
+              ProductSize(label: '6 UK', isSelected: false),
+              ProductSize(label: '7 UK', isSelected: true),
+              ProductSize(label: '8 UK', isSelected: false),
+            ],
+            onSizeSelected: (size) {},
+          ),
           const SizedBox(height: 16),
-
-          // Title
           Text(
             product.name, // e.g., "Nike Sneakers"
             style: GoogleFonts.montserrat(
@@ -140,98 +141,51 @@ class ProductDetailInfo extends StatelessWidget {
           const SizedBox(height: 24),
 
           // Buttons (Moved Inline)
+          // Buttons (Moved Inline)
+          // Buttons
           Row(
             children: [
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      24,
-                    ), // Rounded pill shape
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF3F51B5), Color(0xFF2196F3)],
-                    ), // Blue gradient
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CartPage(),
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      backgroundColor: Colors.transparent,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.shopping_cart_outlined,
-                          color: Colors.white,
-                          size: 18,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          "Go to cart",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                child: _buildCustomButton(
+                  context: context,
+                  label: "Go to cart",
+                  icon: Icons.shopping_cart_outlined,
+                  gradientColors: [
+                    const Color(0xFF3366FF),
+                    const Color(0xFF0033CC),
+                  ],
+                  iconGradientColors: [
+                    const Color(0xFF5C8AFF),
+                    const Color(0xFF1A4CFF),
+                  ],
+                  onTap: () {
+                    // Just add to cart
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Added to cart")),
+                    );
+                  },
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF4CAF50), Color(0xFF81C784)],
-                    ), // Green gradient
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Buy Now Logic
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      backgroundColor: Colors.transparent,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.touch_app_outlined,
-                          color: Colors.white,
-                          size: 18,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          "Buy Now",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                child: _buildCustomButton(
+                  context: context,
+                  label: "Buy Now",
+                  icon: Icons.touch_app_outlined,
+                  gradientColors: [
+                    const Color(0xFF69F0AE),
+                    const Color(0xFF00C853),
+                  ],
+                  iconGradientColors: [
+                    const Color(0xFF90F7C7),
+                    const Color(0xFF4AC786),
+                  ],
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const CartPage()),
+                    );
+                  },
                 ),
               ),
             ],
@@ -338,20 +292,27 @@ class ProductDetailInfo extends StatelessWidget {
 
   Widget _buildFeatureIcon(IconData icon, String label) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 8,
+      ), // slightly larger padding
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey.shade400),
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(5), // More rounded
       ),
       child: Row(
         children: [
-          Icon(icon, size: 14, color: Colors.grey.shade700),
-          const SizedBox(width: 4),
+          Icon(
+            icon,
+            size: 16,
+            color: Colors.grey.shade600,
+          ), // Slightly larger icon
+          const SizedBox(width: 6),
           Text(
             label,
             style: GoogleFonts.montserrat(
-              fontSize: 10,
-              color: Colors.grey.shade800,
+              fontSize: 11, // Slightly larger text
+              color: Colors.grey.shade700,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -359,88 +320,96 @@ class ProductDetailInfo extends StatelessWidget {
       ),
     );
   }
-}
 
-class SizeSelector extends StatefulWidget {
-  const SizeSelector({super.key});
-
-  @override
-  State<SizeSelector> createState() => _SizeSelectorState();
-}
-
-class _SizeSelectorState extends State<SizeSelector> {
-  String selectedSize = '7 UK';
-  final List<String> sizes = ['6 UK', '7 UK', '8 UK', '9 UK', '10 UK'];
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        RichText(
-          text: TextSpan(
-            children: [
-              TextSpan(
-                text: "Size: ",
-                style: GoogleFonts.montserrat(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              TextSpan(
-                text: selectedSize,
-                style: GoogleFonts.montserrat(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ],
+  Widget _buildCustomButton({
+    required BuildContext context,
+    required String label,
+    required IconData icon,
+    required List<Color> gradientColors,
+    required List<Color> iconGradientColors,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: gradientColors,
           ),
+          boxShadow: [
+            BoxShadow(
+              color: gradientColors.last.withValues(
+                alpha: 0.5,
+              ), // Stronger shadow
+              blurRadius: 10,
+              offset: const Offset(0, 5),
+            ),
+          ],
         ),
-        const SizedBox(height: 12),
-        Row(
-          children: sizes.map((size) {
-            final isSelected = size == selectedSize;
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedSize = size;
-                });
-              },
-              child: Container(
-                margin: const EdgeInsets.only(right: 8),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: isSelected ? const Color(0xFFFA7189) : Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                    color: isSelected
-                        ? const Color(0xFFFA7189)
-                        : const Color(
-                            0xFFFA7189,
-                          ), // Pink border for all as per design appearance? Actually design usually has selection.
-                    // Design image shows pink borders for unselected too? No, it looks like pink text/border for unselected, filled pink for selected?
-                    // Image: 6UK (Pink border, pink text), 7UK (Pink fill, white text).
-                  ),
-                ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 30), // Offset for icon
                 child: Text(
-                  size,
+                  label,
                   style: GoogleFonts.montserrat(
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: isSelected ? Colors.white : const Color(0xFFFA7189),
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black.withValues(
+                          alpha: 0.2,
+                        ), // Text shadow
+                        blurRadius: 2,
+                        offset: const Offset(0, 1),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            );
-          }).toList(),
+            ),
+            Positioned(
+              left: 0,
+              top: 0,
+              bottom: 0,
+              child: Container(
+                width: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: iconGradientColors,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(
+                        alpha: 0.2,
+                      ), // Stronger icon shadow
+                      blurRadius: 5,
+                      offset: const Offset(2, 2),
+                    ),
+                  ],
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.3),
+                    width: 1.5,
+                  ), // Sharper border
+                ),
+                child: Icon(icon, color: Colors.white, size: 24),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
+
+// Removed duplicate SizeSelector class

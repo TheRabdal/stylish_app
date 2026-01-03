@@ -1,6 +1,5 @@
 export 'package:stylish_app/core/core.dart';
 export 'package:stylish_app/modules/modules.dart';
-export 'package:stylish_app/modules/detailproduct/detailproduct.dart';
 
 export 'dart:async';
 export 'package:flutter/material.dart';

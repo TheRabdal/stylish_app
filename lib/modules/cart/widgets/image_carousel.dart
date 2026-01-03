@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 class ImageCarousel extends StatefulWidget {
   final List<String> images;

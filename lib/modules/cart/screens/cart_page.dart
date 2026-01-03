@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/modules/checkout/screens/checkout_page.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -247,6 +246,7 @@ class _CartPageState extends State<CartPage> {
                       builder: (context) => const CheckoutPage(),
                     ),
                   );
+                  // print("Navigating to Checkout");
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(

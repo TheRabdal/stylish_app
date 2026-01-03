@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/modules/checkout/screens/payment_page.dart';
 
 class CheckoutPage extends StatelessWidget {
   const CheckoutPage({super.key});
@@ -131,25 +130,31 @@ class CheckoutPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             // Item 1
-            const CheckoutItemCard(
-              image:
-                  'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-              title: "Women's Casual Wear",
-              variations: "Black",
-              rating: 4.8,
-              price: 34.00,
-              originalPrice: 64.00,
+            CheckoutItemCard(
+              item: CheckoutItemModel(
+                image:
+                    'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+                title: "Women's Casual Wear",
+                variations: ["Black"],
+                rating: 4.8,
+                price: 34.00,
+                originalPrice: 64.00,
+                discountPercentage: 33,
+              ),
             ),
             const SizedBox(height: 16),
             // Item 2
-            const CheckoutItemCard(
-              image:
-                  'https://images.unsplash.com/photo-1551028919-ac6635f0e5c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-              title: "Men's Jacket",
-              variations: "Green",
-              rating: 4.7,
-              price: 45.00,
-              originalPrice: 67.00,
+            CheckoutItemCard(
+              item: CheckoutItemModel(
+                image:
+                    'https://images.unsplash.com/photo-1551028919-ac6635f0e5c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+                title: "Men's Jacket",
+                variations: ["Green"],
+                rating: 4.7,
+                price: 45.00,
+                originalPrice: 67.00,
+                discountPercentage: 33,
+              ),
             ),
             const SizedBox(height: 100),
           ],
@@ -225,163 +230,4 @@ class CheckoutPage extends StatelessWidget {
   }
 }
 
-class CheckoutItemCard extends StatelessWidget {
-  final String image;
-  final String title;
-  final String variations;
-  final double rating;
-  final double price;
-  final double originalPrice;
-
-  const CheckoutItemCard({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.variations,
-    required this.rating,
-    required this.price,
-    required this.originalPrice,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: Image.network(
-                  image,
-                  width: 80,
-                  height: 100,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) =>
-                      Container(width: 80, height: 100, color: Colors.grey),
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      "Variations :   $variations", // Simplification
-                      style: GoogleFonts.montserrat(
-                        fontSize: 12,
-                        color: Colors.grey.shade700,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Text(
-                          "$rating",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const Icon(Icons.star, size: 14, color: Colors.amber),
-                      ],
-                    ),
-
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey.shade300),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Text(
-                            "\$ $price",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "upto 33% off", // Static for demo
-                              style: GoogleFonts.montserrat(
-                                fontSize: 10,
-                                color: Color(0xFFF83758),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              "\$ $originalPrice", // Static for demo
-                              style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                color: Colors.grey,
-                                decoration: TextDecoration.lineThrough,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Total Order (1) :",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
-                ),
-                Text(
-                  "\$ $price",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+// Removed duplicate CheckoutItemCard class

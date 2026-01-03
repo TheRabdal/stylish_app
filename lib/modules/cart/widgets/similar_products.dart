@@ -1,9 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import '../models/product_detail_model.dart';
-// Note: We might want to reuse the ProductCard from homepage if it matches,
-// but to ensure strict adherence to this specific design and isolation, I'll create a local one or use a consistent design.
-// The image shows "Similar To 282+ Items" with Sort/Filter buttons and then a Grid/List.
-// I will implement a simpler horizontal or grid version as a widget.
 
 class SimilarProducts extends StatelessWidget {
   final List<SimilarProduct> products;

@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import '../../checkout/screens/checkout_screen.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 class BottomNavActions extends StatelessWidget {
   const BottomNavActions({super.key});

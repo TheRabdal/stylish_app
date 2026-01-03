@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import '../models/product_detail_model.dart';
-import '../widgets/image_carousel.dart';
-import '../widgets/size_selector.dart';
-import '../widgets/product_info.dart';
-import '../widgets/action_buttons.dart';
-import '../widgets/delivery_banner.dart';
-import '../widgets/bottom_nav_actions.dart';
-import '../widgets/similar_products.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key});
