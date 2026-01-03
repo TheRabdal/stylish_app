@@ -1,7 +1,6 @@
 import 'package:stylish_app/packages/packages.dart';
 
 void main() {
-  GoogleFonts.config.allowRuntimeFetching = false;
   runApp(const MyApp());
 }
 
