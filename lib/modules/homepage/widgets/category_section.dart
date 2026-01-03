@@ -31,9 +31,30 @@ class CategorySection extends StatelessWidget {
               ),
               Row(
                 children: [
-                  _buildActionButton("Sort", Icons.import_export),
+                  _buildActionButton(
+                    "Sort",
+                    Icons.import_export,
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => const SortBottomSheet(),
+                      );
+                    },
+                  ),
                   const SizedBox(width: 8),
-                  _buildActionButton("Filter", Icons.filter_alt_outlined),
+                  _buildActionButton(
+                    "Filter",
+                    Icons.filter_alt_outlined,
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => const FilterDrawer(),
+                      );
+                    },
+                  ),
                 ],
               ),
             ],
@@ -68,26 +89,33 @@ class CategorySection extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButton(String label, IconData icon) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(6),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade200,
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Text(label, style: GoogleFonts.montserrat(fontSize: 12)),
-          const SizedBox(width: 4),
-          Icon(icon, size: 16),
-        ],
+  Widget _buildActionButton(
+    String label,
+    IconData icon, {
+    VoidCallback? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(6),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade200,
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Text(label, style: GoogleFonts.montserrat(fontSize: 12)),
+            const SizedBox(width: 4),
+            Icon(icon, size: 16),
+          ],
+        ),
       ),
     );
   }
