@@ -37,18 +37,6 @@ class _NavigationPageState extends State<NavigationPage> {
             ? const CheckoutPage()
             : _pages[_selectedIndex],
       ),
-      floatingActionButton: Transform.translate(
-        offset: const Offset(0, 30),
-        child: CartButton(
-          isSelected: _selectedIndex == 2,
-          onPressed: () {
-            setState(() {
-              _selectedIndex = 2;
-            });
-          },
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNav(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,

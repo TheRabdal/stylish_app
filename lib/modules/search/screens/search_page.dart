@@ -1,7 +1,8 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+  final bool autofocus;
+  const SearchPage({super.key, this.autofocus = false});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -10,69 +11,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController _searchController = TextEditingController();
 
-  // Dummy Data (Replicated from TrendingProducts for demo)
-  final List<Product> _allProducts = [
-    const Product(
-      image: 'assets/images/watch.png',
-      name: "IWC Schaffhausen",
-      description: "2021 Pilot's Watch \"SIHH 2019\" 44mm",
-      price: "₹650",
-      oldPrice: "₹1599",
-      discount: "60% off",
-      rating: 5,
-      reviewCount: 650,
-    ),
-    const Product(
-      image: 'assets/images/whiteshoes.png',
-      name: "Labbin White Sneakers",
-      description: "For Men and Female",
-      price: "₹650",
-      oldPrice: "₹1250",
-      discount: "70% off",
-      rating: 4,
-      reviewCount: 650,
-    ),
-    const Product(
-      image: 'assets/images/womenshandback.png',
-      name: "Mammon Women's Handbag",
-      description: "(Set of 3, Beige)",
-      price: "₹750",
-      oldPrice: "₹1999",
-      discount: "60% off",
-      rating: 4,
-      reviewCount: 750,
-    ),
-    const Product(
-      image: 'assets/images/sandalcoklat.png',
-      name: "Do Bhai Women Wedges Sandal",
-      description: "(Butterfly)",
-      price: "₹750",
-      oldPrice: "₹1499",
-      discount: "50% off",
-      rating: 4,
-      reviewCount: 750,
-    ),
-    const Product(
-      image: 'assets/images/lipstik.png',
-      name: "Lakme Enrich Matte Lipstick",
-      description: "Shade RM1(4.7gm)",
-      price: "₹950",
-      oldPrice: "₹1990",
-      discount: "60% off",
-      rating: 4,
-      reviewCount: 950,
-    ),
-    const Product(
-      image: 'assets/images/jordan.png',
-      name: "Nike Air Jordan",
-      description: "Nike Air Jordan 1 Retro High OG",
-      price: "₹1250",
-      oldPrice: "₹2500",
-      discount: "50% off",
-      rating: 5,
-      reviewCount: 120,
-    ),
-  ];
+  // Data from centralized product data
+  final List<Product> _allProducts = allProducts;
 
   List<Product> _filteredProducts = [];
 
@@ -139,6 +79,7 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
               child: TextField(
+                autofocus: widget.autofocus,
                 controller: _searchController,
                 style: GoogleFonts.montserrat(color: Colors.black),
                 decoration: InputDecoration(

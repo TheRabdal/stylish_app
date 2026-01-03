@@ -23,7 +23,11 @@ class BottomNav extends StatelessWidget {
           children: [
             _buildNavItem(Icons.home_outlined, "Home", 0),
             _buildNavItem(Icons.favorite_border, "Wishlist", 1),
-            const SizedBox(width: 48), // Spacer for FAB
+            // Custom Cart Button in Navbar
+            CartButton(
+              isSelected: selectedIndex == 2,
+              onPressed: () => onItemTapped(2),
+            ),
             _buildNavItem(Icons.search, "Search", 3),
             _buildNavItem(Icons.settings_outlined, "Setting", 4),
           ],

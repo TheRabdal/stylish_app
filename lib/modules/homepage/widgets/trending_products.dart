@@ -112,64 +112,12 @@ class _TrendingProductsState extends State<TrendingProducts> {
                 controller: _scrollController,
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                children:
-                    [
-                      const Product(
-                        image: 'assets/images/watch.png',
-                        name: "IWC Schaffhausen",
-                        description: "2021 Pilot's Watch \"SIHH 2019\" 44mm",
-                        price: "₹650",
-                        oldPrice: "₹1599",
-                        discount: "60% off",
-                        rating: 5,
-                        reviewCount: 650,
-                      ),
-                      const Product(
-                        image: 'assets/images/whiteshoes.png',
-                        name: "Labbin White Sneakers",
-                        description: "For Men and Female",
-                        price: "₹650",
-                        oldPrice: "₹1250",
-                        discount: "70% off",
-                        rating: 4,
-                        reviewCount: 650,
-                      ),
-                      const Product(
-                        image: 'assets/images/womenshandback.png',
-                        name: "Mammon Women's Handbag",
-                        description: "(Set of 3, Beige)",
-                        price: "₹750",
-                        oldPrice: "₹1999",
-                        discount: "60% off",
-                        rating: 4,
-                        reviewCount: 750,
-                      ),
-                      const Product(
-                        image: 'assets/images/sandalcoklat.png',
-                        name: "Do Bhai Women Wedges Sandal",
-                        description: "(Butterfly)",
-                        price: "₹750",
-                        oldPrice: "₹1499",
-                        discount: "50% off",
-                        rating: 4,
-                        reviewCount: 750,
-                      ),
-                      const Product(
-                        image: 'assets/images/lipstik.png',
-                        name: "Lakme Enrich Matte Lipstick",
-                        description: "Shade RM1(4.7gm)",
-                        price: "₹950",
-                        oldPrice: "₹1990",
-                        discount: "60% off",
-                        rating: 4,
-                        reviewCount: 950,
-                      ),
-                    ].map((product) {
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 16),
-                        child: ProductCard(product: product),
-                      );
-                    }).toList(),
+                children: trendingProductsList.map((product) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 16),
+                    child: ProductCard(product: product),
+                  );
+                }).toList(),
               ),
             ),
             Positioned(

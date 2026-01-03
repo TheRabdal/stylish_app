@@ -12,13 +12,17 @@ class CartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: onPressed,
-      backgroundColor: isSelected ? const Color(0xFFF83758) : Colors.white,
-      shape: const CircleBorder(),
-      child: Icon(
-        Icons.shopping_cart_outlined,
-        color: isSelected ? Colors.white : Colors.black,
+    return Transform.translate(
+      offset: const Offset(0, -15),
+      child: FloatingActionButton(
+        onPressed: onPressed,
+        backgroundColor: isSelected ? const Color(0xFFF83758) : Colors.white,
+        shape: const CircleBorder(),
+        elevation: 5,
+        child: Icon(
+          Icons.shopping_cart_outlined,
+          color: isSelected ? Colors.white : Colors.black,
+        ),
       ),
     );
   }
