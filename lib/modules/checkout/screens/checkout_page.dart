@@ -1,6 +1,5 @@
 import 'package:stylish_app/packages/packages.dart';
 import 'package:stylish_app/modules/cart/services/cart_service.dart';
-import 'package:stylish_app/modules/checkout/models/checkout_model.dart';
 
 class CheckoutPage extends StatelessWidget {
   final List<CartItem>? buyNowItems;

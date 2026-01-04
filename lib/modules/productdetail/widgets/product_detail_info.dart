@@ -1,7 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/modules/cart/services/cart_service.dart';
-import 'package:stylish_app/modules/cart/models/cart_item_model.dart';
-import 'package:stylish_app/modules/checkout/screens/checkout_page.dart';
 
 class ProductDetailInfo extends StatefulWidget {
   final Product product;

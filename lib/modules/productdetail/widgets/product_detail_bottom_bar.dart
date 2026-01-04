@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:stylish_app/modules/cart/screens/cart_page.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 class ProductDetailBottomBar extends StatelessWidget {
   const ProductDetailBottomBar({super.key});

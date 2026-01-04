@@ -8,3 +8,4 @@ export 'package:url_launcher/url_launcher.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 export 'package:speech_to_text/speech_to_text.dart';
+export 'package:flutter/foundation.dart';

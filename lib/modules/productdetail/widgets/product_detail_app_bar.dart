@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 class ProductDetailAppBar extends StatelessWidget
     implements PreferredSizeWidget {

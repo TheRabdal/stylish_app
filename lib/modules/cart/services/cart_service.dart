@@ -1,5 +1,4 @@
-import 'package:flutter/foundation.dart';
-import '../models/cart_item_model.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 class CartService extends ChangeNotifier {
   static final CartService _instance = CartService._internal();
