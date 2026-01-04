@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:stylish_app/modules/modules.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 final Map<String, WidgetBuilder> appRoutes = {
   SplashPage.route: (context) => const SplashPage(),

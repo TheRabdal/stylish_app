@@ -1,5 +1,4 @@
-import 'package:stylish_app/packages/packages.dart' hide PaymentSuccessDialog;
-import 'package:stylish_app/modules/checkout/widgets/payment_success_dialog.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});

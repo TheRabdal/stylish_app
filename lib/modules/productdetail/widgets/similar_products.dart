@@ -1,6 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import '../models/product_detail_models.dart';
-import '../screens/product_detail_page.dart';
 
 class SimilarProducts extends StatelessWidget {
   final List<SimilarProduct> products;

@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import '../models/product_detail_models.dart';
 
 class SizeSelector extends StatelessWidget {
   final List<ProductSize> sizes;

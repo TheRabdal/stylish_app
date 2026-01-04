@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import '../models/checkout_model.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 class AddressCard extends StatelessWidget {
   final AddressModel address;
