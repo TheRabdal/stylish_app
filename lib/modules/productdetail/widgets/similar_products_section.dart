@@ -10,8 +10,7 @@ class SimilarProductsSection extends StatelessWidget {
     final List<SimilarProduct> similarProducts = [
       SimilarProduct(
         id: '101',
-        image:
-            'https://images.unsplash.com/photo-1597045566677-8cf032ed6634?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+        image: 'assets/images/jordan.png',
         title: 'Nike Sneakers',
         subtitle: 'Nike Air Jordan Retro 1 Low Mystic Black',
         price: 1900,
@@ -20,8 +19,7 @@ class SimilarProductsSection extends StatelessWidget {
       ),
       SimilarProduct(
         id: '102',
-        image:
-            'https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+        image: 'assets/images/whiteshoes.png',
         title: 'Nike Sneakers',
         subtitle: 'Mid Peach Mocha Shoes For Man White Black Pink S...',
         price: 1900,
@@ -30,8 +28,7 @@ class SimilarProductsSection extends StatelessWidget {
       ),
       SimilarProduct(
         id: '103',
-        image:
-            'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+        image: 'assets/images/jordanstay.png',
         title: 'Nike Red',
         subtitle: 'Nike Air Max Red Passion',
         price: 2100,
@@ -40,8 +37,7 @@ class SimilarProductsSection extends StatelessWidget {
       ),
       SimilarProduct(
         id: '104',
-        image:
-            'https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+        image: 'assets/images/sepatufantopel.png',
         title: 'Nike Black',
         subtitle: 'Nike Running Shoes Black Edition',
         price: 2500,
@@ -50,7 +46,7 @@ class SimilarProductsSection extends StatelessWidget {
       ),
       SimilarProduct(
         id: '105',
-        image: 'assets/images/whiteshoes.png',
+        image: 'assets/images/sandalcoklat.png',
         title: 'Vans Old Skool',
         subtitle: 'Classic Vans Old Skool Sneakers',
         price: 1500,
