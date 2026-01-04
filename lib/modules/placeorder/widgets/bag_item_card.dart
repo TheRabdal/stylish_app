@@ -19,7 +19,7 @@ class BagItemCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
-            child: Image.network(
+            child: Image.asset(
               item.image,
               width: 100,
               height: 120,

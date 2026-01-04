@@ -114,39 +114,19 @@ class SimilarProducts extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: product.image.startsWith('http')
-                    ? Image.network(
-                        product.image,
-                        height: 150,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            height: 150,
-                            color: Colors.grey[200],
-                            child: const Icon(
-                              Icons.broken_image,
-                              color: Colors.grey,
-                            ),
-                          );
-                        },
-                      )
-                    : Image.asset(
-                        product.image,
-                        height: 150,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            height: 150,
-                            color: Colors.grey[200],
-                            child: const Icon(
-                              Icons.broken_image,
-                              color: Colors.grey,
-                            ),
-                          );
-                        },
-                      ),
+                child: Image.asset(
+                  product.image,
+                  height: 150,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      height: 150,
+                      color: Colors.grey[200],
+                      child: const Icon(Icons.broken_image, color: Colors.grey),
+                    );
+                  },
+                ),
               ),
               Positioned(
                 top: 4,

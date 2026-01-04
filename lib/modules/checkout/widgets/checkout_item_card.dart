@@ -31,27 +31,11 @@ class CheckoutItemCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
+                  child: Image.asset(
                     item.image,
                     width: 100,
                     height: 100,
                     fit: BoxFit.cover,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Container(
-                        width: 100,
-                        height: 100,
-                        color: Colors.grey.shade200,
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                      loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        ),
-                      );
-                    },
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
                         width: 100,

@@ -52,9 +52,7 @@ class _ProductDetailImageState extends State<ProductDetailImage> {
               itemCount: images.length,
               itemBuilder: (context, index) {
                 final img = images[index];
-                return img.startsWith('assets')
-                    ? Image.asset(img, fit: BoxFit.cover)
-                    : Image.network(img, fit: BoxFit.cover);
+                return Image.asset(img, fit: BoxFit.cover);
               },
             ),
           ),

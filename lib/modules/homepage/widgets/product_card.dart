@@ -38,19 +38,17 @@ class ProductCard extends StatelessWidget {
                   borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(8),
                   ),
-                  child: product.image.startsWith('assets')
-                      ? Image.asset(
-                          product.image,
-                          height: 120,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                        )
-                      : Image.network(
-                          product.image,
-                          height: 120,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                        ),
+                  child: Image.asset(
+                    product.image,
+                    height: 120,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      height: 120,
+                      color: Colors.grey.shade200,
+                      child: const Icon(Icons.broken_image, color: Colors.grey),
+                    ),
+                  ),
                 ),
                 Positioned(
                   top: 4,

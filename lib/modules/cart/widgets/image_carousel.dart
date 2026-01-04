@@ -28,7 +28,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.network(
+                  child: Image.asset(
                     widget.images[index],
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {

@@ -565,27 +565,11 @@ class CartItemWidget extends StatelessWidget {
             // Image
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
+              child: Image.asset(
                 image,
                 width: 100,
                 height: 120,
                 fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Container(
-                    width: 100,
-                    height: 120,
-                    color: Colors.grey.shade200,
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    ),
-                  );
-                },
                 errorBuilder: (context, error, stackTrace) => Container(
                   width: 100,
                   height: 120,
