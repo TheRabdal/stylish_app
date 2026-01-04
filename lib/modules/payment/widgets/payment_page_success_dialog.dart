@@ -1,7 +1,7 @@
 import "package:stylish_app/packages/packages.dart";
 
-class PaymentSuccessDialog extends StatelessWidget {
-  const PaymentSuccessDialog({super.key});
+class PaymentPageSuccessDialog extends StatelessWidget {
+  const PaymentPageSuccessDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

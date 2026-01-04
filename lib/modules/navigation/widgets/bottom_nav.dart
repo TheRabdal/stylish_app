@@ -17,15 +17,13 @@ class BottomNav extends StatelessWidget {
       notchMargin: 8.0,
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 0.0,
-        ), // Removed vertical padding
+        padding: const EdgeInsets.symmetric(vertical: 0.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildNavItem(Icons.home_outlined, "Home", 0),
             _buildNavItem(Icons.favorite_border, "Wishlist", 1),
-            // Custom Cart Button in Navbar
+
             CartButton(
               isSelected: selectedIndex == 2,
               onPressed: () => onItemTapped(2),
@@ -44,9 +42,7 @@ class BottomNav extends StatelessWidget {
       onTap: () => onItemTapped(index),
       borderRadius: BorderRadius.circular(30),
       child: Padding(
-        padding: const EdgeInsets.all(
-          6.0,
-        ), // Increased padding for larger circle
+        padding: const EdgeInsets.all(6.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -55,7 +51,7 @@ class BottomNav extends StatelessWidget {
               color: isSelected ? const Color(0xFFF83758) : Colors.black,
               size: 24,
             ),
-            const SizedBox(height: 2), // Reduced spacing
+            const SizedBox(height: 2),
             Text(
               label,
               style: GoogleFonts.montserrat(

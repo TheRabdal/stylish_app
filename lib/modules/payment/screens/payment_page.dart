@@ -10,6 +10,37 @@ class PaymentPage extends StatefulWidget {
 class _PaymentPageState extends State<PaymentPage> {
   String selectedPayment = 'VISA';
 
+  final List<PaymentMethodModel> paymentMethods = const [
+    PaymentMethodModel(
+      id: 'VISA',
+      name: 'VISA',
+      accountNumber: '*********2109',
+      assetPath: 'assets/images/visa.png',
+      fallbackIcon: Icons.credit_card,
+    ),
+    PaymentMethodModel(
+      id: 'PayPal',
+      name: 'PayPal',
+      accountNumber: '*********2109',
+      assetPath: 'assets/images/paypal.png',
+      fallbackIcon: Icons.paypal,
+    ),
+    PaymentMethodModel(
+      id: 'Maestro',
+      name: 'Maestro',
+      accountNumber: '*********2109',
+      assetPath: 'assets/images/maestro.png',
+      fallbackIcon: Icons.payment,
+    ),
+    PaymentMethodModel(
+      id: 'Apple',
+      name: 'Apple Pay',
+      accountNumber: '*********2109',
+      assetPath: 'assets/images/apple.png',
+      fallbackIcon: Icons.apple,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +66,16 @@ class _PaymentPageState extends State<PaymentPage> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            _buildSummaryRow("Order", "₹ 7,000"),
+            const PaymentOrderSummaryRow(label: "Order", value: "₹ 7,000"),
             const SizedBox(height: 12),
-            _buildSummaryRow("Shipping", "₹ 30"),
+            const PaymentOrderSummaryRow(label: "Shipping", value: "₹ 30"),
             const SizedBox(height: 12),
-            _buildSummaryRow("Total", "₹ 7,030", isTotal: true),
+            const PaymentOrderSummaryRow(
+              label: "Total",
+              value: "₹ 7,030",
+              isTotal: true,
+            ),
             const SizedBox(height: 32),
-
             Container(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -53,124 +87,31 @@ class _PaymentPageState extends State<PaymentPage> {
               ),
             ),
             const SizedBox(height: 16),
-
-            _buildPaymentOption(
-              'VISA',
-              '*********2109',
-              'assets/images/visa.png',
-              Icons.credit_card,
+            ...paymentMethods.map(
+              (method) => Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: PaymentOptionCard(
+                  method: method,
+                  onTap: () {
+                    setState(() {
+                      selectedPayment = method.id;
+                    });
+                  },
+                ),
+              ),
             ),
-            const SizedBox(height: 16),
-            _buildPaymentOption(
-              'PayPal',
-              '*********2109',
-              'assets/images/paypal.png',
-              Icons.paypal,
-            ),
-            const SizedBox(height: 16),
-            _buildPaymentOption(
-              'Maestro',
-              '*********2109',
-              'assets/images/maestro.png',
-              Icons.payment,
-            ),
-            const SizedBox(height: 16),
-            _buildPaymentOption(
-              'Apple',
-              '*********2109',
-              'assets/images/apple.png',
-              Icons.apple,
-            ),
-
-            const SizedBox(height: 40),
-
-            ElevatedButton(
+            const SizedBox(height: 24),
+            PaymentButton(
               onPressed: () {
                 showDialog(
                   context: context,
                   barrierDismissible: false,
-                  builder: (context) => const PaymentSuccessDialog(),
+                  builder: (context) => const PaymentPageSuccessDialog(),
                 );
               },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 50),
-                backgroundColor: const Color(0xFFF83758),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                elevation: 0,
-              ),
-              child: Text(
-                "Continue",
-                style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildSummaryRow(String label, String value, {bool isTotal = false}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          label,
-          style: GoogleFonts.montserrat(
-            fontSize: isTotal ? 16 : 14,
-            fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
-            color: isTotal ? Colors.black : Colors.grey,
-          ),
-        ),
-        Text(
-          value,
-          style: GoogleFonts.montserrat(
-            fontSize: isTotal ? 16 : 14,
-            fontWeight: isTotal ? FontWeight.bold : FontWeight.w600,
-            color: Colors.black,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPaymentOption(
-    String id,
-    String subtitle,
-    String assetPath,
-    IconData fallbackIcon,
-  ) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.transparent),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Icon(
-                fallbackIcon,
-                size: 24,
-                color: id == 'VISA' ? Colors.blue.shade900 : Colors.black,
-              ),
-              const SizedBox(width: 16),
-              Text(
-                id,
-                style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          Text(subtitle, style: GoogleFonts.montserrat(color: Colors.grey)),
-        ],
       ),
     );
   }

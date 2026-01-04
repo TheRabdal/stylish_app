@@ -5,12 +5,13 @@ export 'homepage/homepage.dart';
 export 'login/login.dart';
 export 'navigation/navigation.dart';
 export 'onboarding/onboarding.dart';
+export 'payment/payment.dart';
 export 'placeorder/placeorder.dart';
 export 'productdetail/productdetail.dart';
 export 'resetpassword/resetpassword.dart';
 export 'search/search.dart';
 export 'settings/settings.dart';
-export 'shipping/shipping.dart';
+
 export 'signup/signup.dart';
 export 'splash/splash.dart';
 export 'wishlist/wishlist.dart';

@@ -54,7 +54,7 @@ class _NavigationPageState extends State<NavigationPage> {
       );
       return false;
     }
-    // Exit application directly
+
     SystemNavigator.pop();
     return false;
   }

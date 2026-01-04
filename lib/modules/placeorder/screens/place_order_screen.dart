@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../shipping/screens/shipping_screen.dart';
+import '../../payment/screens/payment_page.dart'; // Import PaymentPage
 import '../models/place_order_model.dart';
 import '../widgets/bag_item_card.dart';
 import '../widgets/coupon_section.dart';
@@ -121,7 +121,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ShippingScreen()),
+                MaterialPageRoute(builder: (context) => const PaymentPage()),
               );
             },
             style: ElevatedButton.styleFrom(

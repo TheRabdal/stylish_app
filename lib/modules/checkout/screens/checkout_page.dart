@@ -1,4 +1,5 @@
 import 'package:stylish_app/packages/packages.dart';
+import '../../payment/screens/payment_page.dart';
 
 class CheckoutPage extends StatefulWidget {
   final List<CartItem>? buyNowItems;
@@ -50,7 +51,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   void _handleContinueToPayment() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ShippingScreen()),
+      MaterialPageRoute(builder: (context) => const PaymentPage()),
     );
   }
 

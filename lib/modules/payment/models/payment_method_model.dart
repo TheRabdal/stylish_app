@@ -1,10 +1,9 @@
 class PaymentMethodModel {
   final String id;
   final String name;
-  final String accountNumber; // Masked number ideally
+  final String accountNumber;
   final String assetPath;
-  final dynamic
-  fallbackIcon; // Using dynamic or IconData to avoid external dependencies issues here, or importing material
+  final dynamic fallbackIcon;
 
   const PaymentMethodModel({
     required this.id,
