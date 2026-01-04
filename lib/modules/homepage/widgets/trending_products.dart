@@ -9,6 +9,26 @@ class TrendingProducts extends StatefulWidget {
 
 class _TrendingProductsState extends State<TrendingProducts> {
   final ScrollController _scrollController = ScrollController();
+  late String _currentDate;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _updateDate();
+    // Update every minute to keep the date fresh
+    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
+      _updateDate();
+    });
+  }
+
+  void _updateDate() {
+    final now = DateTime.now();
+    setState(() {
+      _currentDate =
+          "${now.day.toString().padLeft(2, '0')}/${now.month.toString().padLeft(2, '0')}/${now.year.toString().substring(2)}";
+    });
+  }
 
   void _scrollRight() {
     if (_scrollController.hasClients) {
@@ -22,6 +42,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
 
   @override
   void dispose() {
+    _timer.cancel();
     _scrollController.dispose();
     super.dispose();
   }
@@ -62,7 +83,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          "Last Date 29/02/22",
+                          "Last Date $_currentDate",
                           style: GoogleFonts.montserrat(
                             color: Colors.white,
                             fontSize: 12,
