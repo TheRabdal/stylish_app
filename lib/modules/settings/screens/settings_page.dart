@@ -49,9 +49,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: NetworkImage(
-                          'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-                        ),
+                        image: AssetImage("assets/images/profile_logo.png"),
                         fit: BoxFit.cover,
                       ),
                     ),

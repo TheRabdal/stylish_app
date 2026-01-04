@@ -66,7 +66,7 @@ class _SearchPageState extends State<SearchPage> {
           // Search Bar
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: SearchField(
+            child: AppSearchBar(
               controller: _searchController,
               autofocus: widget.autofocus,
               onChanged: _onSearchChanged,

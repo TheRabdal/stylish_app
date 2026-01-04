@@ -16,20 +16,10 @@ class HomeSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Center(
-        child: SizedBox(
-          width: 343,
-          height: 40,
-          child: CustomTextField(
-            controller: controller,
-            onChanged: (_) => onChanged?.call(),
-            autofocus: autofocus,
-            hint: "Search any Product..",
-            icon: Icons.search,
-            suffixIcon: const Icon(Icons.mic, color: Colors.grey),
-            contentPadding: EdgeInsets.zero,
-          ),
-        ),
+      child: AppSearchBar(
+        controller: controller,
+        onChanged: onChanged,
+        autofocus: autofocus,
       ),
     );
   }

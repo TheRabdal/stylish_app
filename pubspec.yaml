@@ -33,7 +33,6 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
   smooth_page_indicator: ^2.0.1
   url_launcher: ^6.3.2
   google_fonts: ^6.1.0
@@ -68,52 +67,6 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
-    # - assets/images/logo.png
-    # - assets/images/logostylish.png
-    # - assets/images/onboarding1.png
-    # - assets/images/onboarding2.png
-    # - assets/images/onboarding3.png
-    # - assets/images/Google.png
-    # - assets/images/Apple.png
-    # - assets/images/Facebook.png
-    # - assets/images/getstarted.png
-    # - assets/images/shapetransparant.png
-    # - assets/images/profile_logo.png
-    # - assets/images/Beauty.png
-    # - assets/images/Fashion.png
-    # - assets/images/Kids.png
-    # - assets/images/Mens.png
-    # - assets/images/Womens.png
-    # - assets/images/Gifts.png
-    # - assets/images/pinkpeople.png
-    # - assets/images/specialoffer.png
-    # - assets/images/womenprintedkurta.png
-    # - assets/images/hrx.png
-    # - assets/images/flatandheels.png
-    # - assets/images/flatandheels2.png
-    # - assets/images/flatandheels3.png
-    # - assets/images/hotsummersale.png
-    # - assets/images/sandalcoklat.png
-    # - assets/images/philips.png
-    # - assets/images/titan.png
-    # - assets/images/watch.png
-    # - assets/images/whiteshoes.png
-    # - assets/images/womenshandback.png
-    # - assets/images/lipstik.png
-    # - assets/images/upto50off.png
-    # - assets/images/blackwinter.png
-    # - assets/images/mansstarry.png
-    # - assets/images/blackdress.png
-    # - assets/images/pinkembroid.png
-    # - assets/images/denimdress.png
-    # - assets/images/flaredress.png
-    # - assets/images/jordanstay.png
-    # - assets/images/realme7.png
-    # - assets/images/ps4.png
-    # - assets/images/sepatufantopel.png
-    # - assets/images/nikon.png
-    # - assets/images/blackjacket.png
-    # - assets/images/jordan.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

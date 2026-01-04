@@ -77,7 +77,7 @@ const List<Product> dealOfDayProductsList = [
     reviewCount: 56890,
   ),
   Product(
-    image: 'assets/images/hrx.png',
+    image: 'assets/images/HRX.png',
     name: "HRX by Hrithik Roshan",
     description: "Neque porro quisquam est qui dolorem ipsum quia",
     price: "₹2499",

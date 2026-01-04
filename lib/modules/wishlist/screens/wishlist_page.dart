@@ -154,7 +154,7 @@ class _WishlistPageState extends State<WishlistPage> {
         child: Column(
           children: [
             const HomeAppBar(),
-            const HomeSearchBar(),
+            const AppSearchBar(),
             const WishlistHeader(),
             WishlistGrid(products: products),
           ],
