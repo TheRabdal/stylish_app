@@ -15,24 +15,24 @@ class _ShippingScreenState extends State<ShippingScreen> {
     totalAmount: 7030,
   );
 
-  final List<PaymentMethodModel> _paymentMethods = [
-    PaymentMethodModel(
+  final List<ShippingPaymentMethod> _paymentMethods = [
+    ShippingPaymentMethod(
       name: "Visa",
       maskedNumber: "2109",
       isSelected: true,
       iconData: Icons.credit_card, // Fallback
     ),
-    PaymentMethodModel(
+    ShippingPaymentMethod(
       name: "PayPal",
       maskedNumber: "2109",
       iconData: Icons.paypal,
     ),
-    PaymentMethodModel(
+    ShippingPaymentMethod(
       name: "Maestro",
       maskedNumber: "2109",
       iconData: Icons.payment,
     ),
-    PaymentMethodModel(
+    ShippingPaymentMethod(
       name: "Apple Pay",
       maskedNumber: "2109",
       iconData: Icons.apple,

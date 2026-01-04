@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/shipping_model.dart';
 
 class PaymentMethodCard extends StatelessWidget {
-  final PaymentMethodModel method;
+  final ShippingPaymentMethod method;
   final VoidCallback onTap;
 
   const PaymentMethodCard({

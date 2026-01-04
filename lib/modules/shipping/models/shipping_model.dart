@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PaymentMethodModel {
+class ShippingPaymentMethod {
   final String name;
   final String iconAsset; // Simplified to string for asset path or dummy icon
   final IconData? iconData; // Fallback for dummy
   final String maskedNumber;
   bool isSelected;
 
-  PaymentMethodModel({
+  ShippingPaymentMethod({
     required this.name,
     this.iconAsset = '',
     this.iconData,

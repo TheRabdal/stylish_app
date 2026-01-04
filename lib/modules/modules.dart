@@ -16,3 +16,4 @@ export 'splash/splash.dart';
 export 'wishlist/wishlist.dart';
 export 'sort/sort.dart';
 export 'filter/filter.dart';
+export 'payment/payment.dart';
