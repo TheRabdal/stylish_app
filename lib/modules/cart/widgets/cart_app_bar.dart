@@ -31,7 +31,14 @@ class CartAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.favorite_border, color: Colors.black),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NavigationPage(initialIndex: 1),
+              ),
+            );
+          },
         ),
       ],
     );
