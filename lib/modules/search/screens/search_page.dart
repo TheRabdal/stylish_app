@@ -62,7 +62,7 @@ class _SearchPageState extends State<SearchPage> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => FilterDrawer(initialPriceRange: _filterPriceRange),
+      builder: (context) => FilterDrawerPage(initialPriceRange: _filterPriceRange),
     );
 
     if (result != null && result is Map) {

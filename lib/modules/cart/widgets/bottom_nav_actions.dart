@@ -12,7 +12,7 @@ class BottomNavActions extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const CheckoutScreen()),
+                MaterialPageRoute(builder: (context) => const CheckoutPage()),
               );
             },
             icon: const Icon(Icons.shopping_cart_outlined, color: Colors.white),

@@ -1,5 +1,5 @@
 class AddressModel {
-  final String title; // e.g. "Address :"
+  final String title;
   final String addressLine;
   final String contactNumber;
 
@@ -13,12 +13,12 @@ class AddressModel {
 class CheckoutItemModel {
   final String image;
   final String title;
-  final List<String> variations; // e.g. ["Black", "Red"]
+  final List<String> variations;
   final double rating;
   final double price;
   final double originalPrice;
   final int discountPercentage;
-  final int quantity; // Total Order (1)
+  final int quantity;
 
   CheckoutItemModel({
     required this.image,

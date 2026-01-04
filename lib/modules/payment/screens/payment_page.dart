@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../models/payment_method_model.dart';
-import '../widgets/payment_success_dialog.dart';
+import 'package:stylish_app/packages/packages.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
@@ -11,39 +8,7 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
-  String selectedPayment = 'VISA'; // Default
-
-  // Extracted Payment Methods
-  final List<PaymentMethodModel> _paymentMethods = [
-    const PaymentMethodModel(
-      id: 'VISA',
-      name: 'VISA',
-      accountNumber: '*********2109',
-      assetPath: 'assets/images/visa.png',
-      fallbackIcon: Icons.credit_card,
-    ),
-    const PaymentMethodModel(
-      id: 'PayPal',
-      name: 'PayPal',
-      accountNumber: '*********2109',
-      assetPath: 'assets/images/paypal.png',
-      fallbackIcon: Icons.paypal,
-    ),
-    const PaymentMethodModel(
-      id: 'Maestro',
-      name: 'Maestro',
-      accountNumber: '*********2109',
-      assetPath: 'assets/images/maestro.png',
-      fallbackIcon: Icons.payment,
-    ),
-    const PaymentMethodModel(
-      id: 'Apple',
-      name: 'Apple',
-      accountNumber: '*********2109',
-      assetPath: 'assets/images/apple.png',
-      fallbackIcon: Icons.apple,
-    ),
-  ];
+  String selectedPayment = 'VISA';
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +35,6 @@ class _PaymentPageState extends State<PaymentPage> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // Order Summary
             _buildSummaryRow("Order", "₹ 7,000"),
             const SizedBox(height: 12),
             _buildSummaryRow("Shipping", "₹ 30"),
@@ -78,7 +42,6 @@ class _PaymentPageState extends State<PaymentPage> {
             _buildSummaryRow("Total", "₹ 7,030", isTotal: true),
             const SizedBox(height: 32),
 
-            // Payment Methods Title
             Container(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -91,14 +54,32 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
             const SizedBox(height: 16),
 
-            // Payment Methods List
-            ..._paymentMethods.map(
-              (method) => Column(
-                children: [
-                  _buildPaymentOption(method),
-                  const SizedBox(height: 16),
-                ],
-              ),
+            _buildPaymentOption(
+              'VISA',
+              '*********2109',
+              'assets/images/visa.png',
+              Icons.credit_card,
+            ),
+            const SizedBox(height: 16),
+            _buildPaymentOption(
+              'PayPal',
+              '*********2109',
+              'assets/images/paypal.png',
+              Icons.paypal,
+            ),
+            const SizedBox(height: 16),
+            _buildPaymentOption(
+              'Maestro',
+              '*********2109',
+              'assets/images/maestro.png',
+              Icons.payment,
+            ),
+            const SizedBox(height: 16),
+            _buildPaymentOption(
+              'Apple',
+              '*********2109',
+              'assets/images/apple.png',
+              Icons.apple,
             ),
 
             const SizedBox(height: 40),
@@ -158,50 +139,38 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 
-  Widget _buildPaymentOption(PaymentMethodModel method) {
-    bool isSelected = selectedPayment == method.id;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedPayment = method.id;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        decoration: BoxDecoration(
-          color: Colors.grey.shade50,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: isSelected ? const Color(0xFFF83758) : Colors.transparent,
-            width: 1.5,
+  Widget _buildPaymentOption(
+    String id,
+    String subtitle,
+    String assetPath,
+    IconData fallbackIcon,
+  ) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade50,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.transparent),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Icon(
+                fallbackIcon,
+                size: 24,
+                color: id == 'VISA' ? Colors.blue.shade900 : Colors.black,
+              ),
+              const SizedBox(width: 16),
+              Text(
+                id,
+                style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                // Ideally Image.asset(method.assetPath)
-                Icon(
-                  method.fallbackIcon,
-                  size: 24,
-                  color: method.id == 'VISA'
-                      ? Colors.blue.shade900
-                      : Colors.black,
-                ),
-                const SizedBox(width: 16),
-                Text(
-                  method.name,
-                  style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            Text(
-              method.accountNumber,
-              style: GoogleFonts.montserrat(color: Colors.grey),
-            ),
-          ],
-        ),
+          Text(subtitle, style: GoogleFonts.montserrat(color: Colors.grey)),
+        ],
       ),
     );
   }

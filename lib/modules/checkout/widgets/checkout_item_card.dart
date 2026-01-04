@@ -94,7 +94,6 @@ class CheckoutItemCard extends StatelessWidget {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          // Rating
                           Text(
                             "${item.rating}",
                             style: const TextStyle(

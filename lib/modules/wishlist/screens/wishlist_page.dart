@@ -56,7 +56,7 @@ class _WishlistPageState extends State<WishlistPage> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => FilterDrawer(initialPriceRange: _filterPriceRange),
+      builder: (context) => FilterDrawerPage(initialPriceRange: _filterPriceRange),
     );
 
     if (result != null && result is Map) {
