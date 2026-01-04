@@ -9,7 +9,7 @@ class DeliveryBanner extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFCCD5), // Light pink color
+        color: const Color(0xFFFFCCD5),
         borderRadius: BorderRadius.circular(8),
       ),
       child: const Column(

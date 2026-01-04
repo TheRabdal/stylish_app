@@ -48,10 +48,9 @@ class _ImageCarouselState extends State<ImageCarousel> {
           ),
         ),
 
-        // Circular button on the right (like in the design)
         Positioned(
           right: 30,
-          top: 130, // Approximate middle
+          top: 130,
           child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,

@@ -21,7 +21,7 @@ class BottomNavActions extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF2864C6), // Blue
+              backgroundColor: const Color(0xFF2864C6),
               padding: const EdgeInsets.symmetric(vertical: 12),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -34,13 +34,10 @@ class BottomNavActions extends StatelessWidget {
         Expanded(
           child: ElevatedButton.icon(
             onPressed: () {},
-            icon: const Icon(
-              Icons.touch_app_outlined,
-              color: Colors.white,
-            ), // Finger/Touch icon
+            icon: const Icon(Icons.touch_app_outlined, color: Colors.white),
             label: const Text("Buy Now", style: TextStyle(color: Colors.white)),
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF43C976), // Green
+              backgroundColor: const Color(0xFF43C976),
               padding: const EdgeInsets.symmetric(vertical: 12),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -85,10 +82,7 @@ class ViewSimilarButton extends StatelessWidget {
         Expanded(
           child: OutlinedButton.icon(
             onPressed: () {},
-            icon: const Icon(
-              Icons.compare_arrows,
-              color: Colors.black54,
-            ), // Or similar icon
+            icon: const Icon(Icons.compare_arrows, color: Colors.black54),
             label: const Text(
               "Add to Compare",
               style: TextStyle(color: Colors.black87),
