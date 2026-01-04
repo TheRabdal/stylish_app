@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import '../models/checkout_model.dart';
 
 class CheckoutItemCard extends StatelessWidget {
   final CheckoutItemModel item;

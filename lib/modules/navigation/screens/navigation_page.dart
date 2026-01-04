@@ -61,8 +61,12 @@ class _NavigationPageState extends State<NavigationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _onWillPop,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        await _onWillPop();
+      },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
