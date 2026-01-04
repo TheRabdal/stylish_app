@@ -12,16 +12,15 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = [
+  List<Widget> get _pages => [
     const HomeContent(),
     const WishlistPage(),
-    const SizedBox(),
+    const CartPage(),
     const SearchPage(),
     const SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
-    if (index == 2) return;
     setState(() {
       _selectedIndex = index;
     });
@@ -32,11 +31,7 @@ class _NavigationPageState extends State<NavigationPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: _selectedIndex == 2
-            ? const CheckoutPage()
-            : _pages[_selectedIndex],
-      ),
+      body: SafeArea(child: _pages[_selectedIndex]),
       bottomNavigationBar: BottomNav(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,

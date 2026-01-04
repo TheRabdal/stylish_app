@@ -64,7 +64,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "Checkout", // Title as per design image, though context is Edit Profile.
+          "Edit Profile",
           style: GoogleFonts.montserrat(
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -142,13 +142,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 alignment: Alignment.centerRight,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 8.0, bottom: 24),
-                  child: Text(
-                    "Change Password",
-                    style: GoogleFonts.montserrat(
-                      color: const Color(0xFFF83758),
-                      fontSize: 12,
-                      decoration: TextDecoration.underline,
-                      decorationColor: const Color(0xFFF83758),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ResetPasswordPage(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Change Password",
+                      style: GoogleFonts.montserrat(
+                        color: const Color(0xFFF83758),
+                        fontSize: 12,
+                        decoration: TextDecoration.underline,
+                        decorationColor: const Color(0xFFF83758),
+                      ),
                     ),
                   ),
                 ),

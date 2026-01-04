@@ -28,7 +28,11 @@ class _SettingsPageState extends State<SettingsPage> {
           IconButton(
             icon: const Icon(Icons.logout, color: Color(0xFFF83758)),
             onPressed: () {
-              // Logout logic
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+                (route) => false,
+              );
             },
           ),
         ],
