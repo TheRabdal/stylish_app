@@ -10,13 +10,18 @@ class WishlistHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "52,082+ Items",
-            style: GoogleFonts.montserrat(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-              color: Colors.black,
-            ),
+          ListenableBuilder(
+            listenable: WishlistService(),
+            builder: (context, child) {
+              return Text(
+                "${WishlistService().items.length} Items",
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+              );
+            },
           ),
           Row(
             children: [

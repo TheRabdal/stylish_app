@@ -46,30 +46,35 @@ class FlatHeelsBanner extends StatelessWidget {
             ),
             // Text content on the right
             Positioned(
-              right: 20,
+              right: 15,
               top: 0,
               bottom: 0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    "Flat and Heels",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Flat and Heels",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        "Stand a chance to get rewarded",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    "Stand a chance to get rewarded",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 13,
-                      color: Colors.grey.shade700,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 12),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
@@ -79,8 +84,8 @@ class FlatHeelsBanner extends StatelessWidget {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 12,
+                        horizontal: 22,
+                        vertical: 10,
                       ),
                       elevation: 0,
                     ),
@@ -90,11 +95,11 @@ class FlatHeelsBanner extends StatelessWidget {
                         Text(
                           "Visit now",
                           style: GoogleFonts.montserrat(
-                            fontSize: 13,
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 6),
                         const Icon(Icons.arrow_forward, size: 16),
                       ],
                     ),

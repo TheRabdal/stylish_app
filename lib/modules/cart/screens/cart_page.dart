@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:stylish_app/modules/cart/services/cart_service.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});

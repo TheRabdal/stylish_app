@@ -25,7 +25,23 @@ class _WishlistPageState extends State<WishlistPage> {
             const HomeAppBar(),
             const AppSearchBar(),
             const WishlistHeader(),
-            WishlistGrid(products: products),
+            Expanded(
+              child: ListenableBuilder(
+                listenable: WishlistService(),
+                builder: (context, child) {
+                  final wishlistItems = WishlistService().items;
+                  if (wishlistItems.isEmpty) {
+                    return Center(
+                      child: Text(
+                        "No items in Wishlist",
+                        style: GoogleFonts.montserrat(),
+                      ),
+                    );
+                  }
+                  return WishlistGrid(products: wishlistItems);
+                },
+              ),
+            ),
           ],
         ),
       ),

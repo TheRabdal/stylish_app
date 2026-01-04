@@ -32,13 +32,44 @@ class WishlistProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: SizedBox(
-                height: product.height ?? 200.0,
-                width: double.infinity,
-                child: Image.asset(product.image, fit: BoxFit.cover),
-              ),
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: SizedBox(
+                    height: product.height ?? 200.0,
+                    width: double.infinity,
+                    child: Image.asset(product.image, fit: BoxFit.cover),
+                  ),
+                ),
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: ListenableBuilder(
+                    listenable: WishlistService(),
+                    builder: (context, child) {
+                      final isLiked = WishlistService().isWishlisted(product);
+                      return GestureDetector(
+                        onTap: () {
+                          WishlistService().toggleResult(product);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.7),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            isLiked ? Icons.favorite : Icons.favorite_border,
+                            color: isLiked ? Colors.red : Colors.grey,
+                            size: 20,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

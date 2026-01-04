@@ -9,3 +9,5 @@ export 'package:google_fonts/google_fonts.dart';
 export 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 export 'package:speech_to_text/speech_to_text.dart';
 export 'package:flutter/foundation.dart';
+export 'package:stylish_app/modules/cart/services/cart_service.dart';
+export 'package:stylish_app/modules/wishlist/services/wishlist_service.dart';

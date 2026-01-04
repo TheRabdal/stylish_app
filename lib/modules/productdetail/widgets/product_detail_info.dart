@@ -48,12 +48,40 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
         children: [
           SizeSelector(sizes: _sizes, onSizeSelected: _handleSizeSelection),
           const SizedBox(height: 16),
-          Text(
-            widget.product.name, // e.g., "Nike Sneakers"
-            style: GoogleFonts.montserrat(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Text(
+                  widget.product.name,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ListenableBuilder(
+                listenable: WishlistService(),
+                builder: (context, child) {
+                  final isLiked = WishlistService().isWishlisted(
+                    widget.product,
+                  );
+                  return IconButton(
+                    onPressed: () {
+                      WishlistService().toggleResult(widget.product);
+                    },
+                    icon: Icon(
+                      isLiked ? Icons.favorite : Icons.favorite_border,
+                      color: isLiked ? Colors.red : Colors.grey,
+                      size: 24,
+                    ),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  );
+                },
+              ),
+            ],
           ),
           const SizedBox(height: 4),
           Text(
