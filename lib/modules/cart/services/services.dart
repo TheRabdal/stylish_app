@@ -1,1 +1,1 @@
-export 'cart_service.dart';
+export 'cart_service.dart'; //state management sederhana untuk mengatur data cart agar semuanya sama
