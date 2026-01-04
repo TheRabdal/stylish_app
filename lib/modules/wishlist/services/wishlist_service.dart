@@ -6,11 +6,11 @@ class WishlistService extends ChangeNotifier {
   factory WishlistService() => _instance;
   WishlistService._internal();
 
-  final List<Product> _items = [];
+  final List<ProductStore> _items = [];
 
-  List<Product> get items => _items;
+  List<ProductStore> get items => _items;
 
-  void toggleResult(Product product) {
+  void toggleResult(ProductStore product) {
     if (isWishlisted(product)) {
       _items.removeWhere(
         (item) => item.name == product.name,
@@ -21,7 +21,7 @@ class WishlistService extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool isWishlisted(Product product) {
+  bool isWishlisted(ProductStore product) {
     return _items.any((item) => item.name == product.name);
   }
 }

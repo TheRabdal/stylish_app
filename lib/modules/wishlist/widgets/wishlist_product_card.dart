@@ -1,7 +1,7 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class WishlistProductCard extends StatelessWidget {
-  final Product product;
+  final ProductStore product;
 
   const WishlistProductCard({super.key, required this.product});
 

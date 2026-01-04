@@ -17,8 +17,8 @@ class _SearchPageState extends State<SearchPage> {
   String _searchQuery = "";
 
   // Data from centralized product data
-  final List<Product> _allProducts = allProducts;
-  List<Product> _processedProducts = [];
+  final List<ProductStore> _allProducts = trendingProductsList;
+  List<ProductStore> _processedProducts = [];
 
   @override
   void initState() {
@@ -76,7 +76,7 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void _updateProcessedProducts() {
-    List<Product> temp = List.from(_allProducts);
+    List<ProductStore> temp = List.from(_allProducts);
 
     // Apply Search
     if (_searchQuery.isNotEmpty) {

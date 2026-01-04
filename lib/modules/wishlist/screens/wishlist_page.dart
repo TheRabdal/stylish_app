@@ -68,8 +68,8 @@ class _WishlistPageState extends State<WishlistPage> {
     }
   }
 
-  List<Product> _getProcessedItems(List<Product> items) {
-    List<Product> processed = List.from(items);
+  List<ProductStore> _getProcessedItems(List<ProductStore> items) {
+    List<ProductStore> processed = List.from(items);
 
     // Apply Search
     if (_searchQuery.isNotEmpty) {

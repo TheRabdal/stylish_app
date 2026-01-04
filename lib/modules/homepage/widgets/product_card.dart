@@ -1,8 +1,7 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class ProductCard extends StatelessWidget {
-  final Product product;
-
+  final ProductStore product;
   const ProductCard({super.key, required this.product});
 
   @override

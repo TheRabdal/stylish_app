@@ -90,7 +90,7 @@ class SimilarProducts extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // Map SimilarProduct to Product
-        final convertedProduct = Product(
+        final convertedProduct = ProductStore(
           image: product.image,
           name: product.title,
           description: product.subtitle,
@@ -137,7 +137,7 @@ class SimilarProducts extends StatelessWidget {
                   listenable: WishlistService(),
                   builder: (context, child) {
                     // Map SimilarProduct to Product for checking wishlist status
-                    final convertedProduct = Product(
+                    final convertedProduct = ProductStore(
                       image: product.image,
                       name: product.title,
                       description: product.subtitle,

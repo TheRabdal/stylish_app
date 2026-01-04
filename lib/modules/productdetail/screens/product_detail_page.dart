@@ -1,7 +1,7 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  final Product product;
+  final ProductStore product;
 
   const ProductDetailPage({super.key, required this.product});
 

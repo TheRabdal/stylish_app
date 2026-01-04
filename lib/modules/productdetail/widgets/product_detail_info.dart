@@ -1,7 +1,7 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class ProductDetailInfo extends StatefulWidget {
-  final Product product;
+  final ProductStore product;
 
   const ProductDetailInfo({super.key, required this.product});
 

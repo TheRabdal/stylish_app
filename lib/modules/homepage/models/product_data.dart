@@ -66,7 +66,7 @@ const List<ProductStore> trendingProductsList = [
 
 // Data from Deal Of Day
 const List<ProductStore> dealOfDayProductsList = [
-  Product(
+  ProductStore(
     image: 'assets/images/womenprintedkurta.png',
     name: "Women Printed Kurta",
     description: "Neque porro quisquam est qui dolorem ipsum quia",
@@ -76,7 +76,7 @@ const List<ProductStore> dealOfDayProductsList = [
     rating: 4,
     reviewCount: 56890,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/HRX.png',
     name: "HRX by Hrithik Roshan",
     description: "Neque porro quisquam est qui dolorem ipsum quia",
@@ -86,7 +86,7 @@ const List<ProductStore> dealOfDayProductsList = [
     rating: 4,
     reviewCount: 344567,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/philips.png',
     name: "Philips BHH880/10",
     description:
@@ -97,7 +97,7 @@ const List<ProductStore> dealOfDayProductsList = [
     rating: 4,
     reviewCount: 646776,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/titan.png',
     name: "TITAN Men Watch- 1806N",
     description:
@@ -108,7 +108,7 @@ const List<ProductStore> dealOfDayProductsList = [
     rating: 5,
     reviewCount: 15007,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/flatandheels.png',
     name: "Red High Heels",
     description: "Elegant red high heels for evening wear",
@@ -118,7 +118,7 @@ const List<ProductStore> dealOfDayProductsList = [
     rating: 4,
     reviewCount: 450,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/hotsummersale.png',
     name: "Summer Floral Dress",
     description: "Light and breezy floral dress for summer",
@@ -128,7 +128,7 @@ const List<ProductStore> dealOfDayProductsList = [
     rating: 4,
     reviewCount: 320,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/mansstarry.png',
     name: "Designer Face Masks",
     description: "Set of 3 cotton face masks",
@@ -138,7 +138,7 @@ const List<ProductStore> dealOfDayProductsList = [
     rating: 4,
     reviewCount: 1200,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/blackwinter.png',
     name: "Black Winter Jacket",
     description: "Warm and stylish winter jacket",
@@ -151,8 +151,8 @@ const List<ProductStore> dealOfDayProductsList = [
 ];
 
 // Data from Wishlist Page
-const List<Product> wishlistProductsList = [
-  Product(
+const List<ProductStore> wishlistProductsList = [
+  ProductStore(
     image: "assets/images/blackwinter.png",
     name: "Black Winter...",
     description: "Autumn And Winter Casual cotton-padded jacket...",
@@ -163,7 +163,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 6890,
     height: 200.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/mansstarry.png",
     name: "Mens Starry",
     description: "Mens Starry Sky Printed Shirt 100% Cotton Fabric",
@@ -174,7 +174,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 152344,
     height: 240.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/blackdress.png",
     name: "Black Dress",
     description: "Solid Black Dress for Women, Sexy Chain Shorts Ladi...",
@@ -185,7 +185,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 523456,
     height: 260.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/pinkembroid.png",
     name: "Pink Ambroide...",
     description: "EARTHEN Rose Pink Embroidered Tiered Max...",
@@ -196,7 +196,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 45678,
     height: 220.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/flaredress.png",
     name: "Flare Dress",
     description: "Antheaa Black & Rust Orange Floral Print Tiered Midi F...",
@@ -207,7 +207,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 335566,
     height: 240.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/denimdress.png",
     name: "denim dress",
     description: "Blue cotton denim dress Look 2 Printed cotton dr...",
@@ -218,7 +218,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 21344,
     height: 210.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/jordanstay.png",
     name: "Jordan Stay",
     description: "The classic Air Jordan 12 to create a shoe that's fres...",
@@ -229,7 +229,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 1023456,
     height: 180.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/realme7.png",
     name: "Realme 7",
     description: "6 GB RAM | 64 GB ROM | Expandable Upto 256...",
@@ -240,7 +240,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 344567,
     height: 190.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/ps4.png",
     name: "Sony PS4",
     description: "Sony PS4 Console, 1TB Slim with 3 Games: Gran Turis...",
@@ -251,7 +251,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 852966,
     height: 200.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/blackjacket.png",
     name: "Black Jacket 12...",
     description: "This warm and comfortable jacket is great for learni...",
@@ -262,7 +262,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 234567,
     height: 230.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/nikon.png",
     name: "D7200 Digital C...",
     description: "D7200 Digital Camera (Nikon) In New Area...",
@@ -273,7 +273,7 @@ const List<Product> wishlistProductsList = [
     reviewCount: 67456,
     height: 190.0,
   ),
-  Product(
+  ProductStore(
     image: "assets/images/sepatufantopel.png",
     name: "men's & boys s...",
     description: "George Walker Derby Brown Formal Shoes",
@@ -286,7 +286,7 @@ const List<Product> wishlistProductsList = [
   ),
 ];
 
-final List<Product> allProducts = [
+final List<ProductStore> allProducts = [
   ...trendingProductsList,
   ...dealOfDayProductsList,
   ...wishlistProductsList,

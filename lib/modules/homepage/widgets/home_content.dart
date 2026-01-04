@@ -184,7 +184,7 @@ class _HomeContentState extends State<HomeContent> {
   }
 
   Widget _buildProductListSliver() {
-    List<Product> displayedProducts = List.from(allProducts);
+    List<ProductStore> displayedProducts = List.from(allProducts);
 
     // Apply Search
     if (_searchQuery.isNotEmpty) {
