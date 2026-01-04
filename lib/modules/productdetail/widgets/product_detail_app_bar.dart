@@ -18,7 +18,14 @@ class ProductDetailAppBar extends StatelessWidget
       actions: [
         IconButton(
           icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NavigationPage(initialIndex: 2),
+              ),
+            );
+          },
         ),
       ],
     );

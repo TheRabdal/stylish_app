@@ -51,7 +51,18 @@ class CartService extends ChangeNotifier {
     return itemsList.fold(0, (sum, item) => sum + (item.price * item.qty));
   }
 
+  double _discountPercentage = 0.0;
+
+  double get discountPercentage => _discountPercentage;
+
+  void applyDiscount(double percentage) {
+    _discountPercentage = percentage;
+    notifyListeners();
+  }
+
   double get totalAmount {
-    return calculateTotal(_items);
+    double subtotal = calculateTotal(_items);
+    double discount = subtotal * _discountPercentage;
+    return subtotal - discount;
   }
 }

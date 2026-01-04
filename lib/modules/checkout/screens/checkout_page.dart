@@ -1,4 +1,5 @@
 import 'package:stylish_app/packages/packages.dart';
+import 'package:stylish_app/modules/shipping/screens/shipping_screen.dart';
 
 class CheckoutPage extends StatefulWidget {
   final List<CartItem>? buyNowItems;
@@ -307,7 +308,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
             Expanded(
               child: Scrollbar(
                 controller: _scrollController,
-                thumbVisibility: true,
                 child: ListenableBuilder(
                   listenable: CartService(),
                   builder: (context, child) {
@@ -333,11 +333,29 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 originalPrice: item.oldPrice,
                                 discountPercentage:
                                     int.tryParse(
-                                      item.discount.replaceAll('%', ''),
+                                      RegExp(r'\d+')
+                                              .firstMatch(item.discount)
+                                              ?.group(0) ??
+                                          '0',
                                     ) ??
                                     0,
                                 quantity: item.qty,
                               ),
+                              onTap: () {
+                                if (widget.buyNowItems != null) {
+                                  // Came from "Buy Now", so go to Cart (fresh navigation)
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const NavigationPage(initialIndex: 2),
+                                    ),
+                                  );
+                                } else {
+                                  // Came from Cart, so just pop back
+                                  Navigator.pop(context);
+                                }
+                              },
                             ),
                             const SizedBox(height: 16),
                           ],
@@ -345,6 +363,114 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       }).toList(),
                     );
                   },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, -5),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Total Payments",
+                  style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                ListenableBuilder(
+                  listenable: CartService(),
+                  builder: (context, child) {
+                    final items = widget.buyNowItems ?? CartService().items;
+                    final double subtotal = CartService().calculateTotal(items);
+                    final double discountPct = widget.buyNowItems != null
+                        ? 0.0
+                        : CartService().discountPercentage;
+                    final double discountAmount = subtotal * discountPct;
+                    final double total = subtotal - discountAmount;
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        if (discountPct > 0) ...[
+                          Text(
+                            "Order: ₹ ${subtotal.toStringAsFixed(2)}",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            "Discount: -₹ ${discountAmount.toStringAsFixed(2)}",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12,
+                              color: const Color(0xFFF83758),
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                        ],
+                        Text(
+                          "Total: ₹ ${total.toStringAsFixed(2)}",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ShippingScreen(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFF83758),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  elevation: 0,
+                ),
+                child: const Text(
+                  "Continue to Payment",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

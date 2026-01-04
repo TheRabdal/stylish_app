@@ -1,23 +1,16 @@
-import 'package:flutter/material.dart';
-import '../../placeorder/screens/place_order_screen.dart';
+import 'package:stylish_app/packages/packages.dart';
 import '../models/checkout_model.dart';
 
 class CheckoutItemCard extends StatelessWidget {
   final CheckoutItemModel item;
+  final VoidCallback? onTap;
 
-  const CheckoutItemCard({super.key, required this.item});
+  const CheckoutItemCard({super.key, required this.item, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        // Simple navigation to PlaceOrderScreen for demo purposes
-        // Ideally this should be passed in as a callback
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const PlaceOrderScreen()),
-        );
-      },
+      onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.all(12),

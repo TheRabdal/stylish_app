@@ -253,9 +253,12 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                     CartService().addItem(cartItem);
 
                     // Navigate to Cart Page
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const CartPage()),
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const NavigationPage(initialIndex: 2),
+                      ),
                     );
                   },
                 ),

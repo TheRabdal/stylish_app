@@ -23,9 +23,12 @@ class ProductDetailBottomBar extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const CartPage()),
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const NavigationPage(initialIndex: 2),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
