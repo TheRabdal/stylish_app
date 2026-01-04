@@ -96,9 +96,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: NetworkImage(
-                            'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80',
-                          ),
+                          image: AssetImage("assets/images/profile_logo.png"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -156,7 +154,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
               ),
 
-              const Divider(color: Colors.grey, thickness: 0.1),
+              const Divider(color: Color(0xFFC4C4C4), thickness: 1),
               const SizedBox(height: 24),
 
               // Business Address Details
@@ -178,7 +176,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               _buildTextField(label: "Country", controller: _countryController),
 
               const SizedBox(height: 24),
-              const Divider(color: Colors.grey, thickness: 0.1),
+              const Divider(color: Color(0xFFC4C4C4), thickness: 1),
               const SizedBox(height: 24),
 
               // Bank Account Details

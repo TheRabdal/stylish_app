@@ -44,8 +44,8 @@ class _SettingsPageState extends State<SettingsPage> {
               child: Column(
                 children: [
                   Container(
-                    width: 80,
-                    height: 80,
+                    width: 100,
+                    height: 100,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
@@ -56,7 +56,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    "Kautsar Al Bana",
+                    "Aashifa",
                     style: GoogleFonts.montserrat(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -65,7 +65,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    "kautsar@example.com",
+                    "aashifa@gmail.com",
                     style: GoogleFonts.montserrat(
                       fontSize: 14,
                       color: Colors.grey,
