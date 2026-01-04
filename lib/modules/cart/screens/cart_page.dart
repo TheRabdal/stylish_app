@@ -1,7 +1,9 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+  final bool showBackButton;
+
+  const CartPage({super.key, this.showBackButton = true});
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -25,12 +27,14 @@ class _CartPageState extends State<CartPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        leading: widget.showBackButton
+            ? IconButton(
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            : null,
         actions: [
           IconButton(
             icon: const Icon(Icons.favorite_border, color: Colors.black),
@@ -125,19 +129,8 @@ class _CartPageState extends State<CartPage> {
             const SizedBox(height: 24),
 
             // Coupon Section
-            Container(
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withValues(alpha: 0.05),
-                    blurRadius: 10,
-                    offset: const Offset(0, 5),
-                  ),
-                ],
-              ),
               child: Row(
                 children: [
                   const Icon(Icons.confirmation_number_outlined),
@@ -161,9 +154,9 @@ class _CartPageState extends State<CartPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 24),
-
-            // Order Payment Details
+            const SizedBox(height: 20),
+            const Divider(),
+            const SizedBox(height: 20),
             Text(
               "Order Payment Details",
               style: GoogleFonts.montserrat(
@@ -183,7 +176,6 @@ class _CartPageState extends State<CartPage> {
             ),
             const SizedBox(height: 8),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "Convenience",
@@ -192,6 +184,7 @@ class _CartPageState extends State<CartPage> {
                     color: Colors.grey.shade700,
                   ),
                 ),
+                const SizedBox(width: 16),
                 Text(
                   "Know More",
                   style: GoogleFonts.montserrat(
@@ -200,6 +193,7 @@ class _CartPageState extends State<CartPage> {
                     color: const Color(0xFFF83758),
                   ),
                 ),
+                const Spacer(),
                 Text(
                   "Apply Coupon",
                   style: GoogleFonts.montserrat(
@@ -268,7 +262,7 @@ class _CartPageState extends State<CartPage> {
                     color: Colors.grey.shade700,
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 16),
                 Text(
                   "Details",
                   style: GoogleFonts.montserrat(
@@ -287,6 +281,10 @@ class _CartPageState extends State<CartPage> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withValues(alpha: 0.1),
@@ -405,8 +403,28 @@ class CartItemWidget extends StatelessWidget {
                 width: 100,
                 height: 120,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) =>
-                    Container(width: 100, height: 120, color: Colors.grey),
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Container(
+                    width: 100,
+                    height: 120,
+                    color: Colors.grey.shade200,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    ),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) => Container(
+                  width: 100,
+                  height: 120,
+                  color: Colors.grey.shade200,
+                  child: const Icon(Icons.broken_image, color: Colors.grey),
+                ),
               ),
             ),
             const SizedBox(width: 16),
@@ -528,11 +546,22 @@ class CartItemWidget extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    "Delivery by $deliveryDate",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                  RichText(
+                    text: TextSpan(
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400, // Regular
+                      ),
+                      children: [
+                        const TextSpan(text: "Delivery by "),
+                        TextSpan(
+                          text: deliveryDate,
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w600, // Semibold
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

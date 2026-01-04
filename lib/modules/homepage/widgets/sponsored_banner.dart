@@ -27,18 +27,35 @@ class SponsoredBanner extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "up to 50% Off",
-                style: GoogleFonts.montserrat(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+          InkWell(
+            onTap: () {
+              // Find Labbin White Sneakers product (men's shoes)
+              final mensShoeProduct = allProducts.firstWhere(
+                (product) => product.name == "Labbin White Sneakers",
+                orElse: () => allProducts[0],
+              );
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ProductDetailPage(product: mensShoeProduct),
                 ),
-              ),
-              const Icon(Icons.chevron_right),
-            ],
+              );
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "up to 50% Off",
+                  style: GoogleFonts.montserrat(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Icon(Icons.chevron_right),
+              ],
+            ),
           ),
         ],
       ),

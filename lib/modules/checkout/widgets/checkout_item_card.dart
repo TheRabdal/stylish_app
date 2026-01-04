@@ -44,6 +44,22 @@ class CheckoutItemCard extends StatelessWidget {
                     width: 100,
                     height: 100,
                     fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Container(
+                        width: 100,
+                        height: 100,
+                        color: Colors.grey.shade200,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        ),
+                      );
+                    },
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
                         width: 100,
@@ -132,7 +148,7 @@ class CheckoutItemCard extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "\$ ${item.price.toStringAsFixed(2)}",
+                            "₹ ${(item.price * item.quantity).toStringAsFixed(2)}",
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -151,7 +167,7 @@ class CheckoutItemCard extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        "\$ ${item.originalPrice.toStringAsFixed(2)}",
+                        "₹ ${item.originalPrice.toStringAsFixed(2)}",
                         style: const TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
@@ -174,7 +190,7 @@ class CheckoutItemCard extends StatelessWidget {
                   style: const TextStyle(fontSize: 14, color: Colors.black87),
                 ),
                 Text(
-                  "\$ ${(item.price * item.quantity).toStringAsFixed(2)}",
+                  "₹ ${(item.price * item.quantity).toStringAsFixed(2)}",
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

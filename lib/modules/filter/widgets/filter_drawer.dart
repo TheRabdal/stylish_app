@@ -10,6 +10,8 @@ class FilterDrawer extends StatefulWidget {
 
 class _FilterDrawerState extends State<FilterDrawer> {
   late RangeValues _currentRangeValues;
+  late TextEditingController _minPriceController;
+  late TextEditingController _maxPriceController;
 
   // Selection States
   String _selectedCategory = "All";
@@ -21,6 +23,19 @@ class _FilterDrawerState extends State<FilterDrawer> {
     super.initState();
     _currentRangeValues =
         widget.initialPriceRange ?? const RangeValues(0, 1000);
+    _minPriceController = TextEditingController(
+      text: _currentRangeValues.start.round().toString(),
+    );
+    _maxPriceController = TextEditingController(
+      text: _currentRangeValues.end.round().toString(),
+    );
+  }
+
+  @override
+  void dispose() {
+    _minPriceController.dispose();
+    _maxPriceController.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,8 +77,6 @@ class _FilterDrawerState extends State<FilterDrawer> {
                       color: Colors.black,
                     ),
                   ),
-                  // Removed explicit close button to match Sort UI simplicity
-                  // User can swipe down to close
                 ],
               ),
             ),
@@ -78,85 +91,49 @@ class _FilterDrawerState extends State<FilterDrawer> {
                   _buildSectionTitle("Price Range"),
                   const SizedBox(height: 16),
 
-                  // Histogram Placeholder (Pro look)
-                  SizedBox(
-                    height: 40,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: List.generate(20, (index) {
-                        // Random heights for visual effect
-                        final height = [
-                          10,
-                          20,
-                          15,
-                          30,
-                          25,
-                          40,
-                          15,
-                          20,
-                          35,
-                          10,
-                          25,
-                          30,
-                          15,
-                          20,
-                          10,
-                          5,
-                          15,
-                          20,
-                          10,
-                          5,
-                        ][index];
-                        return Container(
-                          width:
-                              (MediaQuery.of(context).size.width * 0.85 - 48) /
-                              25,
-                          height: height.toDouble(),
-                          color:
-                              (index * 50 >= _currentRangeValues.start &&
-                                  index * 50 <= _currentRangeValues.end)
-                              ? const Color(0xFFF83758).withValues(alpha: 0.5)
-                              : Colors.grey.shade200,
-                        );
-                      }),
-                    ),
-                  ),
-
-                  RangeSlider(
-                    values: _currentRangeValues,
-                    min: 0,
-                    max: 1000,
-                    divisions: 100,
-                    activeColor: const Color(0xFFF83758),
-                    inactiveColor: Colors.grey.shade200,
-                    labels: RangeLabels(
-                      "\$${_currentRangeValues.start.round()}",
-                      "\$${_currentRangeValues.end.round()}",
-                    ),
-                    onChanged: (RangeValues values) {
-                      setState(() {
-                        _currentRangeValues = values;
-                      });
-                    },
-                  ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "\$${_currentRangeValues.start.round()}",
-                        style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
-                          color: Colors.black54,
+                      Expanded(
+                        child: TextField(
+                          controller: _minPriceController,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            hintText: "Min",
+                            prefixText: "₹ ",
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 12,
+                            ),
+                          ),
                         ),
                       ),
+                      const SizedBox(width: 16),
                       Text(
-                        "\$${_currentRangeValues.end.round()}",
+                        "-",
                         style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
-                          color: Colors.black54,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: TextField(
+                          controller: _maxPriceController,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            hintText: "Max",
+                            prefixText: "₹ ",
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 12,
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -231,6 +208,8 @@ class _FilterDrawerState extends State<FilterDrawer> {
                       onPressed: () {
                         setState(() {
                           _currentRangeValues = const RangeValues(0, 1000);
+                          _minPriceController.text = "0";
+                          _maxPriceController.text = "1000";
                           _selectedCategory = "All";
                           _selectedSize = "M";
                           _selectedColor = Colors.black;
@@ -257,8 +236,20 @@ class _FilterDrawerState extends State<FilterDrawer> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
+                        // Parse values
+                        double min =
+                            double.tryParse(_minPriceController.text) ?? 0;
+                        double max =
+                            double.tryParse(_maxPriceController.text) ?? 1000;
+                        if (min > max) {
+                          // Swap if user inverted inputs
+                          double temp = min;
+                          min = max;
+                          max = temp;
+                        }
+
                         Navigator.pop(context, {
-                          'priceRange': _currentRangeValues,
+                          'priceRange': RangeValues(min, max),
                           'category': _selectedCategory,
                           'size': _selectedSize,
                           'color': _selectedColor,

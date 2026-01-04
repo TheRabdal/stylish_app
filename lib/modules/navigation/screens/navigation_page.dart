@@ -1,7 +1,9 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class NavigationPage extends StatefulWidget {
-  const NavigationPage({super.key});
+  final int initialIndex;
+
+  const NavigationPage({super.key, this.initialIndex = 0});
 
   static const String route = 'NavigationPage';
 
@@ -10,12 +12,18 @@ class NavigationPage extends StatefulWidget {
 }
 
 class _NavigationPageState extends State<NavigationPage> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialIndex;
+  }
 
   List<Widget> get _pages => [
     const HomeContent(),
     const WishlistPage(),
-    const CartPage(),
+    const CartPage(showBackButton: false),
     const SearchPage(),
     const SettingsPage(),
   ];

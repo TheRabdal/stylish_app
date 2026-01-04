@@ -76,7 +76,21 @@ class FlatHeelsBanner extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Find Red High Heels product
+                      final redHeelsProduct = allProducts.firstWhere(
+                        (product) => product.name == "Red High Heels",
+                        orElse: () => allProducts[0],
+                      );
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ProductDetailPage(product: redHeelsProduct),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF83758),
                       foregroundColor: Colors.white,

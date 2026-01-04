@@ -110,22 +110,33 @@ class _DealOfDayState extends State<DealOfDay> {
                     border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  child: Row(
-                    children: [
-                      Text(
-                        "View all",
-                        style: GoogleFonts.montserrat(
-                          color: Colors.white,
-                          fontSize: 12,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const NavigationPage(initialIndex: 3),
                         ),
-                      ),
-                      const SizedBox(width: 4),
-                      const Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                        size: 14,
-                      ),
-                    ],
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          "View all",
+                          style: GoogleFonts.montserrat(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                          size: 14,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

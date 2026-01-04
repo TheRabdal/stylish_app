@@ -39,6 +39,24 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
     });
   }
 
+  String _getMonthName(int month) {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    return months[month - 1];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -134,7 +152,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                 style: GoogleFonts.montserrat(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black, // Design uses black for main price
+                  color: Colors.black,
                 ),
               ),
               const SizedBox(width: 8),
@@ -159,7 +177,6 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
             ),
           ),
           const SizedBox(height: 4),
-          // Description
           RichText(
             text: TextSpan(
               style: GoogleFonts.montserrat(
@@ -168,9 +185,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                 height: 1.5,
               ),
               children: [
-                TextSpan(
-                  text: widget.product.description,
-                ), // "Perhaps the most iconic..."
+                TextSpan(text: widget.product.description),
                 TextSpan(
                   text: " ...More",
                   style: GoogleFonts.montserrat(
@@ -228,7 +243,8 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                       variations: "Standard",
                       size: _selectedSizeLabel, // Use dynamic selected size
                       qty: 1,
-                      deliveryDate: "10 May 2XXX",
+                      deliveryDate:
+                          "${DateTime.now().add(const Duration(days: 5)).day} ${_getMonthName(DateTime.now().add(const Duration(days: 5)).month)} ${DateTime.now().add(const Duration(days: 5)).year}",
                       price: double.tryParse(priceString) ?? 0.0,
                       oldPrice: double.tryParse(oldPriceString) ?? 0.0,
                       discount: widget.product.discount,
@@ -275,7 +291,8 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                       variations: "Standard",
                       size: _selectedSizeLabel,
                       qty: 1,
-                      deliveryDate: "10 May 2XXX",
+                      deliveryDate:
+                          "${DateTime.now().add(const Duration(days: 5)).day} ${_getMonthName(DateTime.now().add(const Duration(days: 5)).month)} ${DateTime.now().add(const Duration(days: 5)).year}",
                       price: double.tryParse(priceString) ?? 0.0,
                       oldPrice: double.tryParse(oldPriceString) ?? 0.0,
                       discount: widget.product.discount,

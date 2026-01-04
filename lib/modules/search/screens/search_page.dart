@@ -11,16 +11,20 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController _searchController = TextEditingController();
 
+  // State for Sort and Filter
+  String _currentSort = "Relevance";
+  RangeValues? _filterPriceRange;
+  String _searchQuery = "";
+
   // Data from centralized product data
   final List<Product> _allProducts = allProducts;
-
-  List<Product> _filteredProducts = [];
+  List<Product> _processedProducts = [];
 
   @override
   void initState() {
     super.initState();
-    _filteredProducts = _allProducts;
     _searchController.addListener(_onSearchChanged);
+    _updateProcessedProducts();
   }
 
   @override
@@ -31,17 +35,92 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void _onSearchChanged() {
-    final query = _searchController.text.toLowerCase();
     setState(() {
-      if (query.isEmpty) {
-        _filteredProducts = _allProducts;
-      } else {
-        _filteredProducts = _allProducts.where((product) {
-          return product.name.toLowerCase().contains(query) ||
-              product.description.toLowerCase().contains(query);
-        }).toList();
-      }
+      _searchQuery = _searchController.text;
+      _updateProcessedProducts();
     });
+  }
+
+  void _onSortPressed() async {
+    final result = await showModalBottomSheet<String>(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => SortBottomSheet(currentSort: _currentSort),
+    );
+    if (result != null) {
+      setState(() {
+        _currentSort = result;
+        _updateProcessedProducts();
+      });
+    }
+  }
+
+  void _onFilterPressed() async {
+    final result = await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => FilterDrawer(initialPriceRange: _filterPriceRange),
+    );
+
+    if (result != null && result is Map) {
+      setState(() {
+        if (result.containsKey('priceRange')) {
+          _filterPriceRange = result['priceRange'];
+        }
+        _updateProcessedProducts();
+      });
+    }
+  }
+
+  void _updateProcessedProducts() {
+    List<Product> temp = List.from(_allProducts);
+
+    // Apply Search
+    if (_searchQuery.isNotEmpty) {
+      temp = temp.where((product) {
+        return product.name.toLowerCase().contains(
+              _searchQuery.toLowerCase(),
+            ) ||
+            product.description.toLowerCase().contains(
+              _searchQuery.toLowerCase(),
+            );
+      }).toList();
+    }
+
+    // Apply Filter (Price Range)
+    if (_filterPriceRange != null) {
+      temp = temp.where((product) {
+        double price =
+            double.tryParse(product.price.replaceAll(RegExp(r'[^0-9.]'), '')) ??
+            0;
+        return price >= _filterPriceRange!.start &&
+            price <= _filterPriceRange!.end;
+      }).toList();
+    }
+
+    // Apply Sort
+    if (_currentSort == "Price: Low to High") {
+      temp.sort((a, b) {
+        double priceA =
+            double.tryParse(a.price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0;
+        double priceB =
+            double.tryParse(b.price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0;
+        return priceA.compareTo(priceB);
+      });
+    } else if (_currentSort == "Price: High to Low") {
+      temp.sort((a, b) {
+        double priceA =
+            double.tryParse(a.price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0;
+        double priceB =
+            double.tryParse(b.price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0;
+        return priceB.compareTo(priceA);
+      });
+    }
+
+    _processedProducts = temp;
   }
 
   @override
@@ -53,15 +132,16 @@ class _SearchPageState extends State<SearchPage> {
         child: Column(
           children: [
             const HomeAppBar(),
-            AppSearchBar(
-              controller: _searchController,
-              autofocus: widget.autofocus,
-              onChanged: _onSearchChanged,
+            _SearchPageHeader(
+              searchController: _searchController,
+              onSearchChanged: _onSearchChanged,
+              onSortTap: _onSortPressed,
+              onFilterTap: _onFilterPressed,
+              count: _processedProducts.length,
             ),
-            _SearchHeader(count: _filteredProducts.length),
-            _filteredProducts.isEmpty
-                ? Expanded(
-                    child: Center(
+            Expanded(
+              child: _processedProducts.isEmpty
+                  ? Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -81,9 +161,9 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                         ],
                       ),
-                    ),
-                  )
-                : WishlistGrid(products: _filteredProducts),
+                    )
+                  : WishlistGrid(products: _processedProducts),
+            ),
           ],
         ),
       ),
@@ -91,66 +171,96 @@ class _SearchPageState extends State<SearchPage> {
   }
 }
 
-class _SearchHeader extends StatelessWidget {
+class _SearchPageHeader extends StatelessWidget {
+  final TextEditingController? searchController;
+  final VoidCallback? onSearchChanged;
+  final VoidCallback? onSortTap;
+  final VoidCallback? onFilterTap;
   final int count;
-  const _SearchHeader({required this.count});
+
+  const _SearchPageHeader({
+    required this.searchController,
+    required this.onSearchChanged,
+    required this.onSortTap,
+    required this.onFilterTap,
+    required this.count,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            "$count Items",
-            style: GoogleFonts.montserrat(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-              color: Colors.black,
-            ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: AppSearchBar(
+            controller: searchController,
+            onChanged: onSearchChanged,
           ),
-          Row(
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildActionButton("Sort", Icons.swap_vert),
-              const SizedBox(width: 12),
-              _buildActionButton("Filter", Icons.filter_alt_outlined),
+              Text(
+                "$count Items",
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+              ),
+              Row(
+                children: [
+                  _buildActionButton("Sort", Icons.swap_vert, onSortTap),
+                  const SizedBox(width: 8),
+                  _buildActionButton(
+                    "Filter",
+                    Icons.filter_alt_outlined,
+                    onFilterTap,
+                  ),
+                ],
+              ),
             ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
-  Widget _buildActionButton(String label, IconData icon) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(6),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.1),
-            blurRadius: 4,
-            spreadRadius: 0,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            label,
-            style: GoogleFonts.montserrat(
-              fontSize: 12,
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
+  Widget _buildActionButton(String label, IconData icon, VoidCallback? onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(6),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(6),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withValues(alpha: 0.1),
+              blurRadius: 4,
+              spreadRadius: 0,
+              offset: const Offset(0, 2),
             ),
-          ),
-          const SizedBox(width: 4),
-          Icon(icon, size: 16, color: const Color(0xFF575757)),
-        ],
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              label,
+              style: GoogleFonts.montserrat(
+                fontSize: 12,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(width: 4),
+            Icon(icon, size: 16, color: const Color(0xFF575757)),
+          ],
+        ),
       ),
     );
   }

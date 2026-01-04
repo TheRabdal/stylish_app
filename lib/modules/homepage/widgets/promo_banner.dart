@@ -9,6 +9,8 @@ class PromoBanner extends StatefulWidget {
 
 class _PromoBannerState extends State<PromoBanner> {
   final PageController _pageController = PageController();
+  Timer? _timer;
+  int _currentPage = 0;
 
   // List of banner data (you can add more banners here)
   final List<Map<String, String>> banners = const [
@@ -30,7 +32,30 @@ class _PromoBannerState extends State<PromoBanner> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _startAutoSlide();
+  }
+
+  void _startAutoSlide() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_currentPage < banners.length - 1) {
+        _currentPage++;
+      } else {
+        _currentPage = 0;
+      }
+
+      _pageController.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  @override
   void dispose() {
+    _timer?.cancel();
     _pageController.dispose();
     super.dispose();
   }
@@ -110,7 +135,14 @@ class _PromoBannerState extends State<PromoBanner> {
             ),
             const SizedBox(height: 16),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NavigationPage(initialIndex: 3),
+                  ),
+                );
+              },
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: Colors.white),
                 shape: RoundedRectangleBorder(

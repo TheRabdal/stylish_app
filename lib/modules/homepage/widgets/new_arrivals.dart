@@ -54,7 +54,22 @@ class NewArrivals extends StatelessWidget {
                         ],
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // Find Summer Floral Dress product
+                          final summerDressProduct = allProducts.firstWhere(
+                            (product) => product.name == "Summer Floral Dress",
+                            orElse: () => allProducts[0],
+                          );
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductDetailPage(
+                                product: summerDressProduct,
+                              ),
+                            ),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFF83758),
                           shape: RoundedRectangleBorder(
