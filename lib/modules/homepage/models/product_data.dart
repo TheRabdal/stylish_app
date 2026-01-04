@@ -1,8 +1,8 @@
 import 'package:stylish_app/core/models/product_model.dart';
 
 // Data from Trending Products and Search Page
-const List<Product> trendingProductsList = [
-  Product(
+const List<ProductStore> trendingProductsList = [
+  ProductStore(
     image: 'assets/images/watch.png',
     name: "IWC Schaffhausen",
     description: "2021 Pilot's Watch \"SIHH 2019\" 44mm",
@@ -12,7 +12,7 @@ const List<Product> trendingProductsList = [
     rating: 5,
     reviewCount: 650,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/whiteshoes.png',
     name: "Labbin White Sneakers",
     description: "For Men and Female",
@@ -22,7 +22,7 @@ const List<Product> trendingProductsList = [
     rating: 4,
     reviewCount: 650,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/womenshandback.png',
     name: "Mammon Women's Handbag",
     description: "(Set of 3, Beige)",
@@ -32,7 +32,7 @@ const List<Product> trendingProductsList = [
     rating: 4,
     reviewCount: 750,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/sandalcoklat.png',
     name: "Do Bhai Women Wedges Sandal",
     description: "(Butterfly)",
@@ -42,7 +42,7 @@ const List<Product> trendingProductsList = [
     rating: 4,
     reviewCount: 750,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/lipstik.png',
     name: "Lakme Enrich Matte Lipstick",
     description: "Shade RM1(4.7gm)",
@@ -52,7 +52,7 @@ const List<Product> trendingProductsList = [
     rating: 4,
     reviewCount: 950,
   ),
-  Product(
+  ProductStore(
     image: 'assets/images/jordan.png',
     name: "Nike Air Jordan",
     description: "Nike Air Jordan 1 Retro High OG",
@@ -65,7 +65,7 @@ const List<Product> trendingProductsList = [
 ];
 
 // Data from Deal Of Day
-const List<Product> dealOfDayProductsList = [
+const List<ProductStore> dealOfDayProductsList = [
   Product(
     image: 'assets/images/womenprintedkurta.png',
     name: "Women Printed Kurta",

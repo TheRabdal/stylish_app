@@ -1,4 +1,4 @@
-class Product {
+class ProductStore {
   final String image;
   final String name;
   final String description;
@@ -9,7 +9,7 @@ class Product {
   final int reviewCount;
   final double? height;
 
-  const Product({
+  const ProductStore({
     required this.image,
     required this.name,
     required this.description,
