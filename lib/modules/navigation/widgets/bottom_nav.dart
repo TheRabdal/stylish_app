@@ -17,7 +17,9 @@ class BottomNav extends StatelessWidget {
       notchMargin: 8.0,
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4.0),
+        padding: const EdgeInsets.symmetric(
+          vertical: 0.0,
+        ), // Removed vertical padding
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -40,23 +42,29 @@ class BottomNav extends StatelessWidget {
     final bool isSelected = selectedIndex == index;
     return InkWell(
       onTap: () => onItemTapped(index),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? const Color(0xFFF83758) : Colors.black,
-            size: 24,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: GoogleFonts.montserrat(
-              fontSize: 10,
+      borderRadius: BorderRadius.circular(30),
+      child: Padding(
+        padding: const EdgeInsets.all(
+          6.0,
+        ), // Increased padding for larger circle
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
               color: isSelected ? const Color(0xFFF83758) : Colors.black,
+              size: 24,
             ),
-          ),
-        ],
+            const SizedBox(height: 2), // Reduced spacing
+            Text(
+              label,
+              style: GoogleFonts.montserrat(
+                fontSize: 10,
+                color: isSelected ? const Color(0xFFF83758) : Colors.black,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProductDetailAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -8,14 +7,7 @@ class ProductDetailAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        "Product Details",
-        style: GoogleFonts.montserrat(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-        ),
-      ),
+      title: const SizedBox.shrink(),
       centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: 0,

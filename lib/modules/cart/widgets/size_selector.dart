@@ -15,9 +15,9 @@ class SizeSelector extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Size: 7UK", // Ideally this should be dynamic based on selection
-          style: TextStyle(
+        Text(
+          "Size: ${sizes.firstWhere((s) => s.isSelected, orElse: () => sizes.first).label}",
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Colors.black87,
@@ -42,11 +42,13 @@ class SizeSelector extends StatelessWidget {
                       vertical: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: size.isSelected ? Colors.pinkAccent : Colors.white,
+                      color: size.isSelected
+                          ? const Color(0xFFFA7189)
+                          : Colors.white,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: size.isSelected
-                            ? Colors.pinkAccent
+                            ? const Color(0xFFFA7189)
                             : Colors.grey.shade300,
                       ),
                     ),
@@ -55,7 +57,7 @@ class SizeSelector extends StatelessWidget {
                       style: TextStyle(
                         color: size.isSelected
                             ? Colors.white
-                            : Colors.pinkAccent,
+                            : const Color(0xFFFA7189),
                         fontWeight: FontWeight.w600,
                       ),
                     ),

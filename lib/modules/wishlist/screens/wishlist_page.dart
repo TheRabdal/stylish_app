@@ -147,6 +147,7 @@ class _WishlistPageState extends State<WishlistPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(
         0xFFF9F9F9,
       ), // Light background like in image
