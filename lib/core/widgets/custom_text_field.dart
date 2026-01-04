@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final void Function(String)? onSubmitted;
   final bool autofocus;
+  final EdgeInsetsGeometry? contentPadding;
 
   const CustomTextField({
     super.key,
@@ -26,6 +27,7 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.onSubmitted,
     this.autofocus = false,
+    this.contentPadding,
   });
 
   @override
@@ -48,7 +50,8 @@ class CustomTextField extends StatelessWidget {
         hintStyle: GoogleFonts.montserrat(color: Colors.grey[500]),
         filled: true,
         fillColor: Colors.grey[100],
-        contentPadding: const EdgeInsets.symmetric(vertical: 20),
+        contentPadding:
+            contentPadding ?? const EdgeInsets.symmetric(vertical: 20),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(color: Colors.grey.shade300),
