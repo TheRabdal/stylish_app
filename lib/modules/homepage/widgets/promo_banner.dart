@@ -38,7 +38,7 @@ class _PromoBannerState extends State<PromoBanner> {
   }
 
   void _startAutoSlide() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
       if (_currentPage < banners.length - 1) {
         _currentPage++;
       } else {
