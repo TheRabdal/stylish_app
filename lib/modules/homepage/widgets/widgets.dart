@@ -1,8 +1,10 @@
 export 'category_section.dart';
 export 'deal_of_day.dart';
 export 'flat_heels_banner.dart';
+export 'home_action_button.dart';
 export 'home_app_bar.dart';
-export 'home_content.dart';
+export 'home_header_section.dart';
+export 'home_product_grid.dart';
 export 'home_search_bar.dart';
 export 'new_arrivals.dart';
 export 'product_card.dart';

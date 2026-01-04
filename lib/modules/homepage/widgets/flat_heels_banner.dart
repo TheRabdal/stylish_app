@@ -24,7 +24,7 @@ class FlatHeelsBanner extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            // Yellow dots pattern effect (flatandheels2.png)
+
             Positioned(
               left: 10,
               child: Image.asset(
@@ -33,7 +33,7 @@ class FlatHeelsBanner extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
             ),
-            // Heels image (flatandheels.png)
+
             Positioned(
               left: 20,
               top: 20,
@@ -44,7 +44,7 @@ class FlatHeelsBanner extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
             ),
-            // Text content on the right
+
             Positioned(
               right: 15,
               top: 0,
@@ -77,7 +77,6 @@ class FlatHeelsBanner extends StatelessWidget {
                   const SizedBox(height: 12),
                   ElevatedButton(
                     onPressed: () {
-                      // Find Red High Heels product
                       final redHeelsProduct = allProducts.firstWhere(
                         (product) => product.name == "Red High Heels",
                         orElse: () => allProducts[0],

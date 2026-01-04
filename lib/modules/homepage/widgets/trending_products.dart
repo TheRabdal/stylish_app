@@ -16,7 +16,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
   void initState() {
     super.initState();
     _updateDate();
-    // Update every minute to keep the date fresh
+
     _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
       _updateDate();
     });

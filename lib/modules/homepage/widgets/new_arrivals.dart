@@ -55,7 +55,6 @@ class NewArrivals extends StatelessWidget {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          // Find Summer Floral Dress product
                           final summerDressProduct = allProducts.firstWhere(
                             (product) => product.name == "Summer Floral Dress",
                             orElse: () => allProducts[0],

@@ -12,7 +12,6 @@ class _PromoBannerState extends State<PromoBanner> {
   Timer? _timer;
   int _currentPage = 0;
 
-  // List of banner data (you can add more banners here)
   final List<Map<String, String>> banners = const [
     {
       'image': 'assets/images/pinkpeople.png',

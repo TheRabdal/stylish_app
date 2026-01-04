@@ -6,10 +6,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16.0, 
-        vertical: 20
-        ),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -23,7 +20,6 @@ class HomeAppBar extends StatelessWidget {
           ),
           Row(
             children: [
-              // Logo
               Image.asset(
                 'assets/images/logo.png',
                 width: 30,

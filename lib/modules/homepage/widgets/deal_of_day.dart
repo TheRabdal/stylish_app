@@ -58,7 +58,6 @@ class _DealOfDayState extends State<DealOfDay> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // ... (keep existing header code)
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Container(

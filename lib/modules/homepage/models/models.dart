@@ -1,1 +1,1 @@
-// This file can be safely deleted.
+export 'product_data.dart';

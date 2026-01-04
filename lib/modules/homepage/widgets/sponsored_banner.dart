@@ -29,7 +29,6 @@ class SponsoredBanner extends StatelessWidget {
           const SizedBox(height: 8),
           InkWell(
             onTap: () {
-              // Find Labbin White Sneakers product (men's shoes)
               final mensShoeProduct = allProducts.firstWhere(
                 (product) => product.name == "Labbin White Sneakers",
                 orElse: () => allProducts[0],

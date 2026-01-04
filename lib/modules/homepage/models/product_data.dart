@@ -1,6 +1,5 @@
 import 'package:stylish_app/core/models/product_model.dart';
 
-// Data from Trending Products and Search Page
 const List<ProductStore> trendingProductsList = [
   ProductStore(
     image: 'assets/images/watch.png',
@@ -64,7 +63,6 @@ const List<ProductStore> trendingProductsList = [
   ),
 ];
 
-// Data from Deal Of Day
 const List<ProductStore> dealOfDayProductsList = [
   ProductStore(
     image: 'assets/images/womenprintedkurta.png',
@@ -150,7 +148,6 @@ const List<ProductStore> dealOfDayProductsList = [
   ),
 ];
 
-// Data from Wishlist Page
 const List<ProductStore> wishlistProductsList = [
   ProductStore(
     image: "assets/images/blackwinter.png",
