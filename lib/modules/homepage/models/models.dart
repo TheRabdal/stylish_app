@@ -1,1 +1,1 @@
-export 'product_model.dart';
+// This file can be safely deleted.

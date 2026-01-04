@@ -1,9 +1,46 @@
 import 'package:stylish_app/packages/packages.dart';
+import 'package:stylish_app/modules/cart/services/cart_service.dart';
+import 'package:stylish_app/modules/cart/models/cart_item_model.dart';
+import 'package:stylish_app/modules/checkout/screens/checkout_page.dart';
 
-class ProductDetailInfo extends StatelessWidget {
+class ProductDetailInfo extends StatefulWidget {
   final Product product;
 
   const ProductDetailInfo({super.key, required this.product});
+
+  @override
+  State<ProductDetailInfo> createState() => _ProductDetailInfoState();
+}
+
+class _ProductDetailInfoState extends State<ProductDetailInfo> {
+  late List<ProductSize> _sizes;
+  String _selectedSizeLabel = '7 UK';
+
+  @override
+  void initState() {
+    super.initState();
+    // User requested sizes 6 to 10
+    _sizes = [
+      ProductSize(label: '6 UK', isSelected: false),
+      ProductSize(label: '7 UK', isSelected: true),
+      ProductSize(label: '8 UK', isSelected: false),
+      ProductSize(label: '9 UK', isSelected: false),
+      ProductSize(label: '10 UK', isSelected: false),
+    ];
+  }
+
+  void _handleSizeSelection(String label) {
+    setState(() {
+      _selectedSizeLabel = label;
+      _sizes = _sizes.map((s) {
+        return ProductSize(
+          label: s.label,
+          isSelected: s.label == label,
+          isAvailable: s.isAvailable,
+        );
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +49,10 @@ class ProductDetailInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizeSelector(
-            sizes: [
-              ProductSize(label: '6 UK', isSelected: false),
-              ProductSize(label: '7 UK', isSelected: true),
-              ProductSize(label: '8 UK', isSelected: false),
-            ],
-            onSizeSelected: (size) {},
-          ),
+          SizeSelector(sizes: _sizes, onSizeSelected: _handleSizeSelection),
           const SizedBox(height: 16),
           Text(
-            product.name, // e.g., "Nike Sneakers"
+            widget.product.name, // e.g., "Nike Sneakers"
             style: GoogleFonts.montserrat(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -46,7 +76,7 @@ class ProductDetailInfo extends StatelessWidget {
                 (index) => Icon(
                   Icons.star,
                   size: 16,
-                  color: index < product.rating
+                  color: index < widget.product.rating
                       ? Colors.amber
                       : Colors.grey.shade300,
                 ),
@@ -114,7 +144,7 @@ class ProductDetailInfo extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: product.description,
+                  text: widget.product.description,
                 ), // "Perhaps the most iconic..."
                 TextSpan(
                   text: " ...More",
@@ -140,8 +170,6 @@ class ProductDetailInfo extends StatelessWidget {
           ),
           const SizedBox(height: 24),
 
-          // Buttons (Moved Inline)
-          // Buttons (Moved Inline)
           // Buttons
           Row(
             children: [
@@ -159,9 +187,34 @@ class ProductDetailInfo extends StatelessWidget {
                     const Color(0xFF1A4CFF),
                   ],
                   onTap: () {
-                    // Just add to cart
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Added to cart")),
+                    // Add to Cart
+                    final priceString = widget.product.price.replaceAll(
+                      RegExp(r'[^0-9.]'),
+                      '',
+                    );
+                    final oldPriceString = widget.product.oldPrice.replaceAll(
+                      RegExp(r'[^0-9.]'),
+                      '',
+                    );
+
+                    final cartItem = CartItem(
+                      image: widget.product.image,
+                      title: widget.product.name,
+                      variations: "Standard",
+                      size: _selectedSizeLabel, // Use dynamic selected size
+                      qty: 1,
+                      deliveryDate: "10 May 2XXX",
+                      price: double.tryParse(priceString) ?? 0.0,
+                      oldPrice: double.tryParse(oldPriceString) ?? 0.0,
+                      discount: widget.product.discount,
+                    );
+
+                    CartService().addItem(cartItem);
+
+                    // Navigate to Cart Page
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const CartPage()),
                     );
                   },
                 ),
@@ -181,9 +234,34 @@ class ProductDetailInfo extends StatelessWidget {
                     const Color(0xFF4AC786),
                   ],
                   onTap: () {
+                    // Create CartItem for Buy Now
+                    final priceString = widget.product.price.replaceAll(
+                      RegExp(r'[^0-9.]'),
+                      '',
+                    );
+                    final oldPriceString = widget.product.oldPrice.replaceAll(
+                      RegExp(r'[^0-9.]'),
+                      '',
+                    );
+
+                    final cartItem = CartItem(
+                      image: widget.product.image,
+                      title: widget.product.name,
+                      variations: "Standard",
+                      size: _selectedSizeLabel,
+                      qty: 1,
+                      deliveryDate: "10 May 2XXX",
+                      price: double.tryParse(priceString) ?? 0.0,
+                      oldPrice: double.tryParse(oldPriceString) ?? 0.0,
+                      discount: widget.product.discount,
+                    );
+
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const CartPage()),
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            CheckoutPage(buyNowItems: [cartItem]),
+                      ),
                     );
                   },
                 ),

@@ -63,15 +63,22 @@ class SimilarProducts extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         // Displaying 2 items side-by-side as in the screenshot
-        Row(
-          children: products.take(2).map((product) {
-            return Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 12.0),
-                child: _buildProductCard(context, product),
-              ),
-            );
-          }).toList(),
+        SizedBox(
+          height: 280,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              final product = products[index];
+              return Padding(
+                padding: const EdgeInsets.only(right: 16.0),
+                child: SizedBox(
+                  width: 170, // Fixed width for horizontal scrolling items
+                  child: _buildProductCard(context, product),
+                ),
+              );
+            },
+          ),
         ),
       ],
     );
@@ -105,19 +112,39 @@ class SimilarProducts extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              product.image,
-              height: 150,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  height: 150,
-                  color: Colors.grey[200],
-                  child: const Icon(Icons.broken_image, color: Colors.grey),
-                );
-              },
-            ),
+            child: product.image.startsWith('http')
+                ? Image.network(
+                    product.image,
+                    height: 150,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        height: 150,
+                        color: Colors.grey[200],
+                        child: const Icon(
+                          Icons.broken_image,
+                          color: Colors.grey,
+                        ),
+                      );
+                    },
+                  )
+                : Image.asset(
+                    product.image,
+                    height: 150,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        height: 150,
+                        color: Colors.grey[200],
+                        child: const Icon(
+                          Icons.broken_image,
+                          color: Colors.grey,
+                        ),
+                      );
+                    },
+                  ),
           ),
           const SizedBox(height: 8),
           Text(

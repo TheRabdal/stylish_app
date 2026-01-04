@@ -33,6 +33,35 @@ class SimilarProductsSection extends StatelessWidget {
         rating: 4.8,
         reviewCount: 256890,
       ),
+      SimilarProduct(
+        id: '103',
+        image:
+            'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+        title: 'Nike Red',
+        subtitle: 'Nike Air Max Red Passion',
+        price: 2100,
+        rating: 4.2,
+        reviewCount: 1200,
+      ),
+      SimilarProduct(
+        id: '104',
+        image:
+            'https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+        title: 'Nike Black',
+        subtitle: 'Nike Running Shoes Black Edition',
+        price: 2500,
+        rating: 4.9,
+        reviewCount: 5000,
+      ),
+      SimilarProduct(
+        id: '105',
+        image: 'assets/images/whiteshoes.png',
+        title: 'Vans Old Skool',
+        subtitle: 'Classic Vans Old Skool Sneakers',
+        price: 1500,
+        rating: 4.6,
+        reviewCount: 3400,
+      ),
     ];
 
     return Padding(

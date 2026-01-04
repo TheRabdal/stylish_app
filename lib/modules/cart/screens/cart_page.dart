@@ -1,4 +1,5 @@
 import 'package:stylish_app/packages/packages.dart';
+import 'package:stylish_app/modules/cart/services/cart_service.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -24,9 +25,12 @@ class _CartPageState extends State<CartPage> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        automaticallyImplyLeading: false,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         actions: [
           IconButton(
@@ -40,18 +44,84 @@ class _CartPageState extends State<CartPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Cart Item 1
-            const CartItemWidget(
-              image:
-                  'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60', // Placeholder
-              title: "Women's Casual Wear",
-              variations: "Checked Single-Breasted Blazer",
-              size: "42",
-              qty: "1",
-              deliveryDate: "10 May 2XXX",
-              price: 34.00,
-              oldPrice: 64.00,
-              discount: "33",
+            // Cart Items List
+            ListenableBuilder(
+              listenable: CartService(),
+              builder: (context, child) {
+                if (CartService().items.isEmpty) {
+                  return const Padding(
+                    padding: EdgeInsets.all(32.0),
+                    child: Center(child: Text("Your cart is empty")),
+                  );
+                }
+                return Column(
+                  children: CartService().items.map((item) {
+                    return Column(
+                      children: [
+                        Dismissible(
+                          key: ValueKey(item),
+                          direction: DismissDirection.endToStart,
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 20.0),
+                            color: Colors.red,
+                            child: const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                          ),
+                          onDismissed: (direction) {
+                            CartService().removeItem(item);
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                duration: const Duration(seconds: 5),
+                                content: Text(
+                                  "${item.title} removed from cart",
+                                ),
+                                action: SnackBarAction(
+                                  label: "Undo",
+                                  onPressed: () {
+                                    CartService().addItem(item);
+                                  },
+                                ),
+                              ),
+                            );
+                          },
+                          child: CartItemWidget(
+                            image: item.image,
+                            title: item.title,
+                            variations: item.variations,
+                            size: item.size,
+                            qty: item.qty.toString(),
+                            deliveryDate: item.deliveryDate,
+                            price: item.price,
+                            oldPrice: item.oldPrice,
+                            discount: item.discount,
+                            onSizeChanged: (newSize) {
+                              CartService().updateItem(
+                                item,
+                                item.copyWith(size: newSize),
+                              );
+                            },
+                            onQtyChanged: (newQty) {
+                              if (newQty < 1) {
+                                CartService().removeItem(item);
+                              } else {
+                                CartService().updateItem(
+                                  item,
+                                  item.copyWith(qty: newQty),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                      ],
+                    );
+                  }).toList(),
+                );
+              },
             ),
             const SizedBox(height: 24),
 
@@ -103,7 +173,15 @@ class _CartPageState extends State<CartPage> {
               ),
             ),
             const SizedBox(height: 16),
-            const OrderSummaryRow(label: "Order Amounts", value: "₹ 7,000.00"),
+            ListenableBuilder(
+              listenable: CartService(),
+              builder: (context, child) {
+                return OrderSummaryRow(
+                  label: "Order Amounts",
+                  value: "₹ ${CartService().totalAmount.toStringAsFixed(2)}",
+                );
+              },
+            ),
             const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -167,12 +245,17 @@ class _CartPageState extends State<CartPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  "₹ 7,000.00",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                ListenableBuilder(
+                  listenable: CartService(),
+                  builder: (context, child) {
+                    return Text(
+                      "₹ ${CartService().totalAmount.toStringAsFixed(2)}",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -221,12 +304,17 @@ class _CartPageState extends State<CartPage> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "₹ 7,000.00",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  ListenableBuilder(
+                    listenable: CartService(),
+                    builder: (context, child) {
+                      return Text(
+                        "₹ ${CartService().totalAmount.toStringAsFixed(2)}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
                   ),
                   Text(
                     "View Details",
@@ -246,7 +334,6 @@ class _CartPageState extends State<CartPage> {
                       builder: (context) => const CheckoutPage(),
                     ),
                   );
-                  // print("Navigating to Checkout");
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
@@ -286,6 +373,8 @@ class CartItemWidget extends StatelessWidget {
   final double price;
   final double oldPrice;
   final String discount;
+  final Function(String) onSizeChanged; // Callback for size change
+  final Function(int) onQtyChanged; // Callback for qty change
 
   const CartItemWidget({
     super.key,
@@ -298,6 +387,8 @@ class CartItemWidget extends StatelessWidget {
     required this.price,
     required this.oldPrice,
     required this.discount,
+    required this.onSizeChanged,
+    required this.onQtyChanged,
   });
 
   @override
@@ -342,49 +433,97 @@ class CartItemWidget extends StatelessWidget {
                   const SizedBox(height: 12),
                   Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Size $size",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      // Size Selector
+                      GestureDetector(
+                        onTap: () async {
+                          final selectedSize = await showDialog<String>(
+                            context: context,
+                            builder: (context) => SimpleDialog(
+                              title: const Text("Select Size"),
+                              children:
+                                  ['6 UK', '7 UK', '8 UK', '9 UK', '10 UK']
+                                      .map(
+                                        (s) => SimpleDialogOption(
+                                          onPressed: () =>
+                                              Navigator.pop(context, s),
+                                          child: Text(s),
+                                        ),
+                                      )
+                                      .toList(),
                             ),
-                            const Icon(Icons.keyboard_arrow_down, size: 16),
-                          ],
+                          );
+                          if (selectedSize != null) {
+                            onSizeChanged(selectedSize);
+                          }
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Size $size",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Icon(Icons.keyboard_arrow_down, size: 16),
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(width: 12),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Qty $qty",
-                              style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
+
+                      // Quantity Selector
+                      GestureDetector(
+                        onTap: () async {
+                          final selectedQty = await showDialog<int>(
+                            context: context,
+                            builder: (context) => SimpleDialog(
+                              title: const Text("Select Quantity"),
+                              children: List.generate(100, (index) => index + 1)
+                                  .map(
+                                    (q) => SimpleDialogOption(
+                                      onPressed: () =>
+                                          Navigator.pop(context, q),
+                                      child: Text(q.toString()),
+                                    ),
+                                  )
+                                  .toList(),
                             ),
-                            const Icon(Icons.keyboard_arrow_down, size: 16),
-                          ],
+                          );
+                          if (selectedQty != null) {
+                            onQtyChanged(selectedQty);
+                          }
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Qty $qty",
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Icon(Icons.keyboard_arrow_down, size: 16),
+                            ],
+                          ),
                         ),
                       ),
                     ],

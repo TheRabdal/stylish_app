@@ -1,7 +1,11 @@
 import 'package:stylish_app/packages/packages.dart';
+import 'package:stylish_app/modules/cart/services/cart_service.dart';
+import 'package:stylish_app/modules/checkout/models/checkout_model.dart';
 
 class CheckoutPage extends StatelessWidget {
-  const CheckoutPage({super.key});
+  final List<CartItem>? buyNowItems;
+
+  const CheckoutPage({super.key, this.buyNowItems});
 
   @override
   Widget build(BuildContext context) {
@@ -129,32 +133,43 @@ class CheckoutPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            // Item 1
-            CheckoutItemCard(
-              item: CheckoutItemModel(
-                image:
-                    'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-                title: "Women's Casual Wear",
-                variations: ["Black"],
-                rating: 4.8,
-                price: 34.00,
-                originalPrice: 64.00,
-                discountPercentage: 33,
-              ),
-            ),
-            const SizedBox(height: 16),
-            // Item 2
-            CheckoutItemCard(
-              item: CheckoutItemModel(
-                image:
-                    'https://images.unsplash.com/photo-1551028919-ac6635f0e5c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
-                title: "Men's Jacket",
-                variations: ["Green"],
-                rating: 4.7,
-                price: 45.00,
-                originalPrice: 67.00,
-                discountPercentage: 33,
-              ),
+
+            // Dynamic Cart Items
+            ListenableBuilder(
+              listenable: CartService(),
+              builder: (context, child) {
+                final items = buyNowItems ?? CartService().items;
+                if (items.isEmpty) {
+                  return const Text("No items in checkout");
+                }
+                return Column(
+                  children: items.map((item) {
+                    return Column(
+                      children: [
+                        CheckoutItemCard(
+                          item: CheckoutItemModel(
+                            image: item.image,
+                            title: item.title,
+                            variations: [
+                              item.variations,
+                            ], // mapping string to list
+                            rating: 4.8, // Default rating as not in CartItem
+                            price: item.price,
+                            originalPrice: item.oldPrice,
+                            discountPercentage:
+                                int.tryParse(
+                                  item.discount.replaceAll('%', ''),
+                                ) ??
+                                0,
+                            quantity: item.qty,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                    );
+                  }).toList(),
+                );
+              },
             ),
             const SizedBox(height: 100),
           ],
@@ -186,12 +201,19 @@ class CheckoutPage extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   ),
-                  Text(
-                    "₹ 7,030.00",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  ListenableBuilder(
+                    listenable: CartService(),
+                    builder: (context, child) {
+                      final items = buyNowItems ?? CartService().items;
+                      final total = CartService().calculateTotal(items);
+                      return Text(
+                        "₹ ${total.toStringAsFixed(2)}",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

@@ -13,6 +13,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           "Settings",
           style: GoogleFonts.montserrat(
