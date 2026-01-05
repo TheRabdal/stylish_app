@@ -1,5 +1,4 @@
 import 'package:stylish_app/packages/packages.dart';
-import 'package:flutter/services.dart';
 
 class NavigationPage extends StatefulWidget {
   final int initialIndex;
@@ -35,37 +34,13 @@ class _NavigationPageState extends State<NavigationPage> {
     });
   }
 
-  DateTime? currentBackPressTime;
-
-  Future<bool> _onWillPop() async {
-    final now = DateTime.now();
-    if (currentBackPressTime == null ||
-        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
-      currentBackPressTime = now;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Tekan sekali lagi untuk keluar',
-            style: GoogleFonts.montserrat(),
-          ),
-          behavior: SnackBarBehavior.floating,
-          duration: const Duration(seconds: 2),
-        ),
-      );
-      return false;
-    }
-
-    SystemNavigator.pop();
-    return false;
-  }
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        await _onWillPop();
+        SystemNavigator.pop();
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,

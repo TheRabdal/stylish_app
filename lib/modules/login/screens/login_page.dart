@@ -50,6 +50,7 @@ class _LoginPageState extends State<LoginPage> {
 
     await SharedPreference.setLoggedIn(true);
 
+    if (!mounted) return;
     Navigator.pushNamed(context, GetStartedPage.route);
   }
 
@@ -78,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) async {
+      onPopInvokedWithResult: (didPop, result) async {
         if (didPop) {
           return;
         }
