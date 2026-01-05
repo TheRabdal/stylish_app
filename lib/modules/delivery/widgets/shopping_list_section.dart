@@ -41,9 +41,7 @@ class ShoppingListSection extends StatelessWidget {
                     return Column(
                       children: [
                         DeliveryItemCard(
-                          // Renamed from CheckoutItemCard
                           item: DeliveryItemModel(
-                            // Renamed from CheckoutItemModel
                             image: item.image,
                             title: item.title,
                             variations: [item.variations],

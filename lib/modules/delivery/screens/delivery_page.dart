@@ -48,7 +48,6 @@ class _DeliveryPageState extends State<DeliveryPage> {
   }
 
   void _handleContinueToPayment() {
-    // Calculate Price before navigating
     final items = widget.buyNowItems ?? CartService().items;
     final double subtotal = CartService().calculateTotal(items);
     final double discountPct = widget.buyNowItems != null

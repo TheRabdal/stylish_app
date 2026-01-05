@@ -1,7 +1,7 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class DeliveryItemCard extends StatelessWidget {
-  final DeliveryItemModel item; // Renamed from CheckoutItemModel
+  final DeliveryItemModel item;
   final VoidCallback? onTap;
 
   const DeliveryItemCard({super.key, required this.item, this.onTap});

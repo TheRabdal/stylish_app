@@ -11,7 +11,6 @@ class AddressModel {
 }
 
 class DeliveryItemModel {
-  // Renamed from CheckoutItemModel
   final String image;
   final String title;
   final List<String> variations;
