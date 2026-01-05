@@ -1,5 +1,4 @@
 class CheckoutMethodModel {
-  // Renamed from ShippingMethodModel
   final String id;
   final String name;
   final String accountNumber;

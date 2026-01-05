@@ -1,7 +1,6 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class CheckoutOrderSummaryRow extends StatelessWidget {
-  // Renamed from ShippingOrderSummaryRow
   final String label;
   final String value;
   final bool isTotal;

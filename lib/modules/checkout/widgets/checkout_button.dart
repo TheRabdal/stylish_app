@@ -1,7 +1,6 @@
 import 'package:stylish_app/packages/packages.dart';
 
 class CheckoutButton extends StatelessWidget {
-  // Renamed from ShippingButton
   final VoidCallback onPressed;
   final String text;
 

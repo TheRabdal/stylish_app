@@ -1,7 +1,6 @@
 import "package:stylish_app/packages/packages.dart";
 
 class CheckoutPageSuccessDialog extends StatelessWidget {
-  // Renamed from ShippingPageSuccessDialog
   const CheckoutPageSuccessDialog({super.key});
 
   @override
@@ -43,10 +42,8 @@ class CheckoutPageSuccessDialog extends StatelessWidget {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
-                // Clear Cart Data
                 CartService().clear();
 
-                // Navigate to Home and remove all previous routes
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(

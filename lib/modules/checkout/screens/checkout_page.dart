@@ -98,8 +98,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             ],
             CheckoutOrderSummaryRow(
               label: "Total",
-              value:
-                  "₹ ${widget.finalTotal.toStringAsFixed(0)}", // Removed decimals as per image style usually, but image shows 7,030. Let's keep decimals if needed or remove .00 if image shows integers. Image shows "7,030", no decimals.
+              value: "₹ ${widget.finalTotal.toStringAsFixed(0)}",
               isTotal: true,
             ),
             const SizedBox(height: 16),
@@ -110,8 +109,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
               child: Text(
                 "Payment",
                 style: GoogleFonts.montserrat(
-                  fontSize: 18, // Slightly bigger
-                  fontWeight: FontWeight.w600, // Semi bold
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
