@@ -55,6 +55,11 @@ class SharedPreference {
     await prefs.clear();
   }
 
+  static Future<void> logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_keyIsLoggedIn);
+  }
+
   static Future<void> clearLoginStatus() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_keyIsLoggedIn);

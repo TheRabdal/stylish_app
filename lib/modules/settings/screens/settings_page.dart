@@ -28,7 +28,9 @@ class _SettingsPageState extends State<SettingsPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.logout, color: Color(0xFFF83758)),
-            onPressed: () {
+            onPressed: () async {
+              await SharedPreference.logout();
+              if (!context.mounted) return;
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginPage()),
