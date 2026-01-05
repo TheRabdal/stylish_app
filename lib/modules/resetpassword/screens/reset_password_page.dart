@@ -12,6 +12,7 @@ class ResetPasswordPage extends StatefulWidget {
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
   final TextEditingController _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  String? _emailError;
 
   @override
   void dispose() {
@@ -20,18 +21,20 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   }
 
   void _onSubmit() async {
+    setState(() => _emailError = null);
+
     if (_formKey.currentState!.validate()) {
       final email = _emailController.text.trim();
 
       final isRegistered = await SharedPreference.isUserRegistered();
       if (!isRegistered) {
-        _showErrorDialog('Email tidak terdaftar');
+        setState(() => _emailError = 'Email tidak terdaftar');
         return;
       }
 
       final savedEmail = await SharedPreference.getUserEmail();
       if (savedEmail != email) {
-        _showErrorDialog('Email tidak terdaftar');
+        setState(() => _emailError = 'Email tidak terdaftar');
         return;
       }
 
@@ -190,6 +193,21 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     return null;
                   },
                 ),
+                if (_emailError != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0, left: 4.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        _emailError!,
+                        style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 12,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                  ),
                 const SizedBox(height: 15),
                 const ResetPasswordInstruction(),
                 const SizedBox(height: 40),

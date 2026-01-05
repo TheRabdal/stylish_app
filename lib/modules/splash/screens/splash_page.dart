@@ -19,13 +19,23 @@ class _SplashPageState extends State<SplashPage> {
     await Future.delayed(const Duration(seconds: 2));
 
     final isLoggedIn = await SharedPreference.isLoggedIn();
+    final hasSeenOnboarding = await SharedPreference.hasSeenOnboarding();
+    final hasSeenGetStarted = await SharedPreference.hasSeenGetStarted();
 
     if (!mounted) return;
 
     if (isLoggedIn) {
-      Navigator.pushReplacementNamed(context, GetStartedPage.route);
+      if (hasSeenGetStarted) {
+        Navigator.pushReplacementNamed(context, NavigationPage.route);
+      } else {
+        Navigator.pushReplacementNamed(context, GetStartedPage.route);
+      }
     } else {
-      Navigator.pushReplacementNamed(context, OnboardingPage.route);
+      if (hasSeenOnboarding) {
+        Navigator.pushReplacementNamed(context, LoginPage.route);
+      } else {
+        Navigator.pushReplacementNamed(context, OnboardingPage.route);
+      }
     }
   }
 

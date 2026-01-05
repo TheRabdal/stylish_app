@@ -13,6 +13,9 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool suffix = false;
+  String? _emailError;
+  String? _passwordError;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -22,38 +25,29 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _onLogin() async {
+    setState(() {
+      _emailError = null;
+      _passwordError = null;
+    });
+
     final email = _emailController.text.trim();
     final password = _passwordController.text;
 
-    if (email.isEmpty) {
-      _showErrorDialog('Email tidak boleh kosong');
-      return;
-    }
-
-    if (!_isValidEmail(email)) {
-      _showErrorDialog('Format email tidak valid');
-      return;
-    }
-
-    if (password.isEmpty) {
-      _showErrorDialog('Password tidak boleh kosong');
-      return;
-    }
-
-    if (password.length < 6) {
-      _showErrorDialog('Password minimal 6 karakter');
-      return;
-    }
-
     final isRegistered = await SharedPreference.isUserRegistered();
     if (!isRegistered) {
-      _showErrorDialog('Akun belum terdaftar. Silakan daftar terlebih dahulu');
+      setState(
+        () => _emailError =
+            'Akun belum terdaftar. Silakan daftar terlebih dahulu',
+      );
       return;
     }
 
     final isValid = await SharedPreference.validateUser(email, password);
     if (!isValid) {
-      _showErrorDialog('Email atau password salah');
+      setState(() {
+        _emailError = 'Email atau password salah';
+        _passwordError = 'Email atau password salah';
+      });
       return;
     }
 
@@ -71,22 +65,6 @@ class _LoginPageState extends State<LoginPage> {
     return emailRegex.hasMatch(email);
   }
 
-  void _showErrorDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Validasi Error'),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -102,47 +80,102 @@ class _LoginPageState extends State<LoginPage> {
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              children: [
-                const LoginHeader(),
-                CustomTextField(
-                  hint: "Username or Email",
-                  icon: Icons.person,
-                  controller: _emailController,
-                  fontWeight: FontWeight.w500,
-                ),
-                const SizedBox(height: 30),
-                CustomTextField(
-                  hint: "Password",
-                  icon: Icons.lock,
-                  isPassword: true,
-                  passwordHash: suffix,
-                  controller: _passwordController,
-                  fontWeight: FontWeight.w500,
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        suffix = !suffix;
-                      });
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  const LoginHeader(),
+                  CustomTextField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Email tidak boleh kosong';
+                      }
+                      if (!_isValidEmail(value)) {
+                        return 'Format email tidak valid';
+                      }
+                      return null;
                     },
-                    child: Icon(
-                      suffix ? Icons.visibility : Icons.visibility_off,
+                    hint: "Username or Email",
+                    icon: Icons.person,
+                    controller: _emailController,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  if (_emailError != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 4.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          _emailError!,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 12,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: 30),
+                  CustomTextField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Password tidak boleh kosong';
+                      }
+                      if (value.length < 6) {
+                        return 'Password minimal 6 karakter';
+                      }
+                      return null;
+                    },
+                    hint: "Password",
+                    icon: Icons.lock,
+                    isPassword: true,
+                    passwordHash: suffix,
+                    controller: _passwordController,
+                    fontWeight: FontWeight.w500,
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          suffix = !suffix;
+                        });
+                      },
+                      child: Icon(
+                        suffix ? Icons.visibility : Icons.visibility_off,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                const ForgotPassword(),
-                const SizedBox(height: 50),
-                Button(
-                  text: 'Login',
-                  onPressed: _onLogin,
-                  fontWeight: FontWeight.w600,
-                ),
-                const SocialLogin(),
-                const SizedBox(height: 40),
-                const SignUpText(),
-                const SizedBox(height: 20),
-              ],
+                  if (_passwordError != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 4.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          _passwordError!,
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 12,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: 10),
+                  const ForgotPassword(),
+                  const SizedBox(height: 50),
+                  Button(
+                    text: 'Login',
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _onLogin();
+                      }
+                    },
+                    fontWeight: FontWeight.w600,
+                  ),
+                  const SocialLogin(),
+                  const SizedBox(height: 40),
+                  const SignUpText(),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           ),
         ),

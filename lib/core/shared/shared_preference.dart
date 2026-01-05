@@ -4,6 +4,8 @@ class SharedPreference {
   static const String _keyIsLoggedIn = 'isLoggedIn';
   static const String _keyUserEmail = 'userEmail';
   static const String _keyUserPassword = 'userPassword';
+  static const String _keyHasSeenOnboarding = 'hasSeenOnboarding';
+  static const String _keyHasSeenGetStarted = 'hasSeenGetStarted';
 
   static Future<void> setLoggedIn(bool value) async {
     final prefs = await SharedPreferences.getInstance();
@@ -50,6 +52,26 @@ class SharedPreference {
     return false;
   }
 
+  static Future<void> setHasSeenOnboarding(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyHasSeenOnboarding, value);
+  }
+
+  static Future<bool> hasSeenOnboarding() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keyHasSeenOnboarding) ?? false;
+  }
+
+  static Future<void> setHasSeenGetStarted(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyHasSeenGetStarted, value);
+  }
+
+  static Future<bool> hasSeenGetStarted() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_keyHasSeenGetStarted) ?? false;
+  }
+
   static Future<void> clearAll() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
@@ -58,6 +80,7 @@ class SharedPreference {
   static Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_keyIsLoggedIn);
+    await prefs.remove(_keyHasSeenGetStarted);
   }
 
   static Future<void> clearLoginStatus() async {

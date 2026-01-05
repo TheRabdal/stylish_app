@@ -22,7 +22,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
     setState(() => _currentPage = page);
   }
 
-  void _onSkip() {
+  void _onSkip() async {
+    await SharedPreference.setHasSeenOnboarding(true);
+    if (!mounted) return;
     Navigator.pushNamed(context, LoginPage.route);
   }
 

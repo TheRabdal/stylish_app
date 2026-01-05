@@ -8,7 +8,6 @@ class GetStartedContent extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        
         width: MediaQuery.of(context).size.width,
         height: 362,
         decoration: const BoxDecoration(
@@ -46,7 +45,9 @@ class GetStartedContent extends StatelessWidget {
                 text: "Get Started",
                 width: 279,
                 height: 55,
-                onPressed: () {
+                onPressed: () async {
+                  await SharedPreference.setHasSeenGetStarted(true);
+                  if (!context.mounted) return;
                   Navigator.pushNamed(context, NavigationPage.route);
                 },
               ),
