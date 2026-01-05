@@ -22,15 +22,56 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _onLogin() async {
-    final payload = LoginPayload(
-      email: _emailController.text,
-      password: _passwordController.text,
-    );
+    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+
+    if (email.isEmpty) {
+      _showErrorDialog('Email tidak boleh kosong');
+      return;
+    }
+
+    if (!_isValidEmail(email)) {
+      _showErrorDialog('Format email tidak valid');
+      return;
+    }
+
+    if (password.isEmpty) {
+      _showErrorDialog('Password tidak boleh kosong');
+      return;
+    }
+
+    if (password.length < 6) {
+      _showErrorDialog('Password minimal 6 karakter');
+      return;
+    }
+
+    final payload = LoginPayload(email: email, password: password);
     debugPrint("Login with: ${payload.email}, ${payload.password}");
 
     await SharedPreference.setLoggedIn(true);
 
     Navigator.pushNamed(context, GetStartedPage.route);
+  }
+
+  bool _isValidEmail(String email) {
+    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    return emailRegex.hasMatch(email);
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Validasi Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
