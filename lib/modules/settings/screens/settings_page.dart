@@ -41,7 +41,6 @@ class _SettingsPageState extends State<SettingsPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Profile Header
             Container(
               width: double.infinity,
               color: Colors.white,
@@ -111,7 +110,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             const SizedBox(height: 16),
 
-            // Settings List
             _buildSettingsItem(Icons.notifications_outlined, "Notifications"),
             _buildSettingsItem(Icons.lock_outline, "Security"),
             _buildSettingsItem(Icons.language, "Language"),
@@ -125,7 +123,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildSettingsItem(IconData icon, String title) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 1), // Divider effect
+      margin: const EdgeInsets.only(bottom: 1),
       color: Colors.white,
       child: ListTile(
         leading: Icon(icon, color: Colors.black54),

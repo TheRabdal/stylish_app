@@ -26,7 +26,6 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _onSignUp() {
-    // Implement signup logic
     debugPrint("Sign up with: ${_emailController.text}");
   }
 
@@ -51,8 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 hint: "Password",
                 icon: Icons.lock,
                 isPassword: true,
-                passwordHash:
-                    !_passwordVisible, // if true, it hides. So if visible is true, hash should be false.
+                passwordHash: !_passwordVisible,
                 controller: _passwordController,
                 suffixIcon: GestureDetector(
                   onTap: () {

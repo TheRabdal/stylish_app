@@ -10,7 +10,6 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   final _formKey = GlobalKey<FormState>();
 
-  // Personal Details
   final TextEditingController _emailController = TextEditingController(
     text: "aashifa@gmail.com",
   );
@@ -18,7 +17,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
     text: "password123",
   );
 
-  // Business Address Details
   final TextEditingController _pincodeController = TextEditingController(
     text: "450116",
   );
@@ -31,9 +29,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController _countryController = TextEditingController(
     text: "United Kingdom",
   );
-  String? _selectedState = "N1 2LL,"; // Dropdown value
+  String? _selectedState = "N1 2LL,";
 
-  // Bank Account Details
   final TextEditingController _bankAccountController = TextEditingController(
     text: "204356XXXXXXX",
   );
@@ -86,7 +83,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Avatar
               Center(
                 child: Stack(
                   children: [
@@ -125,7 +121,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
               const SizedBox(height: 32),
 
-              // Personal Details
               _buildSectionTitle("Personal Details"),
               const SizedBox(height: 16),
               _buildTextField(
@@ -167,7 +162,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const Divider(color: Color(0xFFC4C4C4), thickness: 1),
               const SizedBox(height: 24),
 
-              // Business Address Details
               _buildSectionTitle("Business Address Details"),
               const SizedBox(height: 16),
               _buildTextField(label: "Pincode", controller: _pincodeController),
@@ -189,7 +183,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const Divider(color: Color(0xFFC4C4C4), thickness: 1),
               const SizedBox(height: 24),
 
-              // Bank Account Details
               _buildSectionTitle("Bank Account Details"),
               const SizedBox(height: 16),
               _buildTextField(
@@ -206,7 +199,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
               const SizedBox(height: 48),
 
-              // Save Button
               SizedBox(
                 width: double.infinity,
                 height: 55,
@@ -268,9 +260,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
         Text(
           label,
           style: GoogleFonts.montserrat(
-            fontSize: 12, // Smaller label as per design
+            fontSize: 12,
             fontWeight: FontWeight.w500,
-            color: Colors.black54, // Lighter color
+            color: Colors.black54,
           ),
         ),
         const SizedBox(height: 8),
@@ -279,7 +271,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           obscureText: isPassword,
           style: GoogleFonts.montserrat(
             fontSize: 14,
-            fontWeight: FontWeight.bold, // Bold input text
+            fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
           decoration: InputDecoration(

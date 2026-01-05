@@ -14,10 +14,9 @@ class _ProductDetailImageState extends State<ProductDetailImage> {
 
   @override
   Widget build(BuildContext context) {
-    // In a real app these would be a list from the product object
     final List<String> images = [
       widget.imageUrl,
-      widget.imageUrl, // Duplicate for demo carousel
+      widget.imageUrl,
       widget.imageUrl,
       widget.imageUrl,
       widget.imageUrl,
@@ -26,11 +25,7 @@ class _ProductDetailImageState extends State<ProductDetailImage> {
     return Container(
       height: 290,
       width: double.infinity,
-      margin: const EdgeInsets.only(
-        top: 16,
-        left: 16,
-        right: 16,
-      ), // Margin on sides too
+      margin: const EdgeInsets.only(top: 16, left: 16, right: 16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -65,9 +60,7 @@ class _ProductDetailImageState extends State<ProductDetailImage> {
             child: Center(
               child: CircleAvatar(
                 radius: 20,
-                backgroundColor: Colors.grey.withValues(
-                  alpha: 0.4,
-                ), // Semi-transparent grey
+                backgroundColor: Colors.grey.withValues(alpha: 0.4),
                 child: IconButton(
                   icon: const Icon(Icons.chevron_right, color: Colors.white),
                   onPressed: () {
@@ -91,8 +84,8 @@ class _ProductDetailImageState extends State<ProductDetailImage> {
                 controller: _controller,
                 count: images.length,
                 effect: const ScrollingDotsEffect(
-                  activeDotColor: Color(0xFFFA7189), // Pinkish Red
-                  dotColor: Color(0xFFE0E0E0), // Grey
+                  activeDotColor: Color(0xFFFA7189),
+                  dotColor: Color(0xFFE0E0E0),
                   dotHeight: 8,
                   dotWidth: 8,
                   activeDotScale: 1.2,

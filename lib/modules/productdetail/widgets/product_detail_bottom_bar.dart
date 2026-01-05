@@ -33,7 +33,7 @@ class ProductDetailBottomBar extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 14),
-                  backgroundColor: const Color(0xFF3F69FF), // Blue color
+                  backgroundColor: const Color(0xFF3F69FF),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -62,15 +62,10 @@ class ProductDetailBottomBar extends StatelessWidget {
             const SizedBox(width: 16),
             Expanded(
               child: ElevatedButton(
-                onPressed: () {
-                  // Buy Now logic (maybe straight to checkout?)
-                  // For now just print or navigate to checkout
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 14),
-                  backgroundColor: const Color(
-                    0xFF4ADE80,
-                  ), // Green color (matches image approx)
+                  backgroundColor: const Color(0xFF4ADE80),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),

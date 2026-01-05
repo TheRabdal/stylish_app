@@ -11,12 +11,10 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController _searchController = TextEditingController();
 
-  // State for Sort and Filter
   String _currentSort = "Relevance";
   RangeValues? _filterPriceRange;
   String _searchQuery = "";
 
-  // Data from centralized product data
   final List<ProductStore> _allProducts = trendingProductsList;
   List<ProductStore> _processedProducts = [];
 
@@ -62,7 +60,8 @@ class _SearchPageState extends State<SearchPage> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => FilterDrawerPage(initialPriceRange: _filterPriceRange),
+      builder: (context) =>
+          FilterDrawerPage(initialPriceRange: _filterPriceRange),
     );
 
     if (result != null && result is Map) {
@@ -78,7 +77,6 @@ class _SearchPageState extends State<SearchPage> {
   void _updateProcessedProducts() {
     List<ProductStore> temp = List.from(_allProducts);
 
-    // Apply Search
     if (_searchQuery.isNotEmpty) {
       temp = temp.where((product) {
         return product.name.toLowerCase().contains(
@@ -90,7 +88,6 @@ class _SearchPageState extends State<SearchPage> {
       }).toList();
     }
 
-    // Apply Filter (Price Range)
     if (_filterPriceRange != null) {
       temp = temp.where((product) {
         double price =
@@ -101,7 +98,6 @@ class _SearchPageState extends State<SearchPage> {
       }).toList();
     }
 
-    // Apply Sort
     if (_currentSort == "Price: Low to High") {
       temp.sort((a, b) {
         double priceA =

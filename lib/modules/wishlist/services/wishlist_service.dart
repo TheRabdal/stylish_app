@@ -12,9 +12,7 @@ class WishlistService extends ChangeNotifier {
 
   void toggleResult(ProductStore product) {
     if (isWishlisted(product)) {
-      _items.removeWhere(
-        (item) => item.name == product.name,
-      ); // Using name or ID if available
+      _items.removeWhere((item) => item.name == product.name);
     } else {
       _items.add(product);
     }

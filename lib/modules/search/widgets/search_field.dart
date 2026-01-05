@@ -89,7 +89,7 @@ class _SearchFieldState extends State<SearchField> {
                 onPressed: () {
                   widget.controller.clear();
                   FocusScope.of(context).unfocus();
-                  widget.onChanged?.call(); // Trigger update on clear
+                  widget.onChanged?.call();
                 },
               ),
             IconButton(

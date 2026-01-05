@@ -16,7 +16,6 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
   @override
   void initState() {
     super.initState();
-    // User requested sizes 6 to 10
     _sizes = [
       ProductSize(label: '6 UK', isSelected: false),
       ProductSize(label: '7 UK', isSelected: true),
@@ -103,7 +102,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
           ),
           const SizedBox(height: 4),
           Text(
-            "Vision Alta Men's Shoes Size (All Colours)", // Subtitle from image
+            "Vision Alta Men's Shoes Size (All Colours)",
             style: GoogleFonts.montserrat(
               fontSize: 13,
               color: Colors.grey.shade700,
@@ -126,7 +125,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
               ),
               const SizedBox(width: 8),
               Text(
-                "56,890", // Fixed count from image or dynamic
+                "56,890",
                 style: GoogleFonts.montserrat(fontSize: 12, color: Colors.grey),
               ),
             ],
@@ -138,7 +137,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "₹2,999", // Old Price match image style (Strikethrough)
+                "₹2,999",
                 style: GoogleFonts.montserrat(
                   fontSize: 14,
                   color: Colors.grey,
@@ -148,7 +147,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
               ),
               const SizedBox(width: 8),
               Text(
-                "₹1,500", // Current Price
+                "₹1,500",
                 style: GoogleFonts.montserrat(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -157,7 +156,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
               ),
               const SizedBox(width: 8),
               Text(
-                "50% Off", // Discount
+                "50% Off",
                 style: GoogleFonts.montserrat(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -198,7 +197,6 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
           ),
 
           const SizedBox(height: 16),
-          // Feature Icons
           Row(
             children: [
               _buildFeatureIcon(Icons.location_on_outlined, "Nearest Store"),
@@ -227,7 +225,6 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                     const Color(0xFF1A4CFF),
                   ],
                   onTap: () {
-                    // Add to Cart
                     final priceString = widget.product.price.replaceAll(
                       RegExp(r'[^0-9.]'),
                       '',
@@ -241,7 +238,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                       image: widget.product.image,
                       title: widget.product.name,
                       variations: "Standard",
-                      size: _selectedSizeLabel, // Use dynamic selected size
+                      size: _selectedSizeLabel,
                       qty: 1,
                       deliveryDate:
                           "${DateTime.now().add(const Duration(days: 5)).day} ${_getMonthName(DateTime.now().add(const Duration(days: 5)).month)} ${DateTime.now().add(const Duration(days: 5)).year}",
@@ -278,7 +275,6 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                     const Color(0xFF4AC786),
                   ],
                   onTap: () {
-                    // Create CartItem for Buy Now
                     final priceString = widget.product.price.replaceAll(
                       RegExp(r'[^0-9.]'),
                       '',
@@ -315,12 +311,11 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
           ),
 
           const SizedBox(height: 24),
-          // Delivery Banner
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFCDD2), // Pinkish BG
+              color: const Color(0xFFFFCDD2),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Column(
@@ -334,7 +329,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                   ),
                 ),
                 Text(
-                  "1 within Hour", // Typos preserved from design if needed, or corrected: "1 Hour"
+                  "1 within Hour",
                   style: GoogleFonts.montserrat(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -407,7 +402,6 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
               ),
             ],
           ),
-          // Spacing for SimilarProducts below this widget (handled in page)
         ],
       ),
     );
@@ -415,21 +409,14 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
 
   Widget _buildFeatureIcon(IconData icon, String label) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 8,
-      ), // slightly larger padding
+      padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey.shade400),
         borderRadius: BorderRadius.circular(5), // More rounded
       ),
       child: Row(
         children: [
-          Icon(
-            icon,
-            size: 16,
-            color: Colors.grey.shade600,
-          ), // Slightly larger icon
+          Icon(icon, size: 16, color: Colors.grey.shade600),
           const SizedBox(width: 6),
           Text(
             label,
@@ -465,9 +452,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
           ),
           boxShadow: [
             BoxShadow(
-              color: gradientColors.last.withValues(
-                alpha: 0.5,
-              ), // Stronger shadow
+              color: gradientColors.last.withValues(alpha: 0.5),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
@@ -478,7 +463,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
             Align(
               alignment: Alignment.center,
               child: Padding(
-                padding: const EdgeInsets.only(left: 30), // Offset for icon
+                padding: const EdgeInsets.only(left: 30),
                 child: Text(
                   label,
                   style: GoogleFonts.montserrat(
@@ -513,9 +498,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(
-                        alpha: 0.2,
-                      ), // Stronger icon shadow
+                      color: Colors.black.withValues(alpha: 0.2),
                       blurRadius: 5,
                       offset: const Offset(2, 2),
                     ),
@@ -523,7 +506,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                   border: Border.all(
                     color: Colors.white.withValues(alpha: 0.3),
                     width: 1.5,
-                  ), // Sharper border
+                  ),
                 ),
                 child: Icon(icon, color: Colors.white, size: 24),
               ),

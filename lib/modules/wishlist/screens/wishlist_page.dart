@@ -8,14 +8,10 @@ class WishlistPage extends StatefulWidget {
 }
 
 class _WishlistPageState extends State<WishlistPage> {
-  // Sort and Filter State
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = "";
   String _currentSort = "Relevance";
   RangeValues? _filterPriceRange;
-  // Ignoring category/size/color for now as WishlistService items might not have all details populated in the same way,
-  // but keeping structure ready if needed.
-  // For now, we will just use Price Range from the common FilterDrawer.
 
   @override
   void initState() {
@@ -56,7 +52,8 @@ class _WishlistPageState extends State<WishlistPage> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => FilterDrawerPage(initialPriceRange: _filterPriceRange),
+      builder: (context) =>
+          FilterDrawerPage(initialPriceRange: _filterPriceRange),
     );
 
     if (result != null && result is Map) {
@@ -71,14 +68,12 @@ class _WishlistPageState extends State<WishlistPage> {
   List<ProductStore> _getProcessedItems(List<ProductStore> items) {
     List<ProductStore> processed = List.from(items);
 
-    // Apply Search
     if (_searchQuery.isNotEmpty) {
       processed = processed.where((product) {
         return product.name.toLowerCase().contains(_searchQuery.toLowerCase());
       }).toList();
     }
 
-    // Apply Filter (Price Range)
     if (_filterPriceRange != null) {
       processed = processed.where((product) {
         double price =
@@ -89,7 +84,6 @@ class _WishlistPageState extends State<WishlistPage> {
       }).toList();
     }
 
-    // Apply Sort
     if (_currentSort == "Price: Low to High") {
       processed.sort((a, b) {
         double priceA =
@@ -115,9 +109,7 @@ class _WishlistPageState extends State<WishlistPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(
-        0xFFF9F9F9,
-      ), // Light background like in image
+      backgroundColor: const Color(0xFFF9F9F9),
       body: SafeArea(
         child: Column(
           children: [

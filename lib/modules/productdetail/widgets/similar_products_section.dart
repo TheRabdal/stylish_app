@@ -5,8 +5,6 @@ class SimilarProductsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Dummy similar products data for now, or this could be passed in.
-    // Mimicking the data from the old file.
     final List<SimilarProduct> similarProducts = [
       SimilarProduct(
         id: '101',

@@ -62,7 +62,6 @@ class SimilarProducts extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        // Displaying 2 items side-by-side as in the screenshot
         SizedBox(
           height: 280,
           child: ListView.builder(
@@ -87,16 +86,14 @@ class SimilarProducts extends StatelessWidget {
   Widget _buildProductCard(BuildContext context, SimilarProduct product) {
     return GestureDetector(
       onTap: () {
-        // Map SimilarProduct to Product
         final convertedProduct = ProductStore(
           image: product.image,
           name: product.title,
           description: product.subtitle,
           price: "₹${product.price.toStringAsFixed(0)}",
-          oldPrice: "", // Not available in SimilarProduct
-          discount: "", // Not available in SimilarProduct
-          rating: product.rating
-              .round(), // Assuming int in Product, double in SimilarProduct
+          oldPrice: "",
+          discount: "",
+          rating: product.rating.round(),
           reviewCount: product.reviewCount,
         );
 
@@ -134,7 +131,6 @@ class SimilarProducts extends StatelessWidget {
                 child: ListenableBuilder(
                   listenable: WishlistService(),
                   builder: (context, child) {
-                    // Map SimilarProduct to Product for checking wishlist status
                     final convertedProduct = ProductStore(
                       image: product.image,
                       name: product.title,
