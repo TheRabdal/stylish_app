@@ -12,8 +12,15 @@ class GetStartedPage extends StatefulWidget {
 class _GetStartedPageState extends State<GetStartedPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Stack(children: [GetStartedBackground(), GetStartedContent()]),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) async {
+        if (didPop) return;
+        SystemNavigator.pop();
+      },
+      child: const Scaffold(
+        body: Stack(children: [GetStartedBackground(), GetStartedContent()]),
+      ),
     );
   }
 }

@@ -21,61 +21,75 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _onLogin() {
+  void _onLogin() async {
     final payload = LoginPayload(
       email: _emailController.text,
       password: _passwordController.text,
     );
     debugPrint("Login with: ${payload.email}, ${payload.password}");
+
+    await SharedPreference.setLoggedIn(true);
+
     Navigator.pushNamed(context, GetStartedPage.route);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            children: [
-              const LoginHeader(),
-              CustomTextField(
-                hint: "Username or Email",
-                icon: Icons.person,
-                controller: _emailController,
-                fontWeight: FontWeight.w500,
-              ),
-              const SizedBox(height: 30),
-              CustomTextField(
-                hint: "Password",
-                icon: Icons.lock,
-                isPassword: true,
-                passwordHash: suffix,
-                controller: _passwordController,
-                fontWeight: FontWeight.w500,
-                suffixIcon: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      suffix = !suffix;
-                    });
-                  },
-                  child: Icon(suffix ? Icons.visibility : Icons.visibility_off),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) async {
+        if (didPop) {
+          return;
+        }
+        SystemNavigator.pop();
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              children: [
+                const LoginHeader(),
+                CustomTextField(
+                  hint: "Username or Email",
+                  icon: Icons.person,
+                  controller: _emailController,
+                  fontWeight: FontWeight.w500,
                 ),
-              ),
-              const SizedBox(height: 10),
-              const ForgotPassword(),
-              const SizedBox(height: 50),
-              Button(
-                text: 'Login',
-                onPressed: _onLogin,
-                fontWeight: FontWeight.w600,
-              ),
-              const SocialLogin(),
-              const SizedBox(height: 40),
-              const SignUpText(),
-              const SizedBox(height: 20),
-            ],
+                const SizedBox(height: 30),
+                CustomTextField(
+                  hint: "Password",
+                  icon: Icons.lock,
+                  isPassword: true,
+                  passwordHash: suffix,
+                  controller: _passwordController,
+                  fontWeight: FontWeight.w500,
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        suffix = !suffix;
+                      });
+                    },
+                    child: Icon(
+                      suffix ? Icons.visibility : Icons.visibility_off,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const ForgotPassword(),
+                const SizedBox(height: 50),
+                Button(
+                  text: 'Login',
+                  onPressed: _onLogin,
+                  fontWeight: FontWeight.w600,
+                ),
+                const SocialLogin(),
+                const SizedBox(height: 40),
+                const SignUpText(),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),

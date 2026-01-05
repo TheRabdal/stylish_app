@@ -12,9 +12,21 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () {
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    await Future.delayed(const Duration(seconds: 2));
+
+    final isLoggedIn = await SharedPreference.isLoggedIn();
+
+    if (!mounted) return;
+
+    if (isLoggedIn) {
+      Navigator.pushReplacementNamed(context, GetStartedPage.route);
+    } else {
       Navigator.pushReplacementNamed(context, OnboardingPage.route);
-    });
+    }
   }
 
   @override
