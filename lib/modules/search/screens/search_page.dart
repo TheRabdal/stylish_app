@@ -15,7 +15,7 @@ class _SearchPageState extends State<SearchPage> {
   RangeValues? _filterPriceRange;
   String _searchQuery = "";
 
-  final List<ProductStore> _allProducts = trendingProductsList;
+  final List<ProductStore> _allProducts = allProducts;
   List<ProductStore> _processedProducts = [];
 
   @override
