@@ -45,6 +45,18 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
+    final isRegistered = await SharedPreference.isUserRegistered();
+    if (!isRegistered) {
+      _showErrorDialog('Akun belum terdaftar. Silakan daftar terlebih dahulu');
+      return;
+    }
+
+    final isValid = await SharedPreference.validateUser(email, password);
+    if (!isValid) {
+      _showErrorDialog('Email atau password salah');
+      return;
+    }
+
     final payload = LoginPayload(email: email, password: password);
     debugPrint("Login with: ${payload.email}, ${payload.password}");
 

@@ -25,8 +25,94 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  void _onSignUp() {
-    debugPrint("Sign up with: ${_emailController.text}");
+  void _onSignUp() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+    final confirmPassword = _confirmPasswordController.text;
+
+    if (email.isEmpty) {
+      _showErrorDialog('Email tidak boleh kosong');
+      return;
+    }
+
+    if (!_isValidEmail(email)) {
+      _showErrorDialog('Format email tidak valid');
+      return;
+    }
+
+    if (password.isEmpty) {
+      _showErrorDialog('Password tidak boleh kosong');
+      return;
+    }
+
+    if (password.length < 6) {
+      _showErrorDialog('Password minimal 6 karakter');
+      return;
+    }
+
+    if (confirmPassword.isEmpty) {
+      _showErrorDialog('Konfirmasi password tidak boleh kosong');
+      return;
+    }
+
+    if (password != confirmPassword) {
+      _showErrorDialog('Password dan konfirmasi password tidak sama');
+      return;
+    }
+
+    final isRegistered = await SharedPreference.isUserRegistered();
+    if (isRegistered) {
+      final savedEmail = await SharedPreference.getUserEmail();
+      _showErrorDialog('Akun dengan email $savedEmail sudah terdaftar');
+      return;
+    }
+
+    await SharedPreference.registerUser(email, password);
+    await SharedPreference.setLoggedIn(true);
+
+    if (!mounted) return;
+
+    _showSuccessDialog('Akun berhasil dibuat!');
+  }
+
+  bool _isValidEmail(String email) {
+    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    return emailRegex.hasMatch(email);
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showSuccessDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Sukses'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, GetStartedPage.route);
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
