@@ -11,11 +11,10 @@ class PaymentSuccessDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 16),
-          // Success Icon (Circle with Check)
           Container(
             padding: const EdgeInsets.all(20),
             decoration: const BoxDecoration(
-              color: Color(0xFFF83758), // Pink/Red background
+              color: Color(0xFFF83758),
               shape: BoxShape.circle,
             ),
             child: const Icon(Icons.check, color: Colors.white, size: 40),
@@ -30,12 +29,10 @@ class PaymentSuccessDialog extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24),
-          // Buttons (Nav to Home) since the flow ends here
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                // Navigate to dashboard/home, clearing stack
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(

@@ -10,7 +10,6 @@ export 'productdetail/productdetail.dart';
 export 'resetpassword/resetpassword.dart';
 export 'search/search.dart';
 export 'settings/settings.dart';
-
 export 'signup/signup.dart';
 export 'splash/splash.dart';
 export 'wishlist/wishlist.dart';
