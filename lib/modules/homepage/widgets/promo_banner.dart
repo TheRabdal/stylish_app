@@ -37,7 +37,7 @@ class _PromoBannerState extends State<PromoBanner> {
   }
 
   void _startAutoSlide() {
-    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       if (_currentPage < banners.length - 1) {
         _currentPage++;
       } else {
@@ -62,7 +62,7 @@ class _PromoBannerState extends State<PromoBanner> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Column(
         children: [
           SizedBox(
@@ -70,8 +70,13 @@ class _PromoBannerState extends State<PromoBanner> {
             child: PageView.builder(
               controller: _pageController,
               itemCount: banners.length,
+              padEnds: false,
+              pageSnapping: true,
               itemBuilder: (context, index) {
-                return _buildBanner(banners[index]);
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: _buildBanner(banners[index]),
+                );
               },
             ),
           ),
@@ -104,7 +109,7 @@ class _PromoBannerState extends State<PromoBanner> {
       ),
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
