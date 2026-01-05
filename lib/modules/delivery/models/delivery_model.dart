@@ -10,7 +10,8 @@ class AddressModel {
   });
 }
 
-class CheckoutItemModel {
+class DeliveryItemModel {
+  // Renamed from CheckoutItemModel
   final String image;
   final String title;
   final List<String> variations;
@@ -20,7 +21,7 @@ class CheckoutItemModel {
   final int discountPercentage;
   final int quantity;
 
-  CheckoutItemModel({
+  DeliveryItemModel({
     required this.image,
     required this.title,
     required this.variations,

@@ -1,11 +1,12 @@
 import 'package:stylish_app/packages/packages.dart';
 
-class PaymentOrderSummaryRow extends StatelessWidget {
+class CheckoutOrderSummaryRow extends StatelessWidget {
+  // Renamed from ShippingOrderSummaryRow
   final String label;
   final String value;
   final bool isTotal;
 
-  const PaymentOrderSummaryRow({
+  const CheckoutOrderSummaryRow({
     super.key,
     required this.label,
     required this.value,
@@ -29,8 +30,8 @@ class PaymentOrderSummaryRow extends StatelessWidget {
           value,
           style: GoogleFonts.montserrat(
             fontSize: isTotal ? 16 : 14,
-            fontWeight: isTotal ? FontWeight.bold : FontWeight.w600,
-            color: Colors.black,
+            fontWeight: isTotal ? FontWeight.bold : FontWeight.w500,
+            color: isTotal ? Colors.black : Colors.grey,
           ),
         ),
       ],

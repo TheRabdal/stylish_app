@@ -65,4 +65,10 @@ class CartService extends ChangeNotifier {
     double discount = subtotal * _discountPercentage;
     return subtotal - discount;
   }
+
+  void clear() {
+    _items.clear();
+    _discountPercentage = 0.0;
+    notifyListeners();
+  }
 }

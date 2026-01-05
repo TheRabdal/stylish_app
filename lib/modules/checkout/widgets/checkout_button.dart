@@ -1,10 +1,11 @@
 import 'package:stylish_app/packages/packages.dart';
 
-class PaymentButton extends StatelessWidget {
+class CheckoutButton extends StatelessWidget {
+  // Renamed from ShippingButton
   final VoidCallback onPressed;
   final String text;
 
-  const PaymentButton({
+  const CheckoutButton({
     super.key,
     required this.onPressed,
     this.text = "Continue",

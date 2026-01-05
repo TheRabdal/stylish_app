@@ -40,8 +40,10 @@ class ShoppingListSection extends StatelessWidget {
                   children: items.map((item) {
                     return Column(
                       children: [
-                        CheckoutItemCard(
-                          item: CheckoutItemModel(
+                        DeliveryItemCard(
+                          // Renamed from CheckoutItemCard
+                          item: DeliveryItemModel(
+                            // Renamed from CheckoutItemModel
                             image: item.image,
                             title: item.title,
                             variations: [item.variations],

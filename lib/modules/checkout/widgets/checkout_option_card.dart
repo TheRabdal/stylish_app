@@ -1,25 +1,31 @@
 import 'package:stylish_app/packages/packages.dart';
 
-class PaymentMethodCard extends StatelessWidget {
-  final PaymentMethodModel method;
+class CheckoutOptionCard extends StatelessWidget {
+  final CheckoutMethodModel method;
   final VoidCallback onTap;
+  final bool isSelected;
 
-  const PaymentMethodCard({
+  const CheckoutOptionCard({
     super.key,
     required this.method,
     required this.onTap,
+    this.isSelected = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         decoration: BoxDecoration(
-          color: Colors.grey.shade50,
+          color: isSelected ? Colors.white : Colors.grey.shade100,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.transparent),
+          border: Border.all(
+            color: isSelected ? const Color(0xFFF83758) : Colors.transparent,
+            width: 1.5,
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,7 +42,10 @@ class PaymentMethodCard extends StatelessWidget {
                 const SizedBox(width: 16),
                 Text(
                   method.name,
-                  style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),
+                  style: GoogleFonts.montserrat(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ],
             ),

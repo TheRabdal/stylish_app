@@ -1,1 +1,1 @@
-export 'checkout_model.dart';
+export 'checkout_method_model.dart';

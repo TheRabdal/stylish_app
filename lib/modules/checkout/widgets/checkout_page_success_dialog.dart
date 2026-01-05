@@ -1,7 +1,8 @@
 import "package:stylish_app/packages/packages.dart";
 
-class PaymentSuccessDialog extends StatelessWidget {
-  const PaymentSuccessDialog({super.key});
+class CheckoutPageSuccessDialog extends StatelessWidget {
+  // Renamed from ShippingPageSuccessDialog
+  const CheckoutPageSuccessDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +43,17 @@ class PaymentSuccessDialog extends StatelessWidget {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
+                // Clear Cart Data
+                CartService().clear();
+
+                // Navigate to Home and remove all previous routes
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NavigationPage(initialIndex: 0),
+                  ),
+                  (route) => false,
+                );
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 45),

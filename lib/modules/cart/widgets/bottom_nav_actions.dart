@@ -10,9 +10,25 @@ class BottomNavActions extends StatelessWidget {
         Expanded(
           child: ElevatedButton.icon(
             onPressed: () {
+              // Calculate Price
+              final items = CartService().items;
+              final double subtotal = CartService().calculateTotal(items);
+              final double discountPct = CartService().discountPercentage;
+              final double discountAmount = subtotal * discountPct;
+              final double shoppingLimit = 1000.0;
+              final double shippingFee = subtotal > shoppingLimit ? 0.0 : 50.0;
+              final double total = subtotal - discountAmount + shippingFee;
+
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const CheckoutPage()),
+                MaterialPageRoute(
+                  builder: (context) => CheckoutPage(
+                    orderTotal: subtotal,
+                    shippingFee: shippingFee,
+                    discountAmount: discountAmount,
+                    finalTotal: total,
+                  ),
+                ),
               );
             },
             icon: const Icon(Icons.shopping_cart_outlined, color: Colors.white),

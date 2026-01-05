@@ -305,7 +305,7 @@ class _ProductDetailInfoState extends State<ProductDetailInfo> {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            CheckoutPage(buyNowItems: [cartItem]),
+                            DeliveryPage(buyNowItems: [cartItem]),
                       ),
                     );
                   },

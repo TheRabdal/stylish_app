@@ -1,10 +1,10 @@
 import 'package:stylish_app/packages/packages.dart';
 
-class CheckoutBottomBar extends StatelessWidget {
+class DeliveryBottomBar extends StatelessWidget {
   final List<CartItem>? buyNowItems;
   final VoidCallback onContinue;
 
-  const CheckoutBottomBar({
+  const DeliveryBottomBar({
     super.key,
     this.buyNowItems,
     required this.onContinue,

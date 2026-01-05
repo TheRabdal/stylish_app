@@ -1,12 +1,11 @@
 export 'cart/cart.dart';
-export 'checkout/checkout.dart';
+export 'delivery/delivery.dart';
 export 'getstarted/getstarted.dart';
 export 'homepage/homepage.dart';
 export 'login/login.dart';
 export 'navigation/navigation.dart';
 export 'onboarding/onboarding.dart';
-export 'payment/payment.dart';
-export 'placeorder/placeorder.dart';
+export 'checkout/checkout.dart';
 export 'productdetail/productdetail.dart';
 export 'resetpassword/resetpassword.dart';
 export 'search/search.dart';
