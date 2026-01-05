@@ -21,7 +21,6 @@ class CartBottomBar extends StatelessWidget {
       return;
     }
 
-    // Calculate Price
     final double subtotal = CartService().calculateTotal(items);
     final double discountPct = CartService().discountPercentage;
     final double discountAmount = subtotal * discountPct;

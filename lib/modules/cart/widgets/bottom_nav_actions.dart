@@ -10,7 +10,6 @@ class BottomNavActions extends StatelessWidget {
         Expanded(
           child: ElevatedButton.icon(
             onPressed: () {
-              // Calculate Price
               final items = CartService().items;
               final double subtotal = CartService().calculateTotal(items);
               final double discountPct = CartService().discountPercentage;
