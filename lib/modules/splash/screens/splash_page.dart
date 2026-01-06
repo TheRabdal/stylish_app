@@ -25,17 +25,15 @@ class _SplashPageState extends State<SplashPage> {
     if (!mounted) return;
 
     if (isLoggedIn) {
-      if (hasSeenGetStarted) {
-        Navigator.pushReplacementNamed(context, NavigationPage.route);
-      } else {
-        Navigator.pushReplacementNamed(context, GetStartedPage.route);
-      }
+      Navigator.pushReplacementNamed(
+        context,
+        hasSeenGetStarted ? NavigationPage.route : GetStartedPage.route,
+      );
     } else {
-      if (hasSeenOnboarding) {
-        Navigator.pushReplacementNamed(context, LoginPage.route);
-      } else {
-        Navigator.pushReplacementNamed(context, OnboardingPage.route);
-      }
+      Navigator.pushReplacementNamed(
+        context,
+        hasSeenOnboarding ? LoginPage.route : OnboardingPage.route,
+      );
     }
   }
 

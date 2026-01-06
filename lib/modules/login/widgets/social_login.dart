@@ -15,7 +15,7 @@ class SocialLogin extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 75),
-        const Text(
+        Text(
           "- OR Continue with -",
           style: TextStyle(
             color: Colors.black54,
