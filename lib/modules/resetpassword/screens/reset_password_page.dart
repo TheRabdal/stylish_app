@@ -122,6 +122,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 email,
                 newPassword,
               );
+
+              if (!context.mounted) return;
               Navigator.pop(context);
 
               if (success) {

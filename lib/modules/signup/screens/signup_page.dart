@@ -42,7 +42,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
     final email = _emailController.text.trim();
     final password = _passwordController.text;
-    final confirmPassword = _confirmPasswordController.text;
 
     final isRegistered = await SharedPreference.isUserRegistered();
     if (isRegistered) {
