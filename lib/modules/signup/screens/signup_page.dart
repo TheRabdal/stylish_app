@@ -56,7 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
     await SharedPreference.setLoggedIn(true);
 
     if (!mounted) return;
-    Navigator.pushNamed(context, GetStartedPage.route);
+    Navigator.pushNamed(context, LoginPage.route);
   }
 
   @override
