@@ -19,7 +19,12 @@ class _GetStartedPageState extends State<GetStartedPage> {
         SystemNavigator.pop();
       },
       child: const Scaffold(
-        body: Stack(children: [GetStartedBackground(), GetStartedContent()]),
+        body: Stack(
+          children: [
+            GetStartedBackground(), 
+            GetStartedContent()
+          ]
+        ),
       ),
     );
   }
