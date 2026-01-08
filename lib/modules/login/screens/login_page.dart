@@ -45,8 +45,8 @@ class _LoginPageState extends State<LoginPage> {
     final isValid = await SharedPreference.validateUser(email, password);
     if (!isValid) {
       setState(() {
-        _emailError = 'Email atau password salah';
-        _passwordError = 'Email atau password salah';
+        _emailError = 'Email salah';
+        _passwordError = 'Password salah';
       });
       return;
     }
