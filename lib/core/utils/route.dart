@@ -10,3 +10,4 @@ final Map<String, WidgetBuilder> appRoutes = {
   HomePage.route: (context) => const HomePage(),
   NavigationPage.route: (context) => const NavigationPage(),
 };
+ 
